@@ -42,7 +42,26 @@ const signRefreshToken = (userID) => {
     });
 };
 
+const forgetPassAccessToken = (email) => {
+  return new Promise((resolve, reject) => {
+    const payload = {};
+    const secret = process.env.ACCESS_TOKEN_SECRET;
+    const options = {
+      expiresIn: "2d",
+      issuer: "techbazaar.pk",
+      audience: email,
+    };
+    JWT.sign(payload, secret, options, (err, token) => {
+      if (err) {
+        return reject(new Error("Internal Server Error"));
+      }
+      resolve(token);
+    });
+  });
+};
+
 module.exports = {
     signAccessToken,
-    signRefreshToken
+    signRefreshToken,
+    forgetPassAccessToken
 }

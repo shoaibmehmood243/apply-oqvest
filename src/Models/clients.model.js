@@ -34,7 +34,7 @@ Clients.Register = async (data) => {
             const hashedPassword = await bcrypt.hash(data.password, salt);
             data.password = hashedPassword;
             const query = `INSERT INTO clients SET ?`;
-            db.query(query, [data], (err, sqlresult) => {
+            db.query(query, data, (err, sqlresult) => {
                 if (err) {
                     reject(err);
                 } else {
@@ -65,5 +65,22 @@ Clients.getByEmail = (email) => {
         }
     })
 }
+
+Clients.setPassword = async (userData, result) => {
+    try {
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(userData.password, salt);
+      const query = `UPDATE clients SET password = ? WHERE email = '${userData.email}'`;
+      db.query(query, hashedPassword, (err, sqlresult) => {
+        if (err) {
+          result(err, undefined);
+        } else {
+          result(undefined, sqlresult);
+        }
+      });
+    } catch (err) {
+      result(err, undefined);
+    }
+  };
 
 module.exports = Clients;

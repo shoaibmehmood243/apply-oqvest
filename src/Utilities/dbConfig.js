@@ -4,7 +4,7 @@ const db = mysql.createPool({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'apply'
+    database: 'apply_oqvest'
 });
 
 db.getConnection((err, connection)=> {
