@@ -1,5 +1,5 @@
 const db = require("../Utilities/dbConfig");
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 class Clients {
     first_name;
