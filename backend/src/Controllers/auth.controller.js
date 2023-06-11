@@ -42,7 +42,7 @@ const authController = {
                             path: '/'
                         });
                         const { password, ...user } = emailRes[0];
-                        res.status(200).send({ data: user, refreshToken, status: true, message: 'User logged in successfully.' })
+                        res.status(200).send({ data: user, accessToken, refreshToken, status: true, message: 'User logged in successfully.' })
                     }
                 });
             }

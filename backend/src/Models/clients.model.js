@@ -15,20 +15,20 @@ class Clients {
 
     constructor(obj) {
         this.first_name = obj.first_name,
-        this.middle_name = obj.middle_name,
-        this.last_name = obj.last_name,
-        this.email = obj.email,
-        this.password = obj.password,
-        this.phone_number = obj.phone_number,
-        this.company_id = obj.company_id || 1,
-        this.is_active = obj.is_active || 1,
-        this.created_at = obj.created_at || new Date().toISOString(),
-        this.updated_at = obj.updated_at || null
+            this.middle_name = obj.middle_name,
+            this.last_name = obj.last_name,
+            this.email = obj.email,
+            this.password = obj.password,
+            this.phone_number = obj.phone_number,
+            this.company_id = obj.company_id || 1,
+            this.is_active = obj.is_active || 1,
+            this.created_at = obj.created_at || new Date().toISOString(),
+            this.updated_at = obj.updated_at || null
     }
 }
 
 Clients.Register = async (data) => {
-    return new Promise(async(resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
         try {
             const salt = await bcrypt.genSalt(10);
             const hashedPassword = await bcrypt.hash(data.password, salt);
@@ -68,19 +68,37 @@ Clients.getByEmail = (email) => {
 
 Clients.setPassword = async (userData, result) => {
     try {
-      const salt = await bcrypt.genSalt(10);
-      const hashedPassword = await bcrypt.hash(userData.password, salt);
-      const query = `UPDATE clients SET password = ? WHERE email = '${userData.email}'`;
-      db.query(query, hashedPassword, (err, sqlresult) => {
-        if (err) {
-          result(err, undefined);
-        } else {
-          result(undefined, sqlresult);
-        }
-      });
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(userData.password, salt);
+        const query = `UPDATE clients SET password = ? WHERE email = '${userData.email}'`;
+        db.query(query, hashedPassword, (err, sqlresult) => {
+            if (err) {
+                result(err, undefined);
+            } else {
+                result(undefined, sqlresult);
+            }
+        });
     } catch (err) {
-      result(err, undefined);
+        result(err, undefined);
     }
-  };
+};
 
+Clients.getUserById = async (id) => {
+    return new Promise((resolve, reject) => {
+        try {
+            const query = `SELECT clients.id as user_id, clients.first_name, clients.middle_name, clients.last_name, 
+            clients.email, clients.phone_number FROM clients WHERE id = ${id}`;
+
+            db.query(query, (err, sqlresult) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(sqlresult)
+                }
+            })
+        } catch (error) {
+            reject(error);
+        }
+    })
+}
 module.exports = Clients;

@@ -8,6 +8,7 @@ const port = process.env.PORT || 5000;
 const app = express();
 
 const authRoutes = require('./src/Routes/auth.routes');
+const userRoutes = require('./src/Routes/user.routes');
 
 app.use(bodyParser.json());
 app.use(express.json());
@@ -24,6 +25,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/auth', authRoutes);
+app.use('/user', userRoutes);
 
 app.use((req, res, next) => {
     const err = new Error("Not found");
