@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from '../styles/forms.module.css';
-import { InputText } from 'primereact/inputtext';
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { MdOutlineMail } from 'react-icons/md';
 import toast, { Toaster } from 'react-hot-toast';
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { resetPassword } from '../utils/api'
+import PasswordInput from '../Components/common/PasswordInput';
+import jwt_decode from 'jwt-decode'
 
 const SetPassword = () => {
     const navigate = useNavigate();
@@ -55,23 +55,21 @@ const SetPassword = () => {
                 <h1 className='text-center mb-10'>Reset Your Password.</h1>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className='mb-3'>
-                        <label className='block mb-3'>Create New Password</label>
                         <PasswordInput
                             control={control}
                             name="password"
-                            label="Password"
+                            label="Create New Password"
                             placeholder='Create Password'
                             rules={{ required: "Password is required" }}
                         />
                         {errors?.password && <span className='text-red-600 mt-3'>{errors?.password?.message}</span>}
                     </div>
                     <div className='mb-7'>
-                        <label className='block mb-3'>Confirm Password</label>
                         <PasswordInput
                             control={control}
                             name="cpassword"
-                            label="Password"
-                            placeholder='Create Password'
+                            label="Confirm Password"
+                            placeholder='Confirm Password'
                             rules={{ required: "Confirm Password is required" }}
                         />
                         {errors?.cpassword && <span className='text-red-600 mt-3'>{errors?.cpassword?.message}</span>}

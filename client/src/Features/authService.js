@@ -1,6 +1,6 @@
 import axios from 'axios';
-// const API_URL = 'http://localhost:5000';
-const API_URL = 'https://apply-oqvest-api.vercel.app';
+const API_URL = 'http://localhost:5000';
+// const API_URL = 'https://apply-oqvest-api.vercel.app';
 
 const getUserPermissions = async (id) => {
   try {  
