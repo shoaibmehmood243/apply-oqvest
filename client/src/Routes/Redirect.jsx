@@ -37,7 +37,7 @@ const Redirect = () => {
   if (loading) {
     // Show loading screen or spinner while fetching user data
     return (
-      <div style={{ minHeight: '100vh' }} className='d-flex justify-content-center flex-column gap-4 align-items-center'>
+      <div style={{ minHeight: '100vh' }} className='flex justify-center flex-col gap-4 items-center'>
         <ProgressSpinner style={{ width: '50px', height: '50px' }} strokeWidth="8" />
         <h6>Loading...</h6>
       </div>

@@ -3,6 +3,7 @@ import styles from '../../styles/sidebar.module.css'
 import { logolight } from '../../assets'
 import { NavLink } from 'react-router-dom'
 import { TbSmartHome } from 'react-icons/tb'
+import { BsArrowLeft } from 'react-icons/bs'
 
 const Sidebar = () => {
   return (
@@ -18,7 +19,7 @@ const Sidebar = () => {
         </div>
       </div>
       <div className={styles.powered}>
-        <h6>Back to website</h6>
+        <h6 className='flex items-center gap-2'><BsArrowLeft className='font-bold' /> Back to website</h6>
       </div>
     </div>
   )

@@ -3,11 +3,15 @@
 @tailwind components;
 @tailwind utilities;
 
-:root,
-body {
+:root {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+
+  --primary-color: #0CBC8B;
+  --dark-color: #162937;
+  --text-dark: #222D39;
+  --blue-color: #0066FF;
 }
 
 h1, h2, h3, h4, h5, h6, p, span, a, label, button, input {
@@ -37,8 +41,8 @@ button {
 }
 
 .btn-primary {
-  background: #0CBC8B;
-  color: #222D39;
+  background: var(--primary-color);
+  color: var(--text-dark);
   box-shadow: 0px 14.7349px 69.3407px rgba(0, 0, 0, 0.07), 0px 6.15589px 28.9689px rgba(0, 0, 0, 0.0503198), 0px 3.29123px 15.4882px rgba(0, 0, 0, 0.0417275), 0px 1.84504px 8.68254px rgba(0, 0, 0, 0.035), 0px 0.979886px 4.61123px rgba(0, 0, 0, 0.0282725), 0px 0.407753px 1.91884px rgba(0, 0, 0, 0.0196802);
 }
 
@@ -47,7 +51,7 @@ label {
   font-weight: 600;
   font-size: 16px;
   line-height: 24px;
-  color: #222D39;
+  color: var(--text-dark);
 }
 
 h1 {
@@ -55,7 +59,7 @@ h1 {
   font-weight: 600;
   font-size: 32px;
   line-height: 48px;
-  color: #162937;
+  color: var(--text-dark);
 }
 
 .link {
@@ -64,7 +68,7 @@ h1 {
   font-size: 16px;
   line-height: 24px;
   text-decoration-line: underline;
-  color: #0066FF;
+  color: var(--blue-color);
 }
 
 .sidebar-layout {
@@ -80,4 +84,15 @@ h1 {
   width: 78%;
   position: relative;
   left: 22%;
+  padding: 0px 15px;
+}
+
+.sidebar-layout .content .p-badge {
+  background-color: var(--primary-color);
+  height: 1rem;
+  min-width: 1rem;
+  font-size: 0.6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
