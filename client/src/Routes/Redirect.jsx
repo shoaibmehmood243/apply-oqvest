@@ -12,6 +12,7 @@ import { useSelector } from 'react-redux';
 import DashboardLayout from '../Components/Layout/DashboardLayout';
 import LoadingPage from '../Pages/LoadingPage';
 import SetPassword from '../Pages/SetPassword';
+import TestForm from '../Pages/TestForm';
 
 const Redirect = () => {
   const location = useLocation();
@@ -56,6 +57,7 @@ const Redirect = () => {
     <Navbar />
     <Routes>
       <Route path='/login' element={<Login />} />
+      <Route path='/purchase' element={<TestForm />} />
       <Route path='/register' element={<Register />} />
       <Route path='/forget-password' element={<ForgetPassword />} />
       <Route path='/set-password/:token' element={<LoadingPage />} />
