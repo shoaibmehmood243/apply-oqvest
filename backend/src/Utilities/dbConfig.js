@@ -4,7 +4,7 @@ const mysql = require("mysql");
 //     host: 'localhost',
 //     user: 'root',
 //     password: '',
-//     database: 'apply_oqvest'
+//     database: 'apply'
 // });
 const db = mysql.createPool({
     host: '191.101.13.52',

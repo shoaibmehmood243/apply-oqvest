@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 07, 2023 at 09:18 PM
+-- Generation Time: Jun 13, 2023 at 10:14 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -86,6 +86,14 @@ CREATE TABLE `clients` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `clients`
+--
+
+INSERT INTO `clients` (`id`, `company_id`, `first_name`, `middle_name`, `last_name`, `phone_number`, `email`, `password`, `is_active`, `created_at`, `updated_at`) VALUES
+(2, 1, 'ali ahmed', 'ali', 'JAVAID', '(242)-342-3423', 'shoaib.bscs.s.2018@gmail.com', '$2a$10$uE21DqVN5q9YrynNhXjU1uEoU3/yf4Mxkjv4XPZcf.CaEr5l6p4W.', 1, '2023-06-11 12:14:03', NULL),
+(3, 1, 'Shoaib', 'Tariq', 'Mehmood', '(343)-342-3423', 'shoaibmehmood065@gmail.com', '$2a$10$i9Xx0EyCEvXWUNw7a87YUeIOfcAnHOybwDnI.VIO8dvs5dre7kAli', 1, '2023-06-11 13:52:04', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -99,6 +107,63 @@ CREATE TABLE `companies` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `companies`
+--
+
+INSERT INTO `companies` (`id`, `company_name`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, 'Oqvest', 1, '2023-06-11 17:13:56', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dummy`
+--
+
+CREATE TABLE `dummy` (
+  `id` int(11) NOT NULL,
+  `full_name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `address` varchar(1000) NOT NULL,
+  `organization` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `dummy`
+--
+
+INSERT INTO `dummy` (`id`, `full_name`, `email`, `address`, `organization`) VALUES
+(1, 'JUNAID AHMAD JAVAID', 'AWAMIPK@GMAIL.COM', '3UGF CENTURY TOWER KALMA CHOWK LAHORE', 'test'),
+(2, 'JUNAID AHMAD JAVAID', 'AWAMIPK@GMAIL.COM', '3UGF CENTURY TOWER KALMA CHOWK LAHORE', 'test'),
+(3, 'JUNAID AHMAD JAVAID', 'AWAMIPK@GMAIL.COM', '3UGF CENTURY TOWER KALMA CHOWK LAHORE', 'test'),
+(4, 'JUNAID AHMAD JAVAID', 'AWAMIPK@GMAIL.COM', '3UGF CENTURY TOWER KALMA CHOWK LAHORE', 'test'),
+(5, 'JUNAID AHMAD JAVAID', 'AWAMIPK@GMAIL.COM', '3UGF CENTURY TOWER KALMA CHOWK LAHORE', 'test'),
+(6, 'JUNAID AHMAD JAVAID', 'AWAMIPK@GMAIL.COM', '3UGF CENTURY TOWER KALMA CHOWK LAHORE', 'test'),
+(7, 'JUNAID AHMAD JAVAID', 'AWAMIPK@GMAIL.COM', '3UGF CENTURY TOWER KALMA CHOWK LAHORE', 'test'),
+(8, 'JUNAID AHMAD JAVAID', 'AWAMIPK@GMAIL.COM', '3UGF CENTURY TOWER KALMA CHOWK LAHORE', 'test'),
+(9, 'JUNAID AHMAD JAVAID', 'AWAMIPK@GMAIL.COM', '3UGF CENTURY TOWER KALMA CHOWK LAHORE', 'test'),
+(10, 'JUNAID AHMAD JAVAID', 'AWAMIPK@GMAIL.COM', '3UGF CENTURY TOWER KALMA CHOWK LAHORE', 'test'),
+(11, 'JUNAID AHMAD JAVAID', 'AWAMIPK@GMAIL.COM', '3UGF CENTURY TOWER KALMA CHOWK LAHORE', 'test'),
+(12, 'JUNAID AHMAD JAVAID', 'AWAMIPK@GMAIL.COM', '3UGF CENTURY TOWER KALMA CHOWK LAHORE', 'test'),
+(13, 'JUNAID AHMAD JAVAID', 'AWAMIPK@GMAIL.COM', '3UGF CENTURY TOWER KALMA CHOWK LAHORE', 'test'),
+(14, 'JUNAID AHMAD JAVAID', 'AWAMIPK@GMAIL.COM', '3UGF CENTURY TOWER KALMA CHOWK LAHORE', 'test'),
+(15, 'JUNAID AHMAD JAVAID', 'AWAMIPK@GMAIL.COM', '3UGF CENTURY TOWER KALMA CHOWK LAHORE', 'test'),
+(16, 'JUNAID AHMAD JAVAID', 'AWAMIPK@GMAIL.COM', '3UGF CENTURY TOWER KALMA CHOWK LAHORE', 'test'),
+(17, 'JUNAID AHMAD JAVAID', 'AWAMIPK@GMAIL.COM', '3UGF CENTURY TOWER KALMA CHOWK LAHORE', 'test'),
+(18, 'JUNAID AHMAD JAVAID', 'AWAMIPK@GMAIL.COM', '3UGF CENTURY TOWER KALMA CHOWK LAHORE', 'test'),
+(19, 'JUNAID AHMAD JAVAID', 'AWAMIPK@GMAIL.COM', '3UGF CENTURY TOWER KALMA CHOWK LAHORE', 'test'),
+(20, 'JUNAID AHMAD JAVAID', 'AWAMIPK@GMAIL.COM', '3UGF CENTURY TOWER KALMA CHOWK LAHORE', 'test'),
+(21, 'JUNAID AHMAD JAVAID', 'AWAMIPK@GMAIL.COM', '3UGF CENTURY TOWER KALMA CHOWK LAHORE', 'test'),
+(22, 'JUNAID AHMAD JAVAID', 'AWAMIPK@GMAIL.COM', '3UGF CENTURY TOWER KALMA CHOWK LAHORE', 'test'),
+(23, 'JUNAID AHMAD JAVAID', 'AWAMIPK@GMAIL.COM', '3UGF CENTURY TOWER KALMA CHOWK LAHORE', 'test'),
+(24, 'JUNAID AHMAD JAVAID', 'AWAMIPK@GMAIL.COM', '3UGF CENTURY TOWER KALMA CHOWK LAHORE', 'test'),
+(25, 'JUNAID AHMAD JAVAID', 'AWAMIPK@GMAIL.COM', '3UGF CENTURY TOWER KALMA CHOWK LAHORE', 'test'),
+(26, 'JUNAID AHMAD JAVAID', 'AWAMIPK@GMAIL.COM', '3UGF CENTURY TOWER KALMA CHOWK LAHORE', 'test'),
+(27, 'JUNAID AHMAD JAVAID', 'AWAMIPK@GMAIL.COM', '3UGF CENTURY TOWER KALMA CHOWK LAHORE', 'test'),
+(28, 'JUNAID AHMAD JAVAID', 'AWAMIPK@GMAIL.COM', '3UGF CENTURY TOWER KALMA CHOWK LAHORE', 'test'),
+(29, 'JUNAID AHMAD JAVAID', 'AWAMIPK@GMAIL.COM', '3UGF CENTURY TOWER KALMA CHOWK LAHORE', 'test'),
+(30, 'JUNAID AHMAD JAVAID', 'AWAMIPK@GMAIL.COM', '3UGF CENTURY TOWER KALMA CHOWK LAHORE', 'test');
 
 -- --------------------------------------------------------
 
@@ -285,6 +350,12 @@ ALTER TABLE `companies`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `dummy`
+--
+ALTER TABLE `dummy`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `employments`
 --
 ALTER TABLE `employments`
@@ -374,13 +445,19 @@ ALTER TABLE `borrowers`
 -- AUTO_INCREMENT for table `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `companies`
 --
 ALTER TABLE `companies`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `dummy`
+--
+ALTER TABLE `dummy`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `employments`
