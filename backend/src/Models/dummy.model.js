@@ -10,8 +10,8 @@ class Dummy {
     constructor(obj) {
         this.full_name = obj.full_name,
         this.email = obj.email,
-        this.organization = obj.organization,
-        this.address = obj.address
+        this.organization = obj.organization || 'test',
+        this.address = obj.address || 'test'
     }
 }
 

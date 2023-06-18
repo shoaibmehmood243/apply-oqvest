@@ -13,7 +13,7 @@ const StepOne = ({formData, setFormData, step, setStep}) => {
                     <span className='block'>This is the zip code where you wish to purchase</span>
                 </div>
                 <div className="mt-6 flex align-items-center justify-content-center gap-4">
-                    <button className='btn-outline-dark' type='button' onClick={()=> setStep(step-1)}>Back</button>
+                    <button className='btn-outline-dark' type='button' onClick={()=> {setStep(step-1); setFormData({...formData, loanType: ''})}}>Back</button>
                     <button className='btn-dark' type='submit' disabled={formData.propertyZipCode ? false : true} onClick={()=> setStep(step+1)}>Next</button>
                 </div>
             </div>
