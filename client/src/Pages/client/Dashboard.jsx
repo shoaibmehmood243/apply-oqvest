@@ -1,5 +1,9 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
+import styles from '../../styles/loans.module.css';
+import {TbReportMoney} from 'react-icons/tb'
+import Datatable from '../../Components/common/Datatable';
+import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
   const { user } = useSelector((state) => state.auth)
@@ -7,25 +11,15 @@ const Dashboard = () => {
     <div>
       <h1>Dashboard</h1>
       <h6>Good day, {user.first_name}</h6>
-
-      {/* <iframe
-        src="https://api.clixlo.com/widget/form/gXI6I2fe3nn0BMk4fHoS"
-        style={{width:'100%',height:'100%',border:'none',borderRadius:'4px'}}
-        id="inline-gXI6I2fe3nn0BMk4fHoS"
-        data-layout="{'id':'INLINE'}"
-        data-trigger-type="alwaysShow"
-        data-trigger-value=""
-        data-activation-type="alwaysActivated"
-        data-activation-value=""
-        data-deactivation-type="neverDeactivate"
-        data-deactivation-value=""
-        data-form-name="Contact Form - Sara"
-        data-height="573"
-        data-layout-iframe-id="inline-gXI6I2fe3nn0BMk4fHoS"
-        data-form-id="gXI6I2fe3nn0BMk4fHoS"
-        title="Contact Form - Sara"
-      >
-      </iframe> */}
+      <div className={styles.main}>
+        <h1 className='text-white mb-0'>Lorem Ipsum Dolar</h1>
+        <p className='my-3'>Here are all of your  loan applications progress. To avoid setbacks and delays, please work closely with your Loan Officer when completing several loan applications.</p>
+        <Link to={'/loans'}>
+          <button className='btn-dark flex gap-2 items-center py-3 px-5 mt-3'><TbReportMoney /> Create a New Loan</button>
+        </Link>
+      </div>
+      <h1 className='my-3'>Your Loan Progress</h1>
+      <Datatable />
     </div>
   )
 }

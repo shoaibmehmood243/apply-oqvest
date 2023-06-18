@@ -37,10 +37,11 @@ const Login = () => {
     try {
       const res = await dispatch(login(data));
       if (res?.payload?.status === true) {
-        setIsClicked(false);
         toast.success('Logged in successfully')
         setTimeout(() => navigate('/dashboard'), 2000)
       }
+      setIsClicked(false);
+
     } catch (error) {
       toast.error('Something went wrong. Please try again later');
       setIsClicked(false);
@@ -52,7 +53,7 @@ const Login = () => {
       <div className={styles.formDiv}>
         <h1 className='text-center mb-10'>Log in to view, track and close your loan.</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className='mb-7'>
+          <div className='mb-3'>
             <label className='block mb-3'>Email</label>
             <span className="p-input-icon-left w-full">
               <InputText {...register("email", {
@@ -62,9 +63,9 @@ const Login = () => {
                 },
               })} className='w-full' placeholder='Enter email' />
             </span>
-            {errors?.email && <span className='text-red-600 mt-3'>{errors?.email?.message}</span>}
+            {errors?.email && <span className='text-red-600 mt-2'>{errors?.email?.message}</span>}
           </div>
-          <div className='mb-7'>
+          <div className='mb-5'>
             <PasswordInput
               control={control}
               name="password"
@@ -74,11 +75,11 @@ const Login = () => {
             />
           </div>
           <div>
-            <button className='btn-primary w-full py-4'>
+            <button className='btn-primary w-full py-3'>
               {isClicked ? <i className='pi pi-spin pi-spinner'></i> : (<>{'Login'}</>)}
             </button>
           </div>
-          <div className='text-center mt-8'>
+          <div className='text-center mt-4'>
             <p className='mb-2'><Link to='/forget-password' className='link'>Forgot Password?</Link></p>
             <p>Don’t have an account? <Link to='/register' className='link'>Create one</Link></p>
           </div>

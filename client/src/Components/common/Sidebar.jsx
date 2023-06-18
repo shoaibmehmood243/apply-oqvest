@@ -2,8 +2,9 @@ import React from 'react'
 import styles from '../../styles/sidebar.module.css'
 import { logolight } from '../../assets'
 import { NavLink } from 'react-router-dom'
-import { TbSmartHome } from 'react-icons/tb'
+import { TbSmartHome, TbFileDollar } from 'react-icons/tb'
 import { BsArrowLeft } from 'react-icons/bs'
+import {FiDollarSign} from 'react-icons/fi'
 
 const Sidebar = () => {
   return (
@@ -14,7 +15,13 @@ const Sidebar = () => {
         </div>
         <div id='sidebar-scroll' className={`${styles.sidebarItems} mt-7`}>
             <li className={styles.links}>
-            <NavLink to='/dashboard' activeClassName={styles.activeLink}><TbSmartHome /> Dashboard</NavLink>
+              <NavLink to='/dashboard' activeClassName={styles.activeLink}><TbSmartHome /> Dashboard</NavLink>
+            </li>
+            <li className={styles.links}>
+              <NavLink to='/loans/closed' activeClassName={styles.activeLink}><FiDollarSign /> Closed Loans</NavLink>
+            </li>
+            <li className={styles.links}>
+              <NavLink to='/loans/opened' activeClassName={styles.activeLink}><TbFileDollar /> Open Loans</NavLink>
             </li>
         </div>
       </div>

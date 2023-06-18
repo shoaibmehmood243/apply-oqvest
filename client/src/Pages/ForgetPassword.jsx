@@ -35,10 +35,10 @@ const ForgetPassword = () => {
       <div className={styles.formDiv}>
         <h1 className='text-center mb-10'>Forgot Password.</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className='mb-7'>
+          <div className='mb-5'>
             <label className='block mb-3'>Email</label>
             <span className="p-input-icon-left w-full">
-              <MdOutlineMail style={{ marginTop: '-15px' }} className='m-0 text-3xl' />
+              <MdOutlineMail style={{ marginTop: '-15px' }} className='text-3xl' />
               <InputText {...register("email", {
                 required: 'Email Address is required', pattern: {
                   value: /\S+@\S+\.\S+/,
@@ -46,14 +46,14 @@ const ForgetPassword = () => {
                 },
               })} className='w-full' placeholder='Enter email' />
             </span>
-            {errors?.email && <span className='text-red-600 mt-3'>{errors?.email?.message}</span>}
+            {errors?.email && <span className='text-red-600 mt-2'>{errors?.email?.message}</span>}
           </div>
           <div>
-            <button className='btn-primary w-full py-4'>
+            <button className='btn-primary w-full py-3'>
             {isClicked ? <i className='pi pi-spin pi-spinner'></i> : (<>{'Submit'}</>)}
             </button>
           </div>
-          <div className='text-center mt-8'>
+          <div className='text-center mt-4'>
             <p><Link to='/login' className='link'>Back to login</Link></p>
           </div>
         </form>

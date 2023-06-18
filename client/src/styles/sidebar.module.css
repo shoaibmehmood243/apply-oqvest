@@ -57,7 +57,7 @@
     line-height: 20px;
     text-decoration: none;
     padding: 10px 5px;
-    color: var(--text-dark);
+    color: #fff;
     background: transparent;
     display: block;
     width: 100%;
@@ -74,7 +74,7 @@
 .sidebarItems .activeLink {
     padding: 10px 5px;
     text-align: center;
-    background-color: var(--primary-color);
+    background-color: var(--primary-color) !important;
     border-radius: 6px;
     color: #fff;
 }
@@ -82,7 +82,7 @@
 .links :global(.active) {
     padding: 10px 5px;
     text-align: center;
-    background-color: var(--primary-color);
+    background-color: var(--primary-color) !important;
     border-radius: 6px;
     color: #fff;
 }

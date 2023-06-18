@@ -42,42 +42,42 @@ const Register = () => {
       <div className={styles.formDiv}>
         <h1 className='text-center mb-10'>Create Your Account to Apply with Oqvest LLC.</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className='mb-7'>
+          <div className='mb-3'>
             <label className='block mb-3'>First Name</label>
             <span className="p-input-icon-left w-full">
-              <BiUserCircle style={{ marginTop: '-15px' }} className='m-0 text-3xl' />
+              <BiUserCircle style={{ marginTop: '-15px' }} className=' text-3xl' />
               <InputText {...register("first_name", { required: 'First Name is required' })} className='w-full' placeholder='Enter your first name' />
             </span>
-            {errors?.first_name && <span className='text-red-600 mt-3'>{errors?.first_name?.message}</span>}
+            {errors?.first_name && <span className='text-red-600 mt-2'>{errors?.first_name?.message}</span>}
           </div>
-          <div className='mb-7'>
+          <div className='mb-3'>
             <label className='block mb-3'>Middle Name</label>
             <span className="p-input-icon-left w-full">
-              <BiUserCircle style={{ marginTop: '-15px' }} className='m-0 text-3xl' />
+              <BiUserCircle style={{ marginTop: '-15px' }} className=' text-3xl' />
               <InputText {...register("middle_name", { required: 'Middle Name is required' })} className='w-full' placeholder='Enter your middle name' />
             </span>
-            {errors?.middle_name && <span className='text-red-600 mt-3'>{errors?.middle_name?.message}</span>}
+            {errors?.middle_name && <span className='text-red-600 mt-2'>{errors?.middle_name?.message}</span>}
           </div>
-          <div className='mb-7'>
+          <div className='mb-3'>
             <label className='block mb-3'>Last Name</label>
             <span className="p-input-icon-left w-full">
-              <BiUserCircle style={{ marginTop: '-15px' }} className='m-0 text-3xl' />
+              <BiUserCircle style={{ marginTop: '-15px' }} className=' text-3xl' />
               <InputText {...register("last_name", { required: 'Last Name is required' })} className='w-full' placeholder='Enter your last name' />
             </span>
-            {errors?.last_name && <span className='text-red-600 mt-3'>{errors?.last_name?.message}</span>}
+            {errors?.last_name && <span className='text-red-600 mt-2'>{errors?.last_name?.message}</span>}
           </div>
-          <div className='mb-7'>
+          <div className='mb-3'>
             <label className='block mb-3'>Primary Phone</label>
             <span className="p-input-icon-left w-full">
-              <BsTelephone style={{ marginTop: '-15px' }} className='m-0 text-3xl' />
+              <BsTelephone style={{ marginTop: '-15px' }} className=' text-3xl' />
               <InputMask {...register("phone_number", { required: 'Phone Number is required' })} className='w-full' mask='(999)-999-9999' placeholder='(555)-555-5555' />
             </span>
-            {errors?.phone_number && <span className='text-red-600 mt-3'>{errors?.phone_number?.message}</span>}
+            {errors?.phone_number && <span className='text-red-600 mt-2'>{errors?.phone_number?.message}</span>}
           </div>
-          <div className='mb-7'>
+          <div className='mb-3'>
             <label className='block mb-3'>Email</label>
             <span className="p-input-icon-left w-full">
-              <MdOutlineMail style={{ marginTop: '-15px' }} className='m-0 text-3xl' />
+              <MdOutlineMail style={{ marginTop: '-15px' }} className=' text-3xl' />
               <InputText {...register("email", {
                 required: 'Email Address is required', pattern: {
                   value: /\S+@\S+\.\S+/,
@@ -85,9 +85,9 @@ const Register = () => {
                 },
               })} className='w-full' placeholder='Enter email' />
             </span>
-            {errors?.email && <span className='text-red-600 mt-3'>{errors?.email?.message}</span>}
+            {errors?.email && <span className='text-red-600 mt-2'>{errors?.email?.message}</span>}
           </div>
-          <div className='mb-7'>
+          <div className='mb-5'>
             <PasswordInput
               control={control}
               name="password"
@@ -97,11 +97,11 @@ const Register = () => {
             />
           </div>
           <div>
-            <button className='btn-primary w-full py-4'>
+            <button className='btn-primary w-full py-3'>
             {isClicked ? <i className='pi pi-spin pi-spinner'></i> : (<>{'Create Account'}</>)}
             </button>
           </div>
-          <div className='text-center mt-8'>
+          <div className='text-center mt-4'>
             <p>Already have an account? <Link to='/login' className='link'>Create one</Link></p>
           </div>
         </form>

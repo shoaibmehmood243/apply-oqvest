@@ -13,6 +13,9 @@ import DashboardLayout from '../Components/Layout/DashboardLayout';
 import LoadingPage from '../Pages/LoadingPage';
 import SetPassword from '../Pages/SetPassword';
 import TestForm from '../Pages/TestForm';
+import ClosedLoans from '../Pages/client/ClosedLoans';
+import OpenLoans from '../Pages/client/OpenLoans';
+import LoanForm from '../Pages/client/LoanForm';
 
 const Redirect = () => {
   const location = useLocation();
@@ -49,7 +52,10 @@ const Redirect = () => {
       <Routes>
         <Route path='' element={<DashboardLayout />}>
           <Route path='dashboard' element={<Dashboard />} />
+          <Route path='loans/closed' element={<ClosedLoans />} />
+          <Route path='loans/opened' element={<OpenLoans />} />
         </Route>
+        <Route path='loans' element={<LoanForm />} />
       </Routes>
     );
   }

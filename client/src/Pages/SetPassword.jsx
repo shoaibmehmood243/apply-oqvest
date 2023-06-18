@@ -54,7 +54,7 @@ const SetPassword = () => {
             <div className={styles.formDiv}>
                 <h1 className='text-center mb-10'>Reset Your Password.</h1>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className='mb-3'>
+                    <div className='mb-2'>
                         <PasswordInput
                             control={control}
                             name="password"
@@ -62,9 +62,9 @@ const SetPassword = () => {
                             placeholder='Create Password'
                             rules={{ required: "Password is required" }}
                         />
-                        {errors?.password && <span className='text-red-600 mt-3'>{errors?.password?.message}</span>}
+                        {errors?.password && <span className='text-red-600 mt-2'>{errors?.password?.message}</span>}
                     </div>
-                    <div className='mb-7'>
+                    <div className='mb-4'>
                         <PasswordInput
                             control={control}
                             name="cpassword"
@@ -72,14 +72,14 @@ const SetPassword = () => {
                             placeholder='Confirm Password'
                             rules={{ required: "Confirm Password is required" }}
                         />
-                        {errors?.cpassword && <span className='text-red-600 mt-3'>{errors?.cpassword?.message}</span>}
+                        {errors?.cpassword && <span className='text-red-600 mt-2'>{errors?.cpassword?.message}</span>}
                     </div>
                     <div>
-                        <button className='btn-primary w-full py-4'>
+                        <button className='btn-primary w-full py-3'>
                             {isClicked ? <i className='pi pi-spin pi-spinner'></i> : (<>{'Change Password'}</>)}
                         </button>
                     </div>
-                    <div className='text-center mt-8'>
+                    <div className='text-center mt-4'>
                         <p><Link to='/login' className='link'>Back to login</Link></p>
                     </div>
                 </form>

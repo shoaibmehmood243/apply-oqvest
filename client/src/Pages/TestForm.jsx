@@ -22,7 +22,7 @@ const TestForm = () => {
       if (res.data.status === true) {
         toast.success('Email have been sent to your mail address. Click on the link to set new password.')
         setIsClicked(false);
-        submitWidgetForm(data);
+        // submitWidgetForm(data);
 
       } else {
         toast.error(res.data.message)
