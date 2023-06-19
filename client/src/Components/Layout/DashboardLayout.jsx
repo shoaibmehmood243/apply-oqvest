@@ -27,7 +27,7 @@ const DashboardLayout = () => {
                 </div>
                 <div className='px-0 m-0 mt-4 content'>
                     <div className='flex justify-end'>
-                        <div className='text-end pe-4 flex gap-6 justify-end items-center'>
+                        <div className='text-end pe-4 flex gap-4 justify-end items-center'>
                             <i className="pi pi-bell p-overlay-badge" style={{ fontSize: '1rem' }}>
                                 <Badge value="2"></Badge>
                             </i>

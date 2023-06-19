@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 const Dashboard = () => {
   const { user } = useSelector((state) => state.auth)
   return (
-    <div>
+    <div className='px-4'>
       <h1>Dashboard</h1>
       <h6>Good day, {user.first_name}</h6>
       <div className={styles.main}>
