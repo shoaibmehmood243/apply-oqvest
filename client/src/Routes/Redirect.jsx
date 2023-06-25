@@ -54,6 +54,7 @@ const Redirect = () => {
           <Route path='dashboard' element={<Dashboard />} />
           <Route path='loans/closed' element={<ClosedLoans />} />
           <Route path='loans/opened' element={<OpenLoans />} />
+          <Route path='' element={<Dashboard />} />
         </Route>
         <Route path='loans' element={<LoanForm />} />
       </Routes>

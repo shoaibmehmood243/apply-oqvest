@@ -21,6 +21,14 @@ import Steps from '../../Components/common/Steps';
 import StepSixteen from '../../Components/PurchaseForms/StepSixteen';
 import StepSeventeen from '../../Components/PurchaseForms/StepSeventeen';
 import StepEighteen from '../../Components/PurchaseForms/StepEighteen';
+import StepFiveMissed from '../../Components/PurchaseForms/StepFiveMissed';
+import StepUnmarried from '../../Components/PurchaseForms/StepUnmarried';
+import StepSpouseInfo from '../../Components/PurchaseForms/StepSpouseInfo';
+import StepAgentInfo from '../../Components/PurchaseForms/StepAgentInfo';
+import StepNineteen from '../../Components/PurchaseForms/StepNineteen';
+import StepTwenty from '../../Components/PurchaseForms/StepTwenty';
+import StepTwentyOne from '../../Components/PurchaseForms/StepTwentyOne';
+import { StepAgentInfoRefinance, StepEightRefinance, StepEighteenRefinance, StepElevenRefinance, StepFifteenRefinance, StepFiveMissedRefinance, StepFiveRefinance, StepFourRefinance, StepFourteenRefinance, StepNineRefinance, StepNineteenRefinance, StepOneRefinance, StepSevenRefinance, StepSeventeenRefinance, StepSixRefinance, StepSixteenRefinance, StepSpouseInfoRefinance, StepTenRefinance, StepThirteenRefinance, StepThreeRefinance, StepTwelveRefinance, StepTwentyOneRefinance, StepTwentyRefinance, StepTwoRefinance, StepUnmarriedRefinance } from '../../Components/RefinanceForm';
 // import { Steps } from 'primereact/steps';
 
 const LoanForm = () => {
@@ -32,7 +40,16 @@ const LoanForm = () => {
         purchasePrice: '',
         downPayment: '',
         downPaymentSource: '',
+        isVeteran: '',
+        mortgageLoans: '',
         martialStatus: '',
+        otherLegalStatus: '',
+        relationshipStatus: '',
+        relationshipType: '',
+        spouseFirstName: '',
+        spouseLastName: '',
+        spousePhone: '',
+        spouseEmail: '',
         coBorrower: '',
         coBorrowerFirstName: '',
         coBorrowerLastName: '',
@@ -58,25 +75,9 @@ const LoanForm = () => {
         propertyType: '',
         monthlyMortgagePayment: '',
         totalMortgageExpense: '',
-        employmentStatus: '',
-        employerName: '',
-        employerAddress: '',
-        employerCity: '',
-        employerState: '',
-        employerZip: '',
-        employerPhone: '',
-        employerIndustry: '',
-        employerPosition: '',
-        employerStartMonth: '',
-        employerStartYear: '',
-        baseIncome: '',
-        overtimeIncome: '',
-        bonusIncome: '',
-        comissionIncome: '',
-        otherIncome: '',
-        totalIncome: '',
-        monthylyIncomeType: '',
-        totalIncomeAmount: '',
+        employements: [],
+        otherMonthlyIncomeReport: [],
+        realEstateInfo: [],
         realEstateAddress: '',
         realEstateCity: '',
         realEstateState: '',
@@ -85,6 +86,9 @@ const LoanForm = () => {
         realEstateMarketValue: '',
         realEstateMonthlyRent: '',
         realEstateMonthlyExpense: '',
+        assets: [],
+        liabilities: [],
+        gifts: []
     });
     const [step, setStep] = useState(1);
     const [state, setState] = useState(formData.loanType)
@@ -107,52 +111,123 @@ const LoanForm = () => {
     };
 
     const renderStep = () => {
-        switch (step) {
-            case 2:
-                return <StepOne handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
-            case 3:
-                return <StepTwo handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
-            case 4:
-                return <StepThree handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
-            case 5:
-                return <StepFour handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
-            case 6:
-                return <StepFive handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
-            case 7:
-                return <StepSix handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
-            case 8:
-                return <StepSeven handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
-            case 9:
-                return <StepEight handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
-            case 10:
-                return <StepNine handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
-            case 11:
-                return <StepTen handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
-            case 12:
-                return <StepEleven handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
-            case 13:
-                return <StepTwelve handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
-            case 14:
-                return <StepThirteen handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
-            case 15:
-                return <StepFourteen handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
-            case 16:
-                return <StepFifteen handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
-            case 17:
-                return <StepSixteen handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
-            case 18:
-                return <StepSeventeen handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
-            case 19:
-                return <StepEighteen handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
-            default:
-                return null;
+        if (formData.loanType === 'Purchase') {
+            switch (step) {
+                case 2:
+                    return <StepOne handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 3:
+                    return <StepTwo handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 4:
+                    return <StepThree handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 5:
+                    return <StepFour handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 6:
+                    return <StepFiveMissed handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 7:
+                    return <StepFive handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 8:
+                    return <StepUnmarried handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 9:
+                    return <StepSpouseInfo handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 10:
+                    return <StepSix handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 11:
+                    return <StepSeven handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 12:
+                    return <StepEight handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 13:
+                    return <StepNine handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 14:
+                    return <StepTen handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 15:
+                    return <StepEleven handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 16:
+                    return <StepTwelve handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 17:
+                    return <StepThirteen handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 18:
+                    return <StepAgentInfo handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 19:
+                    return <StepFourteen handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 20:
+                    return <StepFifteen handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 21:
+                    return <StepSixteen handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 22:
+                    return <StepSeventeen handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 23:
+                    return <StepEighteen handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 24:
+                    return <StepNineteen handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 25:
+                    return <StepTwenty handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 26:
+                    return <StepTwentyOne handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                default:
+                    return null;
+            }
+        } else {
+            switch (step) {
+                case 2:
+                    return <StepOneRefinance handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 3:
+                    return <StepTwoRefinance handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 4:
+                    return <StepThreeRefinance handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 5:
+                    return <StepFourRefinance handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 6:
+                    return <StepFiveMissedRefinance handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 7:
+                    return <StepFiveRefinance handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 8:
+                    return <StepUnmarriedRefinance handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 9:
+                    return <StepSpouseInfoRefinance handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 10:
+                    return <StepSixRefinance handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 11:
+                    return <StepSevenRefinance handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 12:
+                    return <StepEightRefinance handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 13:
+                    return <StepNineRefinance handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 14:
+                    return <StepTenRefinance handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 15:
+                    return <StepElevenRefinance handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 16:
+                    return <StepTwelveRefinance handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 17:
+                    return <StepThirteenRefinance handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 18:
+                    return <StepAgentInfoRefinance handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 19:
+                    return <StepFourteenRefinance handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 20:
+                    return <StepFifteenRefinance handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 21:
+                    return <StepSixteenRefinance handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 22:
+                    return <StepSeventeenRefinance handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 23:
+                    return <StepEighteenRefinance handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 24:
+                    return <StepNineteenRefinance handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 25:
+                    return <StepTwentyRefinance handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                case 26:
+                    return <StepTwentyOneRefinance handleChange={handleChange} step={step} setStep={setStep} formData={formData} setFormData={setFormData} />;
+                default:
+                    return null;
+            }
         }
     }
     return (<>
         <Navbar />
         <div className='steps flex-col'>
             <div>
-            <Steps currentStep={currentStep} steps={steps} />
+                <Steps currentStep={currentStep} steps={steps} />
             </div>
             <div className="step-in">
                 {
