@@ -40,7 +40,7 @@ const StepTwentyOne = ({ formData, setFormData, step, setStep }) => {
     return (
         <div>
             <div className='w-full md:w-11 lg:w-full m-auto text-center'>
-                <h1 className='text-900 text-2xl md:text-4xl mt-5'>Gifts and Grants</h1>
+                <h1 className='text-900 text-2xl md:text-4xl mt-0'>Gifts and Grants</h1>
                 <p className='mt-2 text-gray-700'>If you have (or will) receive any gift and/or grant, please provide those details below.</p>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className='inner-forms w-full md:w-full m-auto mt-4'>

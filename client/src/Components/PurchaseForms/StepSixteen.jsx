@@ -38,8 +38,8 @@ const StepSixteen = ({ formData, setFormData, step, setStep }) => {
     return (
         <div>
             <div className='w-full md:w-11 lg:w-8 m-auto text-center'>
-                <h1 className='text-900 text-2xl md:text-4xl mt-5'>Verify Employment</h1>
-                <p>Please review and verify your employment history. At least 2 years of employment history must be provided.</p>
+                <h1 className='text-900 text-2xl md:text-4xl mt-0 mb-2'>Verify Employment</h1>
+                <p className='text-gray-700'>Please review and verify your employment history. At least 2 years of employment history must be provided.</p>
                 <form className='mt-5' onSubmit={handleSubmit(onSubmit)}>
                     <div className='inner-forms'>
                         <div className='heading flex justify-between items-center p-3'>

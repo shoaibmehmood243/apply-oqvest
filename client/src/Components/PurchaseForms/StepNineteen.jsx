@@ -40,9 +40,9 @@ const StepNineteen = ({ formData, setFormData, step, setStep }) => {
     return (
         <div>
             <div className='w-full md:w-11 lg:w-full m-auto text-center'>
-                <h1 className='text-900 text-2xl md:text-4xl mt-5'>Verify Your Assets</h1>
+                <h1 className='text-900 text-2xl md:text-4xl mt-0 mb-2'>Verify Your Assets</h1>
                 <p className='mt-2 text-gray-700'>Please review and verify your information.</p>
-                <p className='mt-2 text-gray-700'>We will use the information you provide to process your loan application.</p>
+                <p className='mt-3 text-gray-700'>We will use the information you provide to process your loan application.</p>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className='inner-forms w-full md:w-full m-auto mt-4'>
                         <div className='heading flex justify-between items-center p-3'>

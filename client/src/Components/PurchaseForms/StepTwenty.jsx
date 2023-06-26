@@ -40,7 +40,7 @@ const StepTwenty = ({ formData, setFormData, step, setStep }) => {
     return (
         <div>
             <div className='w-full md:w-11 lg:w-full m-auto text-center'>
-                <h1 className='text-900 text-2xl md:text-4xl mt-5'>Enter Your Liabilities</h1>
+                <h1 className='text-900 text-2xl md:text-4xl mt-0 mb-2'>Enter Your Liabilities</h1>
                 <p className='mt-2 text-gray-700'>Please review and verify your information.</p>
                 <p className='mt-2 text-gray-700'>We will use the information you provide to process your loan application.</p>
                 <p className='mt-2 text-gray-700'>Do not enter Primary Housing Information or rental income inforation</p>

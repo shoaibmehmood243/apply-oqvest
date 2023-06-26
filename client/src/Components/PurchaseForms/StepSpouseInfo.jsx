@@ -23,7 +23,7 @@ const StepSpouseInfo = ({ formData, setFormData, step, setStep }) => {
                 <p className='mt-3 text-gray-500'>If you're applying with another person, they'll become a co-borrower on this loan. Co-borrowers are equally responsible for honoring the loan agreement. Their income, assets, liabilities and credit history will also be considered. If you choose to add a co-borrower later, your credit report will be pulled again when the co-borrower's credit is pulled. No non-owner or non-occupant co-borrowers allowed for qualifying purposes.</p>
                 <h4 className='text-900 text-xl md:text-2xl font-semibold mt-4 mb-4'> Spouse's Information</h4>
                 <form className='w-full md:w-11 lg:w-8 m-auto text-center mt-5' onSubmit={handleSubmit(onSubmit)}>
-                    <div className='my-2'>
+                    <div className='my-4'>
                         <label className='block mb-2 text-start'>First Name</label>
                         <span className="p-input-icon-left w-full">
                             <BiUserCircle style={{ marginTop: '-11px' }} className=' text-xl' />
@@ -31,7 +31,7 @@ const StepSpouseInfo = ({ formData, setFormData, step, setStep }) => {
                         </span>
                         {errors?.spouseFirstName && <span className='text-red-600 text-start block mt-2'>{errors?.spouseFirstName?.message}</span>}
                     </div>
-                    <div className='my-2'>
+                    <div className='my-4'>
                         <label className='block mb-2 text-start'>Last Name</label>
                         <span className="p-input-icon-left w-full">
                             <BiUserCircle style={{ marginTop: '-11px' }} className=' text-xl' />
@@ -39,7 +39,7 @@ const StepSpouseInfo = ({ formData, setFormData, step, setStep }) => {
                         </span>
                         {errors?.spouseLastName && <span className='text-red-600 text-start block mt-2'>{errors?.spouseLastName?.message}</span>}
                     </div>
-                    <div className='my-2'>
+                    <div className='my-4'>
                         <label className='block mb-2 text-start'>Email</label>
                         <span className="p-input-icon-left w-full">
                             <MdOutlineMail style={{ marginTop: '-11px' }} className=' text-xl' />
@@ -52,7 +52,7 @@ const StepSpouseInfo = ({ formData, setFormData, step, setStep }) => {
                         </span>
                         {errors?.spouseEmail && <span className='text-red-600 text-start block mt-2'>{errors?.spouseEmail?.message}</span>}
                     </div>
-                    <div className='my-2'>
+                    <div className='my-4'>
                         <label className='block mb-2 text-start'>Phone Number</label>
                         <span className="p-input-icon-left w-full">
                             <BsTelephone style={{ marginTop: '-11px' }} className=' text-xl' />

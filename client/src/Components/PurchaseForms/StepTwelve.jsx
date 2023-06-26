@@ -16,9 +16,9 @@ const StepTwelve = ({ formData, setFormData, step, setStep }) => {
     return (
         <div>
             <div className='w-full md:w-11 lg:w-8 m-auto text-center'>
-                <h1 className='text-900 text-2xl md:text-4xl mt-5'>Provide Your Information</h1>
-                <p>These questions will help us verify your identity, check your credit score and complete your application. We're asking for this information now so that we can offer you personalized results sooner.</p>
-                <h4 className='text-900 text-xl md:text-2xl font-semibold mt-4 mb-2'>Address of Property</h4>
+                <h1 className='text-900 text-2xl md:text-4xl mt-0'>Provide Your Information</h1>
+                <p className='text-gray-700'>These questions will help us verify your identity, check your credit score and complete your application. We're asking for this information now so that we can offer you personalized results sooner.</p>
+                <h4 className='text-900 text-xl md:text-2xl font-semibold mt-6 mb-2'>Address of Property</h4>
                 <form className='w-full md:w-11 lg:w-8 m-auto text-center mt-5' onSubmit={handleSubmit(onSubmit)}>
                     <div className='mb-3'>
                         <InputText {...register("streetAddress", { required: 'Street address is required' })} className='w-full' placeholder='Street address' />

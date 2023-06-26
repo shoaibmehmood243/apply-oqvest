@@ -40,8 +40,8 @@ const StepSeventeen = ({ formData, setFormData, step, setStep }) => {
     return (
         <div>
             <div className='w-full md:w-11 lg:w-8 m-auto text-center'>
-                <h1 className='text-900 text-2xl md:text-4xl mt-5'>Do You Have Any Other Income to Report?</h1>
-                <p>Please review and verify your other income sources. We will use the information you provide to process your loan application.</p>
+                <h1 className='text-900 text-2xl md:text-4xl mt-0 mb-2'>Do You Have Any Other Income to Report?</h1>
+                <p className='text-gray-700'>Please review and verify your other income sources. We will use the information you provide to process your loan application.</p>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className='inner-forms w-10 m-auto mt-4'>
                         <div className='heading flex justify-between items-center p-3'>

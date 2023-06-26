@@ -95,11 +95,13 @@ const LoanForm = () => {
     const data = [
         {
             name: 'Purchase',
-            img: homeOutline
+            img: homeOutline,
+            text: 'I’m buying a home and need a mortgage'
         },
         {
             name: 'Refinance',
-            img: refinance
+            img: refinance,
+            text: 'I want to refinance my existing mortgage'
         }
     ]
 
@@ -232,11 +234,11 @@ const LoanForm = () => {
             <div className="step-in">
                 {
                     formData.loanType === '' ? (
-                        <div>
+                        <div className='py-3'>
                             <div className='w-full md:w-11 lg:w-12 m-auto text-center'>
-                                <h1 className='text-900 text-2xl md:text-4xl'>Tell Us About the Loan You Want</h1>
-                                <p>Your data is protected using bank level security.</p>
-                                <h4 className='text-900 text-xl md:text-2xl font-semibold mt-6 mb-2'>What is the purpose of your loan?</h4>
+                                <h1 className='text-900 text-2xl md:text-4xl mb-2'>Tell Us About the Loan You Want</h1>
+                                <p className='text-gray-700'>Your data is protected using bank level security.</p>
+                                <h4 className='text-900 text-xl md:text-2xl font-semibold mt-7 mb-4'>What is the purpose of your loan?</h4>
                                 <div className="flex w-full lg:w-27rem m-auto max-w-full animate">
                                     {
                                         data.map((data, index) => (
@@ -244,6 +246,7 @@ const LoanForm = () => {
                                                 <Card className={`cursor-pointer py-3 ${state === data.name ? 'active' : 'text-900'}`}>
                                                     <img className='m-auto' src={data.img} />
                                                     <p className='text-sm font-600 m-0 mt-3'>Home {data.name}</p>
+                                                    <p className='text-xs text-gray-600 m-0 mt-2'>{data.text}</p>
                                                 </Card>
                                             </div>
                                         ))
@@ -252,7 +255,9 @@ const LoanForm = () => {
                             </div>
                         </div>
                     ) : (
-                        renderStep()
+                        <div className='py-3'>
+                            {renderStep()}
+                        </div>
                     )
                 }
             </div>

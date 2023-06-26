@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import { login } from "../Features/authSlice";
+import { MdOutlineMail } from 'react-icons/md';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -53,9 +54,10 @@ const Login = () => {
       <div className={styles.formDiv}>
         <h1 className='text-center mb-10'>Log in to view, track and close your loan.</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className='mb-3'>
-            <label className='block mb-3'>Email</label>
+          <div className='mb-4'>
+            <label className='block mb-2'>Email</label>
             <span className="p-input-icon-left w-full">
+            <MdOutlineMail style={{ marginTop: '-12px' }} className=' text-2xl' />
               <InputText {...register("email", {
                 required: 'Email Address is required', pattern: {
                   value: /\S+@\S+\.\S+/,
@@ -68,6 +70,7 @@ const Login = () => {
           <div className='mb-5'>
             <PasswordInput
               control={control}
+              feedback={false}
               name="password"
               label="Password"
               placeholder='Create Password'

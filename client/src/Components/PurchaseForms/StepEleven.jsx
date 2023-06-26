@@ -35,9 +35,9 @@ const StepEleven = ({ formData, setFormData, step, setStep }) => {
     return (
         <div>
             <div className='w-full md:w-11 lg:w-8 m-auto text-center'>
-                <h1 className='text-900 text-2xl md:text-4xl mt-5'>Provide Your Information</h1>
-                <p>These questions will help us verify your identity, check your credit score and complete your application. We're asking for this information now so that we can offer you personalized results sooner.</p>
-                <h4 className='text-900 text-xl md:text-2xl font-semibold mt-4 mb-2'>Your Primary & Mailing Address</h4>
+                <h1 className='text-900 text-2xl md:text-4xl mt-0 mb-2'>Provide Your Information</h1>
+                <p className='text-gray-700'>These questions will help us verify your identity, check your credit score and complete your application. We're asking for this information now so that we can offer you personalized results sooner.</p>
+                <h4 className='text-900 text-xl md:text-2xl font-semibold mt-6 mb-2'>Your Primary & Mailing Address</h4>
                 <form className='w-full md:w-11 lg:w-8 m-auto text-center mt-5' onSubmit={handleSubmit(onSubmit)}>
                     <div className='mb-3'>
                         <InputText {...register("primarystreetAddress", { required: 'Street address is required' })} className='w-full' placeholder='Street address' />
@@ -62,7 +62,7 @@ const StepEleven = ({ formData, setFormData, step, setStep }) => {
                             {errors?.primaryzip && <span className='text-red-600 text-start block mt-2'>{errors?.primaryzip?.message}</span>}
                         </div>
                     </div>
-                    <h6 className='text-start my-3 text-lg font-semibold'>Do you own or rent?</h6>
+                    <h6 className='text-start my-4 text-lg font-semibold'>Do you own or rent?</h6>
                     <div className="flex justify-center w-full lg:w-27rem m-auto max-w-full animate">
                         {
                             ownership.map((data, index) => (
@@ -75,7 +75,7 @@ const StepEleven = ({ formData, setFormData, step, setStep }) => {
                             ))
                         }
                     </div>
-                    <p className='text-start text-gray-800'>Select Own if you own your primary address, Rent if you pay rent at your primary address, or No primary housing expense if you do not own your primary address and do not have to pay rent.</p>
+                    <p className='text-start text-gray-700 my-2'>Select Own if you own your primary address, Rent if you pay rent at your primary address, or No primary housing expense if you do not own your primary address and do not have to pay rent.</p>
                     <h6 className='text-lg text-start font-semibold my-3'>Time living at primary address</h6>
                     <div className='flex gap-4'>
                         <div className='mb-2 w-full'>
@@ -89,7 +89,7 @@ const StepEleven = ({ formData, setFormData, step, setStep }) => {
                             {errors?.pimaryLivingMonths && <span className='text-red-600 text-start block mt-2'>{errors?.pimaryLivingMonths?.message}</span>}
                         </div>
                     </div>
-                    <p className='text-start my-2 text-gray-800'>Enter a whole number of years and a whole number of months that you have lived at your primary address (ex: 5 and 0 for 5 years and less than one month). Minimum 2 years of living history is required.</p>
+                    <p className='text-start my-3 text-gray-700'>Enter a whole number of years and a whole number of months that you have lived at your primary address (ex: 5 and 0 for 5 years and less than one month). Minimum 2 years of living history is required.</p>
                     <div className="mt-6 flex align-items-center justify-content-center gap-4">
                         <button className='btn-outline-dark' type='button' onClick={() => setStep(step - 1)}>Back</button>
                         <button className='btn-dark' type='submit'>Next</button>

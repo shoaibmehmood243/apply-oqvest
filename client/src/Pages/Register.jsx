@@ -25,7 +25,7 @@ const Register = () => {
     try {
       const res = await axios.post(signup, { ...data });
       if (res.data.status === true) {
-        toast.success('You have been registered successfully with Kulfi Housing. Please login to continue.')
+        toast.success('You have been registered successfully with Oqvest. Please login to continue.')
         setIsClicked(false);
         setTimeout(() => navigate('/login'), 2000)
       } else {
@@ -42,42 +42,42 @@ const Register = () => {
       <div className={styles.formDiv}>
         <h1 className='text-center mb-10'>Create Your Account to Apply with Oqvest LLC.</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className='mb-3'>
-            <label className='block mb-3'>First Name</label>
+          <div className='mb-4'>
+            <label className='block mb-2'>First Name</label>
             <span className="p-input-icon-left w-full">
-              <BiUserCircle style={{ marginTop: '-15px' }} className=' text-3xl' />
+              <BiUserCircle style={{ marginTop: '-12px' }} className=' text-2xl' />
               <InputText {...register("first_name", { required: 'First Name is required' })} className='w-full' placeholder='Enter your first name' />
             </span>
             {errors?.first_name && <span className='text-red-600 mt-2'>{errors?.first_name?.message}</span>}
           </div>
-          <div className='mb-3'>
-            <label className='block mb-3'>Middle Name</label>
+          <div className='mb-4'>
+            <label className='block mb-2'>Middle Name</label>
             <span className="p-input-icon-left w-full">
-              <BiUserCircle style={{ marginTop: '-15px' }} className=' text-3xl' />
+              <BiUserCircle style={{ marginTop: '-12px' }} className=' text-2xl' />
               <InputText {...register("middle_name", { required: 'Middle Name is required' })} className='w-full' placeholder='Enter your middle name' />
             </span>
             {errors?.middle_name && <span className='text-red-600 mt-2'>{errors?.middle_name?.message}</span>}
           </div>
-          <div className='mb-3'>
-            <label className='block mb-3'>Last Name</label>
+          <div className='mb-4'>
+            <label className='block mb-2'>Last Name</label>
             <span className="p-input-icon-left w-full">
-              <BiUserCircle style={{ marginTop: '-15px' }} className=' text-3xl' />
+              <BiUserCircle style={{ marginTop: '-12px' }} className=' text-2xl' />
               <InputText {...register("last_name", { required: 'Last Name is required' })} className='w-full' placeholder='Enter your last name' />
             </span>
             {errors?.last_name && <span className='text-red-600 mt-2'>{errors?.last_name?.message}</span>}
           </div>
-          <div className='mb-3'>
-            <label className='block mb-3'>Primary Phone</label>
+          <div className='mb-4'>
+            <label className='block mb-2'>Primary Phone</label>
             <span className="p-input-icon-left w-full">
-              <BsTelephone style={{ marginTop: '-15px' }} className=' text-3xl' />
+              <BsTelephone style={{ marginTop: '-12px' }} className=' text-xl' />
               <InputMask {...register("phone_number", { required: 'Phone Number is required' })} className='w-full' mask='(999)-999-9999' placeholder='(555)-555-5555' />
             </span>
             {errors?.phone_number && <span className='text-red-600 mt-2'>{errors?.phone_number?.message}</span>}
           </div>
-          <div className='mb-3'>
-            <label className='block mb-3'>Email</label>
+          <div className='mb-4'>
+            <label className='block mb-2'>Email</label>
             <span className="p-input-icon-left w-full">
-              <MdOutlineMail style={{ marginTop: '-15px' }} className=' text-3xl' />
+              <MdOutlineMail style={{ marginTop: '-12px' }} className=' text-2xl' />
               <InputText {...register("email", {
                 required: 'Email Address is required', pattern: {
                   value: /\S+@\S+\.\S+/,
@@ -102,7 +102,7 @@ const Register = () => {
             </button>
           </div>
           <div className='text-center mt-4'>
-            <p>Already have an account? <Link to='/login' className='link'>Create one</Link></p>
+            <p>Already have an account? <Link to='/login' className='link'>Login</Link></p>
           </div>
         </form>
       </div>
