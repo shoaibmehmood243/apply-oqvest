@@ -27,17 +27,38 @@ const StepSixteen = ({ formData, setFormData, step, setStep }) => {
     ]
 
     const onSubmit = async (data) => {
-        const updatedFormData = {
-            ...formData,
-            employements: [...formData.employements, data]
-        };
-        setFormData(updatedFormData);
-        setShow(false);
-        reset();
+        const newData = {
+            employmentStatus: data.employmentStatus,
+            employerName: data.employerName,
+            employerAddress: data.employerAddress,
+            employerCity: data.employerCity,
+            employerState: data.employerState,
+            employerZip: data.employerZip,
+            employerPhone: data.employerPhone,
+            employerIndustry: data.employerIndustry,
+            employerPosition: data.employerPosition,
+            employerStartMonth: data.employerStartMonth,
+            employerStartYear: data.employerStartYear,
+            baseIncome: data.baseIncome,
+            overtimeIncome: data.overtimeIncome,
+            bonusIncome: data.bonusIncome,
+            comissionIncome: data.comissionIncome,
+            otherIncome: data.otherIncome,
+            totalIncome: data.totalIncome
+        }
+        // if(data?.employements[data?.employements?.length - 1]) {
+            const updatedFormData = {
+                ...formData,
+                employements: [...formData.employements, newData]
+            };
+            setFormData(updatedFormData);
+            setShow(false);
+            reset();
+        // }
     }
     return (
         <div>
-            <div className='w-full md:w-11 lg:w-8 m-auto text-center'>
+            <div className='w-full md:w-11 lg:w-9 m-auto text-center'>
                 <h1 className='text-900 text-2xl md:text-4xl mt-0 mb-2'>Verify Employment</h1>
                 <p className='text-gray-700'>Please review and verify your employment history. At least 2 years of employment history must be provided.</p>
                 <form className='mt-5' onSubmit={handleSubmit(onSubmit)}>
@@ -137,12 +158,12 @@ const StepSixteen = ({ formData, setFormData, step, setStep }) => {
                                             </div>
                                             <div className='mb-3'>
                                                 <label className='block mb-2 text-start'>Start Month</label>
-                                                <Calendar view="month" {...register("employerStartMonth", { required: 'Month is required' })} placeholder='Start Month' className='w-full' />
+                                                <InputText type='number' min={1} max={12} {...register("employerStartMonth", { required: 'Month is required' })} placeholder='Start Month' className='w-full' />
                                                 {errors?.employerStartMonth && <span className='text-red-600 text-start block mt-2'>{errors?.employerStartMonth?.message}</span>}
                                             </div>
                                             <div className='mb-3'>
                                                 <label className='block mb-2 text-start'>Start Year</label>
-                                                <Calendar view='year' {...register("employerStartYear", { required: 'Year is required' })} placeholder='Start Year' className='w-full' />
+                                                <InputText type='number' min={1} {...register("employerStartYear", { required: 'Year is required' })} placeholder='Start Year' className='w-full' />
                                                 {errors?.employerStartYear && <span className='text-red-600 text-start block mt-2'>{errors?.employerStartYear?.message}</span>}
                                             </div>
                                         </div>
@@ -190,9 +211,11 @@ const StepSixteen = ({ formData, setFormData, step, setStep }) => {
                                             <DataTable stripedRows value={formData.employements}>
                                                 <Column field="employmentStatus" header="Status"></Column>
                                                 <Column field="employerName" header="Name"></Column>
+                                                <Column field="employerAddress" header="Address"></Column>
+                                                <Column field="employerPhone" header="Phone"></Column>
                                                 <Column field="employerIndustry" header="Industry"></Column>
                                                 <Column field="employerPosition" header="Position"></Column>
-                                                <Column field="employerStartYear" header="Start Year"></Column>
+                                                {/* <Column field="employerStartYear" header="Start Year"></Column> */}
                                                 <Column field="totalIncome" header="Total Income"></Column>
                                             </DataTable>
                                         </div>
@@ -203,7 +226,7 @@ const StepSixteen = ({ formData, setFormData, step, setStep }) => {
                     </div>
                     <div className="mt-6 flex align-items-center justify-content-center gap-4">
                         <button className='btn-outline-dark' type='button' onClick={() => setStep(step - 1)}>Back</button>
-                        <button className='btn-dark' type='submit' onClick={() => { onSubmit(); setStep(step + 1) }}>Next</button>
+                        <button className='btn-dark' type='button' onClick={() => { setStep(step + 1) }}>Next</button>
                     </div>
                 </form>
             </div>

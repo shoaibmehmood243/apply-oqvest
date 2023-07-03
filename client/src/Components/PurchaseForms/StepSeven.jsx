@@ -1,5 +1,4 @@
 import React from 'react';
-import { InputNumber } from 'primereact/inputnumber';
 import { InputText } from 'primereact/inputtext';
 import { Dropdown } from 'primereact/dropdown';
 import { Controller, useForm } from 'react-hook-form';
@@ -47,7 +46,7 @@ const StepSeven = ({ formData, setFormData, step, setStep }) => {
                         <label className='block mb-2 text-start'>Last Name</label>
                         <span className="p-input-icon-left w-full">
                             <BiUserCircle style={{ marginTop: '-11px' }} className=' text-xl' />
-                            <InputText {...register("coBorrowerLastName", { required: 'Last Name is required' })} className='w-full' placeholder='Enter your middle name' />
+                            <InputText {...register("coBorrowerLastName", { required: 'Last Name is required' })} className='w-full' placeholder='Enter your last name' />
                         </span>
                         {errors?.coBorrowerLastName && <span className='text-red-600 text-start block mt-2'>{errors?.coBorrowerLastName?.message}</span>}
                     </div>

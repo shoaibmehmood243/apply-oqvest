@@ -35,9 +35,9 @@ const StepEleven = ({ formData, setFormData, step, setStep }) => {
     return (
         <div>
             <div className='w-full md:w-11 lg:w-8 m-auto text-center'>
-                <h1 className='text-900 text-2xl md:text-4xl mt-5'>Provide Your Information</h1>
-                <p>These questions will help us verify your identity, check your credit score and complete your application. We're asking for this information now so that we can offer you personalized results sooner.</p>
-                <h4 className='text-900 text-xl md:text-2xl font-semibold mt-4 mb-2'>Your Primary & Mailing Address</h4>
+                <h1 className='text-900 text-2xl md:text-4xl mt-0 mb-3'>Provide Your Information</h1>
+                <p className='text-gray-700'>These questions will help us verify your identity, check your credit score and complete your application. We're asking for this information now so that we can offer you personalized results sooner.</p>
+                <h4 className='text-900 text-xl md:text-2xl font-semibold mt-6 mb-2'>Your Primary & Mailing Address</h4>
                 <form className='w-full md:w-11 lg:w-8 m-auto text-center mt-5' onSubmit={handleSubmit(onSubmit)}>
                     <div className='mb-3'>
                         <InputText {...register("primarystreetAddress", { required: 'Street address is required' })} className='w-full' placeholder='Street address' />
@@ -66,8 +66,8 @@ const StepEleven = ({ formData, setFormData, step, setStep }) => {
                     <div className="flex justify-center w-full lg:w-27rem m-auto max-w-full animate">
                         {
                             ownership.map((data, index) => (
-                                <div key={index} onClick={() => { setState(data.name); setFormData({ ...formData, pimaryOwnership: data.name }) }} className={`col-12 md:col-6`}>
-                                    <Card className={`cursor-pointer py-3 ${state === data.name ? 'active' : 'text-900'}`}>
+                                <div key={index} onClick={() => { setState(data.name); setFormData({ ...formData, pimaryOwnership: data.name }) }} className={` px-0 col-12 md:col-6`}>
+                                    <Card style={{width: '165px', height: '150px'}} className={`cursor-pointer py-3 ${state === data.name ? 'active' : 'text-900'}`}>
                                         <img className='m-auto' src={data.img} />
                                         <p className='text-sm font-600 m-0 mt-3'>{data.name}</p>
                                     </Card>
@@ -75,7 +75,19 @@ const StepEleven = ({ formData, setFormData, step, setStep }) => {
                             ))
                         }
                     </div>
-                    <p className='text-start text-gray-800'>Select Own if you own your primary address, Rent if you pay rent at your primary address, or No primary housing expense if you do not own your primary address and do not have to pay rent.</p>
+                    <p className='text-start text-gray-800 my-3'>Select Own if you own your primary address, Rent if you pay rent at your primary address, or No primary housing expense if you do not own your primary address and do not have to pay rent.</p>
+                    {
+                        formData.pimaryOwnership == 'Rent' && (
+                            <div className='my-3 mb-5 text-start'>
+                                <label className='mb-2 block'>Primary Address Rent Fee</label>
+                                <div className="flex w-full justify-content-start align-items-center m-auto slides-main">
+                                    <div className="slider-labels text-gray-800 font-normal text-xs">Per Month</div>
+                                    <InputNumber min={0} max={100} value={formData.primaryAddressRent} 
+                                        onChange={(e)=> setFormData({...formData, primaryAddressRent: e.value})} />
+                                </div>
+                            </div>
+                        )
+                    }
                     <h6 className='text-lg text-start font-semibold my-3'>Time living at primary address</h6>
                     <div className='flex gap-4'>
                         <div className='mb-2 w-full'>

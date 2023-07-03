@@ -15,6 +15,17 @@ const StepUnmarried = ({ formData, setFormData, step, setStep }) => {
             img: cross
         }
     ]
+
+    const relationshipStatus = [
+        { value: 'family_relationship', name: 'Family relationships' },
+        { value: 'friendship', name: 'Friendship' },
+        { value: 'acquaintanceship', name: 'Acquaintanceship' },
+        { value: 'work_relationship', name: 'Work relationship' }
+    ]
+
+    const relationshipState = [
+        { value: '', name: '' }
+    ]
     return (
         <div>
             <div className='w-full md:w-11 lg:w-8 m-auto text-center'>
@@ -49,7 +60,7 @@ const StepUnmarried = ({ formData, setFormData, step, setStep }) => {
                                         </div>
                                         <div className='dropdown mt-5'>
                                             <label className='block mb-2'>What type of relationship is this?</label>
-                                            <Dropdown value={formData.relationshipType} onChange={(e) => setFormData({...formData, relationshipType: e.value})} optionLabel="name" 
+                                            <Dropdown options={relationshipStatus} value={formData.relationshipType} onChange={(e) => setFormData({...formData, relationshipType: e.value})} optionLabel="name" 
                                                 placeholder="Choose" className="p-inputtext-lg w-full text-start" />
                                         </div>
                                     </div>

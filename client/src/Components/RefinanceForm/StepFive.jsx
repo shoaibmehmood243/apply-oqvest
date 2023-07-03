@@ -29,9 +29,9 @@ const StepFive = ({ formData, setFormData, step, setStep }) => {
     return (
         <div>
             <div className='w-full md:w-11 lg:w-8 m-auto text-center'>
-                <h1 className='text-900 text-2xl md:text-4xl'>Provide Your Marital Status</h1>
-                <p>If you're applying with another person, they'll become a co-borrower on this loan. Co-borrowers are equally responsible for honoring the loan agreement. Their income, assets, liabilities and credit history will also be considered. If you choose to add a co-borrower later, your credit report will be pulled again when the co-borrower's credit is pulled. No non-owner or non-occupant co-borrowers allowed for qualifying purposes.</p>
-                <h4 className='text-900 text-xl md:text-2xl font-semibold mt-2 mb-2'>Are You Married?</h4>
+                <h1 className='text-900 text-2xl md:text-4xl mb-2'>Provide Your Marital Status</h1>
+                <p className='text-gray-700'>If you're applying with another person, they'll become a co-borrower on this loan. Co-borrowers are equally responsible for honoring the loan agreement. Their income, assets, liabilities and credit history will also be considered. If you choose to add a co-borrower later, your credit report will be pulled again when the co-borrower's credit is pulled. No non-owner or non-occupant co-borrowers allowed for qualifying purposes.</p>
+                <h4 className='text-900 text-xl md:text-2xl font-semibold mt-4 mb-3'>Are You Married?</h4>
                 <div className="flex justify-center w-full lg:w-27rem m-auto max-w-full animate">
                     {
                         data.map((data, index) => (

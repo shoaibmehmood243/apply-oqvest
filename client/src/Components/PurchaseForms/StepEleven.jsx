@@ -76,6 +76,18 @@ const StepEleven = ({ formData, setFormData, step, setStep }) => {
                         }
                     </div>
                     <p className='text-start text-gray-700 my-2'>Select Own if you own your primary address, Rent if you pay rent at your primary address, or No primary housing expense if you do not own your primary address and do not have to pay rent.</p>
+                    {
+                        formData.pimaryOwnership == 'Rent' && (
+                            <div className='my-3 mb-5 text-start'>
+                                <label className='mb-2 block'>Primary Address Rent Fee</label>
+                                <div className="flex w-full justify-content-start align-items-center m-auto slides-main">
+                                    <div className="slider-labels text-gray-800 font-normal text-xs">Per Month</div>
+                                    <InputNumber min={0} max={100} value={formData.primaryAddressRent} 
+                                        onChange={(e)=> setFormData({...formData, primaryAddressRent: e.value})} />
+                                </div>
+                            </div>
+                        )
+                    }
                     <h6 className='text-lg text-start font-semibold my-3'>Time living at primary address</h6>
                     <div className='flex gap-4'>
                         <div className='mb-2 w-full'>

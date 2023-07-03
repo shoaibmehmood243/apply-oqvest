@@ -16,6 +16,7 @@ import TestForm from '../Pages/TestForm';
 import ClosedLoans from '../Pages/client/ClosedLoans';
 import OpenLoans from '../Pages/client/OpenLoans';
 import LoanForm from '../Pages/client/LoanForm';
+import Thanks from '../Pages/Thanks';
 
 const Redirect = () => {
   const location = useLocation();
@@ -57,6 +58,7 @@ const Redirect = () => {
           <Route path='' element={<Dashboard />} />
         </Route>
         <Route path='loans' element={<LoanForm />} />
+        <Route path='/thank-you' element={<Thanks />} />
       </Routes>
     );
   }

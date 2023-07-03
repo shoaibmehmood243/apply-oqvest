@@ -15,15 +15,21 @@ const StepUnmarried = ({ formData, setFormData, step, setStep }) => {
             img: cross
         }
     ]
+    const relationshipStatus = [
+        { value: 'family_relationship', name: 'Family relationships' },
+        { value: 'friendship', name: 'Friendship' },
+        { value: 'acquaintanceship', name: 'Acquaintanceship' },
+        { value: 'work_relationship', name: 'Work relationship' }
+    ]
     return (
         <div>
             <div className='w-full md:w-11 lg:w-8 m-auto text-center'>
             <h1 className='text-900 text-2xl md:text-4xl'>Provide Your Marital Status</h1>
-                <p className='mt-3 text-gray-500'>If you're applying with another person, they'll become a co-borrower on this loan. Co-borrowers are equally responsible for honoring the loan agreement. Their income, assets, liabilities and credit history will also be considered. If you choose to add a co-borrower later, your credit report will be pulled again when the co-borrower's credit is pulled. No non-owner or non-occupant co-borrowers allowed for qualifying purposes.</p>
-                <h4 className='text-900 text-xl md:text-2xl font-semibold mt-4 mb-4'>Unmarried Addendum</h4>
+                <p className='mt-3 text-gray-700'>If you're applying with another person, they'll become a co-borrower on this loan. Co-borrowers are equally responsible for honoring the loan agreement. Their income, assets, liabilities and credit history will also be considered. If you choose to add a co-borrower later, your credit report will be pulled again when the co-borrower's credit is pulled. No non-owner or non-occupant co-borrowers allowed for qualifying purposes.</p>
+                <h4 className='text-900 text-xl md:text-2xl font-semibold mt-4 mb-3'>Unmarried Addendum</h4>
                 <div className='w-full md:w-8 m-auto'>
                     <div>
-                        <p className='text-center mb-2 text-gray-500'>Is there a person who is not your legal spouse but who currently has real property rights similar to those of a legal spouse?</p>
+                        <p className='text-center mb-2 text-gray-700'>Is there a person who is not your legal spouse but who currently has real property rights similar to those of a legal spouse?</p>
                         <div className='w-full m-auto md:w-10'>
                             <div className="flex justify-center gap-0 m-auto max-w-full animate">
                                 {
@@ -49,7 +55,7 @@ const StepUnmarried = ({ formData, setFormData, step, setStep }) => {
                                         </div>
                                         <div className='dropdown mt-5'>
                                             <label className='block mb-2'>What type of relationship is this?</label>
-                                            <Dropdown value={formData.relationshipType} onChange={(e) => setFormData({...formData, relationshipType: e.value})} optionLabel="name" 
+                                            <Dropdown options={relationshipStatus} value={formData.relationshipType} onChange={(e) => setFormData({...formData, relationshipType: e.value})} optionLabel="name" 
                                                 placeholder="Choose" className="p-inputtext-lg w-full" />
                                         </div>
                                     </div>

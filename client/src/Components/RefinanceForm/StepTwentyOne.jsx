@@ -13,25 +13,37 @@ const StepTwentyOne = ({ formData, setFormData, step, setStep }) => {
     });
     const [show, setShow] = useState(false);
 
-    const liabilityTypes = [
-        {
-            value: 'current',
-            name: 'Current'
-        },
-        {
-            value: 'non-current',
-            name: 'Non-current'
-        },
-        {
-            value: 'contingent',
-            name: 'Contingent'
-        },
+    const giftTypes = [
+        { value: 'Cash Gift', label: 'Cash Gift' },
+        { value: 'Gift of Equity', label: 'Gift of Equity' },
+        { value: 'Grant', label: 'Grant' }
+    ]
+
+    const giftSources = [
+        { value: 'Company Nonprofit', label: 'Company Nonprofit' },
+        { value: 'Employer', label: 'Employer' },
+        { value: 'Federal Agency', label: 'Federal Agency' },
+        { value: 'Local Agency', label: 'Local Agency' },
+        { value: 'NonParent Relative', label: 'NonParent Relative' },
+        { value: 'Other', label: 'Other' },
+        { value: 'Parent', label: 'Parent' },
+        { value: 'Relative', label: 'Relative' },
+        { value: 'Religious NonProfit', label: 'Religious NonProfit' },
+        { value: 'State Agency', label: 'State Agency' },
+        { value: 'Unmarried Partner', label: 'Unmarried Partner' },
+        { value: 'Unrelated Friend', label: 'Unrelated Friend' },
+        { value: 'Lender', label: 'Lender' }
     ]
 
     const onSubmit = async (data) => {
+        const newData = {
+            giftType: data.giftType,
+            giftSource: data.giftSource,
+            giftAmount: data.giftAmount
+        }
         const updatedFormData = {
             ...formData,
-            gifts: [...formData.gifts, data]
+            gifts: [...formData.gifts, newData]
         };
         setFormData(updatedFormData);
         setShow(false);
@@ -40,7 +52,7 @@ const StepTwentyOne = ({ formData, setFormData, step, setStep }) => {
     return (
         <div>
             <div className='w-full md:w-11 lg:w-full m-auto text-center'>
-                <h1 className='text-900 text-2xl md:text-4xl mt-5'>Gifts and Grants</h1>
+                <h1 className='text-900 text-2xl md:text-4xl mt-0'>Gifts and Grants</h1>
                 <p className='mt-2 text-gray-700'>If you have (or will) receive any gift and/or grant, please provide those details below.</p>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className='inner-forms w-full md:w-full m-auto mt-4'>
@@ -67,7 +79,8 @@ const StepTwentyOne = ({ formData, setFormData, step, setStep }) => {
                                                         <Dropdown
                                                             {...field}
                                                             value={field.value || ''}
-                                                            optionLabel="name"
+                                                            optionLabel="label"
+                                                            options={giftTypes}
                                                             placeholder="Choose"
                                                             className="p-inputtext-lg text-start w-full"
                                                             onChange={(e) => field.onChange(e.value)}
@@ -86,7 +99,8 @@ const StepTwentyOne = ({ formData, setFormData, step, setStep }) => {
                                                         <Dropdown
                                                             {...field}
                                                             value={field.value || ''}
-                                                            optionLabel="name"
+                                                            optionLabel="label"
+                                                            options={giftSources}
                                                             placeholder="Choose"
                                                             className="p-inputtext-lg text-start w-full"
                                                             onChange={(e) => field.onChange(e.value)}
@@ -126,7 +140,7 @@ const StepTwentyOne = ({ formData, setFormData, step, setStep }) => {
                     </div>
                     <div className="mt-6 flex align-items-center justify-content-center gap-4">
                         <button className='btn-outline-dark' type='button' onClick={() => setStep(step - 1)}>Back</button>
-                        <button className='btn-dark' type='submit' onClick={() => { onSubmit(); setStep(step + 1) }}>Next</button>
+                        <button className='btn-dark' type='submit' onClick={() => { setStep(step + 1) }}>Next</button>
                     </div>
                 </form>
             </div>

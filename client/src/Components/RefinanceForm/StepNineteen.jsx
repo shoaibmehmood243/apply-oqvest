@@ -15,23 +15,58 @@ const StepNineteen = ({ formData, setFormData, step, setStep }) => {
 
     const assetTypes = [
         {
-            value: 'mutual',
-            name: 'Mutual Funds'
+            label: 'Common Asset Types',
+            items: [
+                { value: 'Checking Account', label: 'Checking Account' },
+                { value: 'Savings Account', label: 'Savings Account' },
+                { value: 'Money Market Fund', label: 'Money Market Fund' },
+                { value: 'Certificate of Deposit', label: 'Certificate  of Deposit' },
+                { value: 'Mutual Funds', label: 'Mutual Funds' },
+                { value: 'Stocks', label: 'Stocks' },
+                { value: 'Stock Options', label: 'Stock Options' },
+                { value: 'Bonds', label: 'Bonds' },
+                { value: 'Retirement Fund', label: 'Retirement Fund' },
+                { value: 'Bridge Loan Proceeds', label: 'Bridge Loan Proceeds' },
+                { value: 'Cash Value of Life Insurance', label: 'Cash Value of Life Insurance' },
+            ]
         },
         {
-            value: 'tangible',
-            name: 'Tangible'
+            label: 'Other Asset Types',
+            items: [
+                { value: 'Secured Borrowed Funds', label: 'Secured Borrowed Funds' },
+                { value: 'Unsecured Borrowed Funds', label: 'Unsecured Borrowed Funds' },
+                { value: 'Individual Development Account', label: 'Individual Development Account' },
+                { value: 'Trust Account', label: 'Trust Account' },
+                { value: 'Other Liquid Asset', label: 'Other Liquid Asset' },
+                { value: 'Other Non-liquid Asset', label: 'Other Non-liquid Asset' },
+                { value: 'Cash on Hand', label: 'Cash on Hand' },
+                { value: 'Proceeds from sale of Non-Real Estate Asset', label: 'Proceeds from sale of Non-Real Estate Asset' },
+                { value: 'Proceeds from Real Estate to be Sold on or Before Closing', label: 'Proceeds from Real Estate to be Sold on or Before Closing' },
+                { value: 'Relocation Funds', label: 'Relocation Funds' },
+            ]
         },
         {
-            value: 'untangible',
-            name: 'Untangible'
+            label: 'Credit Types',
+            items: [
+                { value: 'Deposit/Earnest Money', label: 'Deposit/Earnest Money' },
+                { value: 'Employer Assistance', label: 'Employer Assistance' },
+                { value: 'Lot Equity', label: 'Lot Equity' },
+                { value: 'Rent Credit', label: 'Rent Credit' },
+                { value: 'Sweat Credit', label: 'Sweat Credit' },
+                { value: 'Trade Equity', label: 'Trade Equity' }
+            ]
         },
     ]
 
     const onSubmit = async (data) => {
+        const newData = {
+            assetType: data.assetType,
+            assetName: data.assetName,
+            marketValue: data.marketValue
+        }
         const updatedFormData = {
             ...formData,
-            assets: [...formData.assets, data]
+            assets: [...formData.assets, newData]
         };
         setFormData(updatedFormData);
         setShow(false);
@@ -40,9 +75,9 @@ const StepNineteen = ({ formData, setFormData, step, setStep }) => {
     return (
         <div>
             <div className='w-full md:w-11 lg:w-full m-auto text-center'>
-                <h1 className='text-900 text-2xl md:text-4xl mt-5'>Verify Your Assets</h1>
+                <h1 className='text-900 text-2xl md:text-4xl mt-0 mb-2'>Verify Your Assets</h1>
                 <p className='mt-2 text-gray-700'>Please review and verify your information.</p>
-                <p className='mt-2 text-gray-700'>We will use the information you provide to process your loan application.</p>
+                <p className='mt-3 text-gray-700'>We will use the information you provide to process your loan application.</p>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className='inner-forms w-full md:w-full m-auto mt-4'>
                         <div className='heading flex justify-between items-center p-3'>
@@ -68,7 +103,9 @@ const StepNineteen = ({ formData, setFormData, step, setStep }) => {
                                                         <Dropdown
                                                             {...field}
                                                             value={field.value || ''}
-                                                            optionLabel="name"
+                                                            optionLabel="label"
+                                                            optionGroupLabel="label" 
+                                                            optionGroupChildren="items"
                                                             options={assetTypes}
                                                             placeholder="Choose"
                                                             className="p-inputtext-lg text-start w-full"
@@ -115,7 +152,7 @@ const StepNineteen = ({ formData, setFormData, step, setStep }) => {
                     </div>
                     <div className="mt-6 flex align-items-center justify-content-center gap-4">
                         <button className='btn-outline-dark' type='button' onClick={() => setStep(step - 1)}>Back</button>
-                        <button className='btn-dark' type='submit' onClick={() => { onSubmit(); setStep(step + 1) }}>Next</button>
+                        <button className='btn-dark' type='button' onClick={() => { setStep(step + 1) }}>Next</button>
                     </div>
                 </form>
             </div>

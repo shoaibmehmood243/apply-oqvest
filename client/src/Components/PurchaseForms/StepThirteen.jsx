@@ -15,6 +15,12 @@ const StepThirteen = ({ formData, setFormData, step, setStep }) => {
             img: cross,
         }
     ]
+
+    const options = [
+        { value: 'primary_residence', name: 'Primary Residence' },
+        { value: 'second_home', name: 'Second/Vacation Home' },
+        { value: 'rental', name: 'Investment/Rental' }
+    ]
     return (
         <div>
             <div className='w-full md:w-11 lg:w-8 m-auto text-center'>
@@ -23,7 +29,7 @@ const StepThirteen = ({ formData, setFormData, step, setStep }) => {
                 <div className='w-full md:w-11 lg:w-8 m-auto text-center'>
                     <h4 className='text-900 text-xl md:text-2xl font-semibold mt-6 mb-4'>How You Will Occupy Property</h4>
                     <div className='dropdown w-full md:w-11 lg:w-9 m-auto'>
-                        <Dropdown value={formData.propertyOccupience} onChange={(e) => setFormData({ ...formData, propertyOccupience: e.value })} optionLabel="name"
+                        <Dropdown options={options} value={formData.propertyOccupience} onChange={(e) => setFormData({ ...formData, propertyOccupience: e.value })} optionLabel="name"
                             placeholder="Choose Source of down payment" className="p-inputtext-lg text-start w-full" />
                         <span className='block text-start mt-3 text-gray-700'>How you intend to occupy your home affects your loan terms.</span>
                     </div>

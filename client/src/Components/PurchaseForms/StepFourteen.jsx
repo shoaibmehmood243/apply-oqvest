@@ -2,6 +2,16 @@ import React from 'react';
 import { Dropdown } from 'primereact/dropdown';
 
 const StepFourteen = ({formData, setFormData, step, setStep}) => {
+    const options = [
+        { value: 'single_family_residence', name: 'Single family residence' },
+        { value: 'condominium', name: 'Condominium' },
+        { value: 'cooperative', name: 'Cooperative (CO-OP)' },
+        { value: '2-4_unit_property', name: '2-4 unit property' },
+        { value: 'townhouse', name: 'Townhouse' },
+        { value: 'manufactured', name: 'Manufactured' },
+        { value: 'land', name: 'Land' },
+        { value: 'planned_unit_development', name: 'Planned unit development (PUD)' }
+    ]
     return (
         <div>
             <div className='w-full md:w-11 lg:w-8 m-auto text-center'>
@@ -10,13 +20,13 @@ const StepFourteen = ({formData, setFormData, step, setStep}) => {
                 <div className='w-full md:w-11 lg:w-8 m-auto text-center'>
 
                 <div className='dropdown  w-10 md:w-8 lg:w-10 m-auto mt-3'>
-                    <Dropdown value={formData.propertyType} onChange={(e) => setFormData({...formData, propertyType: e.value})} optionLabel="name" 
-                        placeholder="Choose Source of down payment" className="p-inputtext-lg text-start w-full" />
-                    <span className='block text-gray-700 text-start mt-3'>The property type of 1899 Finwood Road, New Brunswick, NJ 08901 couldn't be determined automatically . Please indicate your subject property type or contact to your loan officer .</span>
+                    <Dropdown options={options} value={formData.propertyType} onChange={(e) => setFormData({...formData, propertyType: e.value})} optionLabel="name" 
+                        placeholder="Choose Subject Property Type" className="p-inputtext-lg text-start w-full" />
+                    <span className='block text-gray-700 text-start mt-3'>The property type of {formData.primarystreetAddress}, {formData.primarycity}, {formData.primarystate} {formData.primaryzip} couldn't be determined automatically . Please indicate your subject property type or contact to your loan officer .</span>
                 </div>
                 </div>
                 <div className="mt-6 flex align-items-center justify-content-center gap-4">
-                    <button className='btn-outline-dark' type='button' onClick={()=> setStep(step-1)}>Back</button>
+                    <button className='btn-outline-dark' type='button' onClick={()=> {formData.propertyOccupience == 'working' ? setStep(step - 1) : setStep(step - 2)}}>Back</button>
                     <button className='btn-dark' type='submit' onClick={()=> setStep(step+1)}>Next</button>
                 </div>
             </div>

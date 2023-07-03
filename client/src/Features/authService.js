@@ -1,17 +1,6 @@
 import axios from 'axios';
-// const API_URL = 'http://localhost:5000';
-const API_URL = 'https://apply-oqvest-api.vercel.app';
-
-const getUserPermissions = async (id) => {
-  try {  
-    const res = await axios.get(
-      API_URL + `/user/permissions/${id}`
-    );
-    return res.data.data;
-  } catch (err) {
-    throw new Error(err.response.data);
-  }
-};
+const API_URL = 'http://localhost:5000';
+// const API_URL = 'https://apply-oqvest-api.vercel.app';
 
 const login = async (userData) => {
   try {

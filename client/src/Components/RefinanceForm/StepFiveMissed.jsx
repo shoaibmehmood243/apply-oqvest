@@ -18,12 +18,12 @@ const StepFiveMissed = ({ formData, setFormData, step, setStep }) => {
     return (
         <div>
             <div className='w-full md:w-11 lg:w-12 m-auto text-center'>
-                <h1 className='text-900 text-2xl md:text-4xl mt-5'>Tell Us About the Loan You Want</h1>
-                <p>Your data is protected using bank level security.</p>
+                <h1 className='text-900 text-2xl md:text-4xl mt-0 mb-2'>Tell Us About the Loan You Want</h1>
+                <p className='text-gray-700'>Your data is protected using bank level security.</p>
                 <h4 className='text-900 text-xl md:text-2xl font-semibold mt-4 mb-4'>Additional Loan Options</h4>
                 <div className='flex justify-center items-center flex-row md:flex-col gap-3 w-full md:w-8 m-auto'>
                     <div style={{borderRight: '1px solid #000000', paddingRight: '20px'}}>
-                        <p className='text-start mb-2'>Did you or a borrower that will be on this loan application ever serve/currently serve in the United States Armed Forces, or is a surviving spouse of a deceased veteran?</p>
+                        <p className='text-start mb-3'>Did you or a borrower that will be on this loan application ever serve/currently serve in the United States Armed Forces, or is a surviving spouse of a deceased veteran?</p>
                         <div className="flex justify-center gap-0 m-auto max-w-full animate">
                             {
                                 data.map((data, index) => (

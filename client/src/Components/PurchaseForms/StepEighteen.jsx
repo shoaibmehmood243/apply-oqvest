@@ -33,15 +33,46 @@ const StepEighteen = ({ formData, setFormData, step, setStep }) => {
             img: ownership3
         },
     ]
+    const propertyTypes = [
+        { value: 'single_family_residence', name: 'Single family residence' },
+        { value: 'condominium', name: 'Condominium' },
+        { value: 'cooperative', name: 'Cooperative (CO-OP)' },
+        { value: '2-4_unit_property', name: '2-4 unit property' },
+        { value: 'townhouse', name: 'Townhouse' },
+        { value: 'manufactured', name: 'Manufactured' },
+        { value: 'land', name: 'Land' },
+        { value: 'planned_unit_development', name: 'Planned unit development (PUD)' }
+    ]
 
+    const occupanyTypes = [
+        { value: 'Primary Residence', name: 'Primary Residence' },
+        { value: 'Second Home', name: 'Second Home' },
+        { value: 'Investment', name: 'Investment' }
+    ]
     const onSubmit = async (data) => {
-        const updatedFormData = {
-            ...formData,
-            realEstateInfo: [...formData.realEstateInfo, data]
-        };
-        setFormData(updatedFormData);
-        setShow(false);
-        reset();
+        const newData = {
+            realEstateAddress: data.realEstateAddress,
+            realEstateCity: data.realEstateCity,
+            realEstateState: data.realEstateState,
+            realEstateZip: data.realEstateZip,
+            realEstateStatus: formData.realEstateStatus,
+            ownedBy: data.ownedBy,
+            intendedOccupancy: data.intendedOccupancy,
+            currentOccupancy: data.currentOccupancy,
+            propertyType: data.propertyType,
+            realEstateMonthlyRent: data.realEstateMonthlyRent,
+            realEstateMarketValue: data.realEstateMarketValue,
+            realEstateMonthlyExpense: data.realEstateMonthlyExpense
+        }
+        // if(data?.realEstateInfo[data?.realEstateInfo?.length]) {
+            const updatedFormData = {
+                ...formData,
+                realEstateInfo: [...formData.realEstateInfo, newData]
+            };
+            setFormData(updatedFormData);
+            setShow(false);
+            reset();
+        // }
     }
     return (
         <div>
@@ -62,7 +93,7 @@ const StepEighteen = ({ formData, setFormData, step, setStep }) => {
                                 show ? (
                                     <div className='w-full md:w-11 lg:w-10 m-auto'>
                                         <div className='mb-3'>
-                                            <label className='block mb-2 text-start'>Employer Address</label>
+                                            <label className='block mb-2 text-start'>Property Address</label>
                                             <InputText {...register("realEstateAddress", { required: 'Street address is required' })} className='w-full' placeholder='Street address' />
                                             {errors?.realEstateAddress && <span className='text-red-600 text-start block mt-2'>{errors?.realEstateAddress?.message}</span>}
                                         </div>
@@ -96,29 +127,18 @@ const StepEighteen = ({ formData, setFormData, step, setStep }) => {
                                             }
                                         </div>
                                         <div className='grid grid-cols-2 gap-3 my-3 max-w-full m-auto'>
-                                            <div className='mb-2 dropdown w-full'>
+                                            <div className='mb-2 w-full'>
                                                 <label className='block mb-2 text-start'>Owned by</label>
-                                                <Controller
-                                                    name="employerIndustry"
-                                                    {...register('employerIndustry')}
-                                                    control={control}
-                                                    render={({ field }) => (
-                                                        <Dropdown
-                                                            {...field}
-                                                            value={field.value || ''}
-                                                            optionLabel="name"
-                                                            placeholder="Choose"
-                                                            className="p-inputtext-lg text-start w-full"
-                                                            onChange={(e) => field.onChange(e.value)}
-                                                        />
-                                                    )}
-                                                />
+                                                <InputText {...register("ownedBy", {
+                                                    required: 'Property Owner is required'
+                                                })} className='w-full' placeholder='Owned by' />
+                                                {errors?.ownedBy && <span className='text-red-600 text-start block mt-2'>{errors?.ownedBy?.message}</span>}
                                             </div>
                                             <div className='mb-2 dropdown w-full'>
                                                 <label className='block mb-2 text-start'>Intended Occupancy</label>
                                                 <Controller
-                                                    name="employerIndustry"
-                                                    {...register('employerIndustry')}
+                                                    name="intendedOccupancy"
+                                                    {...register('intendedOccupancy')}
                                                     control={control}
                                                     render={({ field }) => (
                                                         <Dropdown
@@ -126,6 +146,7 @@ const StepEighteen = ({ formData, setFormData, step, setStep }) => {
                                                             value={field.value || ''}
                                                             optionLabel="name"
                                                             placeholder="Choose"
+                                                            options={occupanyTypes}
                                                             className="p-inputtext-lg text-start w-full"
                                                             onChange={(e) => field.onChange(e.value)}
                                                         />
@@ -135,8 +156,8 @@ const StepEighteen = ({ formData, setFormData, step, setStep }) => {
                                             <div className='mb-2 dropdown w-full'>
                                                 <label className='block mb-2 text-start'>Current Occupancy</label>
                                                 <Controller
-                                                    name="employerIndustry"
-                                                    {...register('employerIndustry')}
+                                                    name="currentOccupancy"
+                                                    {...register('currentOccupancy')}
                                                     control={control}
                                                     render={({ field }) => (
                                                         <Dropdown
@@ -144,6 +165,7 @@ const StepEighteen = ({ formData, setFormData, step, setStep }) => {
                                                             value={field.value || ''}
                                                             optionLabel="name"
                                                             placeholder="Choose"
+                                                            options={occupanyTypes}
                                                             className="p-inputtext-lg text-start w-full"
                                                             onChange={(e) => field.onChange(e.value)}
                                                         />
@@ -153,8 +175,8 @@ const StepEighteen = ({ formData, setFormData, step, setStep }) => {
                                             <div className='mb-2 dropdown w-full'>
                                                 <label className='block mb-2 text-start'>Property Type</label>
                                                 <Controller
-                                                    name="employerIndustry"
-                                                    {...register('employerIndustry')}
+                                                    name="propertyType"
+                                                    {...register('propertyType')}
                                                     control={control}
                                                     render={({ field }) => (
                                                         <Dropdown
@@ -162,29 +184,12 @@ const StepEighteen = ({ formData, setFormData, step, setStep }) => {
                                                             value={field.value || ''}
                                                             optionLabel="name"
                                                             placeholder="Choose"
+                                                            options={propertyTypes}
                                                             className="p-inputtext-lg text-start w-full"
                                                             onChange={(e) => field.onChange(e.value)}
                                                         />
                                                     )}
                                                 />
-                                            </div>
-                                        </div>
-                                        <div className='grid grid-cols-3 gap-3 mb-3 max-w-full m-auto'>
-                                            <div className='mb-3'>
-                                                <label className='block mb-2 text-start'>Position/Title</label>
-                                                <InputText {...register("employerPosition", { required: 'Position is required' })}
-                                                    className='w-full' placeholder='Position/Title' />
-                                                {errors?.employerPosition && <span className='text-red-600 text-start block mt-2'>{errors?.employerPosition?.message}</span>}
-                                            </div>
-                                            <div className='mb-3'>
-                                                <label className='block mb-2 text-start'>Start Month</label>
-                                                <Calendar view="month" {...register("employerStartMonth", { required: 'Month is required' })} placeholder='Start Month' className='w-full' />
-                                                {errors?.employerStartMonth && <span className='text-red-600 text-start block mt-2'>{errors?.employerStartMonth?.message}</span>}
-                                            </div>
-                                            <div className='mb-3'>
-                                                <label className='block mb-2 text-start'>Start Year</label>
-                                                <Calendar view='year' {...register("employerStartYear", { required: 'Year is required' })} placeholder='Start Year' className='w-full' />
-                                                {errors?.employerStartYear && <span className='text-red-600 text-start block mt-2'>{errors?.employerStartYear?.message}</span>}
                                             </div>
                                         </div>
                                         <div className='grid grid-cols-2 gap-3 my-3 max-w-full m-auto'>
@@ -217,6 +222,10 @@ const StepEighteen = ({ formData, setFormData, step, setStep }) => {
                                             <DataTable stripedRows value={formData.realEstateInfo}>
                                                 <Column field="realEstateAddress" header="Address"></Column>
                                                 <Column field="realEstateStatus" header="Status"></Column>
+                                                <Column field="ownedBy" header="Owner"></Column>
+                                                <Column field="currentOccupancy" header="Current Occupancy"></Column>
+                                                <Column field="intendedOccupancy" header="Intended Occupancy"></Column>
+                                                <Column field="propertyType" header="Property Type"></Column>
                                                 <Column field="realEstateMarketValue" header="Market Value"></Column>
                                                 <Column field="realEstateMonthlyRent" header="Monthly Rent"></Column>
                                                 <Column field="realEstateMonthlyExpense" header="Monthly Expense"></Column>
@@ -229,7 +238,7 @@ const StepEighteen = ({ formData, setFormData, step, setStep }) => {
                     </div>
                     <div className="mt-6 flex align-items-center justify-content-center gap-4">
                         <button className='btn-outline-dark' type='button' onClick={() => setStep(step - 1)}>Back</button>
-                        <button className='btn-dark' type='submit' onClick={() => { onSubmit(); setStep(step + 1) }}>Next</button>
+                        <button className='btn-dark' type='button' onClick={() => { setStep(step + 1) }}>Next</button>
                     </div>
                 </form>
             </div>

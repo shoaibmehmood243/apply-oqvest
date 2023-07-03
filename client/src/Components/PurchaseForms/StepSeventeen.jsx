@@ -14,28 +14,50 @@ const StepSeventeen = ({ formData, setFormData, step, setStep }) => {
     const [show, setShow] = useState(false);
 
     const incomeTypes = [
-        {
-            value: 'earned',
-            name: 'Earned'
-        },
-        {
-            value: 'passive',
-            name: 'Passive'
-        },
-        {
-            value: 'portfolio',
-            name: 'Portfolio'
-        },
+        { value: 'Accessory Unit Income', name: 'Accessory Unit Income' },
+        { value: 'Alimony', name: 'Alimony' },
+        { value: 'Automobile Allowance', name: 'Automobile Allowance' },
+        { value: 'Border Income', name: 'Border Income' },
+        { value: 'Capital Gains', name: 'Capital Gains' },
+        { value: 'Child Support', name: 'Child Support' },
+        { value: 'Defined Contribution Plan', name: 'Defined Contribution Plan' },
+        { value: 'Disability', name: 'Disability' },
+        { value: 'Interest and Dividends', name: 'Interest and Dividends' },
+        { value: 'Employment Related Account', name: 'Employment Related Account' },
+        { value: 'Foster Care', name: 'Foster Care' },
+        { value: 'Housing Allowance', name: 'Housing Allowance' },
+        { value: 'Housing Choice Voucher Program', name: 'Housing Choice Voucher Program' },
+        { value: 'Mortgage Credit Certificate', name: 'Mortgage Credit Certificate' },
+        { value: 'Mortgage Differential Payments', name: 'Mortgage Differential Payments' },
+        { value: 'Non Borrower Household Income', name: 'Non Borrower Household Income' },
+        { value: 'Note Receivable', name: 'Note Receivable' },
+        { value: 'Retirement', name: 'Retirement' },
+        { value: 'Public Assistance', name: 'Public Assistance' },
+        { value: 'Royalty Payments', name: 'Royalty Payments' },
+        { value: 'Separate Maintenance', name: 'Separate Maintenance' },
+        { value: 'Social Security', name: 'Social Security' },
+        { value: 'Temporary Leave', name: 'Temporary Leave' },
+        { value: 'Tip Income', name: 'Tip Income' },
+        { value: 'Trust', name: 'Trust' },
+        { value: 'Unemployment Benefits', name: 'Unemployment Benefits' },
+        { value: 'VA Compensation', name: 'VA Compensation' },
+        { value: 'Other', name: 'Other' },
     ]
 
     const onSubmit = async (data) => {
-        const updatedFormData = {
-            ...formData,
-            otherMonthlyIncomeReport: [...formData.otherMonthlyIncomeReport, data]
-        };
-        setFormData(updatedFormData);
-        setShow(false);
-        reset();
+        // if(data?.otherMonthlyIncomeReport[data?.otherMonthlyIncomeReport?.length - 1]) {
+            const newData = {
+                monthylyIncomeType: data.monthylyIncomeType,
+                totalIncomeAmount: data.totalIncomeAmount
+            }
+            const updatedFormData = {
+                ...formData,
+                otherMonthlyIncomeReport: [...formData.otherMonthlyIncomeReport, newData]
+            };
+            setFormData(updatedFormData);
+            setShow(false);
+            reset();
+        // }
     }
     return (
         <div>
@@ -108,7 +130,7 @@ const StepSeventeen = ({ formData, setFormData, step, setStep }) => {
                     </div>
                     <div className="mt-6 flex align-items-center justify-content-center gap-4">
                         <button className='btn-outline-dark' type='button' onClick={() => setStep(step - 1)}>Back</button>
-                        <button className='btn-dark' type='submit' onClick={() => { onSubmit(); setStep(step + 1) }}>Next</button>
+                        <button className='btn-dark' type='button' onClick={() => { setStep(step + 1) }}>Next</button>
                     </div>
                 </form>
             </div>

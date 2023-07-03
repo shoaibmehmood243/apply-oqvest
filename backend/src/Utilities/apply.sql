@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 13, 2023 at 10:14 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Generation Time: Jul 03, 2023 at 01:54 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -221,13 +221,15 @@ CREATE TABLE `loan_applications` (
   `purchase_price` int(11) NOT NULL,
   `down_payment` int(11) NOT NULL,
   `payment_source` int(11) NOT NULL,
+  `is_veteran` varchar(30) NOT NULL,
+  `other_mortgage_loans` varchar(30) NOT NULL,
   `martial_status_id` int(11) NOT NULL,
   `borrowers_id` int(11) NOT NULL,
   `personal_info_id` int(11) NOT NULL,
   `loan_verification_id` int(11) NOT NULL,
   `employment_id` int(11) NOT NULL,
   `property_id` int(11) NOT NULL,
-  `bank_id` int(11) NOT NULL,
+  `status` varchar(50) NOT NULL,
   `is_active` tinyint(4) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL
@@ -246,6 +248,14 @@ CREATE TABLE `loan_categories` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `loan_categories`
+--
+
+INSERT INTO `loan_categories` (`id`, `category`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, 'Purchase', 1, '2023-07-02 14:36:06', NULL),
+(2, 'Refinance', 1, '2023-07-02 14:36:23', NULL);
 
 -- --------------------------------------------------------
 
@@ -271,6 +281,9 @@ CREATE TABLE `martial_status` (
   `spouse_last_name` varchar(100) DEFAULT NULL,
   `spouse_phone` varchar(100) DEFAULT NULL,
   `spouse_email` varchar(100) DEFAULT NULL,
+  `other_martial_status` varchar(30) DEFAULT NULL,
+  `relationship_status` varchar(50) DEFAULT NULL,
+  `relationship_type` varchar(50) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -290,7 +303,8 @@ CREATE TABLE `personal_info` (
   `state` varchar(50) NOT NULL,
   `zip_code` varchar(50) NOT NULL,
   `rent_owned` tinyint(4) NOT NULL,
-  `primary_address_duration` varchar(100) NOT NULL,
+  `primary_address_duration_year` varchar(100) NOT NULL,
+  `primary_address_duration_month` varchar(30) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -386,8 +400,7 @@ ALTER TABLE `loan_applications`
   ADD KEY `borrowersId` (`borrowers_id`),
   ADD KEY `personalId` (`personal_info_id`),
   ADD KEY `employmentId` (`employment_id`),
-  ADD KEY `propertyId` (`property_id`),
-  ADD KEY `bankId` (`bank_id`);
+  ADD KEY `propertyId` (`property_id`);
 
 --
 -- Indexes for table `loan_categories`
@@ -487,7 +500,7 @@ ALTER TABLE `loan_applications`
 -- AUTO_INCREMENT for table `loan_categories`
 --
 ALTER TABLE `loan_categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `loan_verifications`
@@ -545,7 +558,6 @@ ALTER TABLE `liabilities`
 -- Constraints for table `loan_applications`
 --
 ALTER TABLE `loan_applications`
-  ADD CONSTRAINT `bankId` FOREIGN KEY (`bank_id`) REFERENCES `banks` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `borrowersId` FOREIGN KEY (`borrowers_id`) REFERENCES `borrowers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `clientId` FOREIGN KEY (`client_id`) REFERENCES `clients` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `employmentId` FOREIGN KEY (`employment_id`) REFERENCES `employments` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,

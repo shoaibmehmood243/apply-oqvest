@@ -7,7 +7,7 @@ const StepFifteen = ({ formData, setFormData, step, setStep }) => {
             <div className='w-full md:w-11 lg:w-8 m-auto text-center'>
                 <h1 className='text-900 text-2xl md:text-4xl mt-0 mb-2'>Verify Loan Application</h1>
                 <p className='text-gray-700'>Please review and verify your information. We will use the information you provide to process your loan application</p>
-                <h4 className='text-900 text-xl md:text-xl font-semibold mt-6 mb-6'>Your Current Expenses for {formData.streetAddress}</h4>
+                <h4 className='text-900 text-xl md:text-xl font-semibold mt-6 mb-6'>Your Current Expenses for {formData.primarystreetAddress}, {formData.primarycity}, {formData.primarystate} {formData.primaryzip}</h4>
                 <div className='w-11 md:w-10'>
                     <h6 className='text-md font-semibold mb-3 text-start'>First Mortgage Payment</h6>
                     <div>

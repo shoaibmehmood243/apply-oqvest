@@ -25,7 +25,6 @@ p,
 span,
 a,
 label,
-button,
 input,
 td,
 th,
@@ -54,6 +53,7 @@ button {
   box-shadow: 0px 8.30752px 24.343px rgba(10, 63, 120, 0.165559);
   color: #fff;
   border: 2px solid #404F66;
+  font-family: 'Poppins', sans-serif !important;
 }
 
 .btn-outline-dark {
@@ -61,6 +61,7 @@ button {
   box-shadow: 0px 8.30752px 24.343px rgba(10, 63, 120, 0.165559);
   color: #404F66;
   border: 2px solid #404F66 !important;
+  font-family: 'Poppins', sans-serif !important;
 }
 
 .btn-outline-secondary {
@@ -68,12 +69,14 @@ button {
   box-shadow: 0px 8.30752px 24.343px rgba(10, 63, 120, 0.165559);
   color: var(--secondary-color);
   border: 2px solid var(--secondary-color) !important;
+  font-family: 'Poppins', sans-serif !important;
 }
 
 .btn-primary {
   background: var(--primary-color);
   color: var(--text-dark);
   border: 1px solid var(--primary-color);
+  font-family: 'Poppins', sans-serif !important;
   box-shadow: 0px 14.7349px 69.3407px rgba(0, 0, 0, 0.07), 0px 6.15589px 28.9689px rgba(0, 0, 0, 0.0503198), 0px 3.29123px 15.4882px rgba(0, 0, 0, 0.0417275), 0px 1.84504px 8.68254px rgba(0, 0, 0, 0.035), 0px 0.979886px 4.61123px rgba(0, 0, 0, 0.0282725), 0px 0.407753px 1.91884px rgba(0, 0, 0, 0.0196802);
 }
 
@@ -377,6 +380,14 @@ input:hover {
   border-radius: 10px 10px 0px 0px;
 }
 
+.inner-forms .heading-2 {
+  background: var(--primary-color);
+}
+
+.inner-forms .heading-2 h1 {
+  color: #fff !important;
+}
+
 .inner-forms .form-inside {
   background: #FFFFFF;
   box-shadow: 0px 85px 80px rgba(0, 0, 0, 0.07), 0px 35.511px 33.4221px rgba(0, 0, 0, 0.0503198), 0px 18.9859px 17.869px rgba(0, 0, 0, 0.0417275), 0px 10.6433px 10.0172px rgba(0, 0, 0, 0.035), 0px 5.65259px 5.32008px rgba(0, 0, 0, 0.0282725), 0px 2.35217px 2.21381px rgba(0, 0, 0, 0.0196802);
@@ -393,4 +404,38 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+.thanks h1 {
+  color: var(--primary-color);
+}
+
+.thanks h3 {
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 40px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.thanks p {
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #797292;
+}
+
+.thanks .items svg {
+  width: 10%;
+}
+
+.thanks .items div {
+  width: 90%;
+}
+
+.p-datepicker .p-datepicker-header .p-datepicker-prev,
+.p-datepicker .p-datepicker-header .p-datepicker-next {
+  width: auto;
 }
