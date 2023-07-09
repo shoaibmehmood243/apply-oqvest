@@ -69,6 +69,7 @@ const LoanForm = () => {
         primaryAddressRent: '',
         pimaryLivingYear: '',
         pimaryLivingMonths: '',
+        mailingAddress: false,
         streetAddress: '',
         city: '',
         state: '',

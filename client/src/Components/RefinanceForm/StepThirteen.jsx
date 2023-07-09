@@ -32,14 +32,16 @@ const StepThirteen = ({ formData, setFormData, step, setStep }) => {
                             placeholder="Choose Source of down payment" className="p-inputtext-lg text-start w-10 md:w-8 lg:w-10" />
                         <span className='block text-center mt-3 text-gray-700'>How you intend to occupy your home affects your loan terms.</span>
                     </div>
-                    <h6 className='mb-3 mt-5 text-start'>Will you set aside space within this property to operate your own business? (e.g., daycare facility, medical office, beauty/barber shop)</h6>
+                    <h6 className='mb-3 mt-5 text-lg text-start'>Will you set aside space within this property to operate your own business? (e.g., daycare facility, medical office, beauty/barber shop)</h6>
                     <div className="flex justify-center w-full lg:w-8 gap-5 m-auto max-w-full animate">
                         {
                             data.map((data, index) => (
                                 <div key={index} onClick={() => { setState(data.name); setFormData({ ...formData, propertyAside: data.name }) }} className={`col-12 md:col-6`}>
-                                    <Card className={`cursor-pointer py-3 ${state === data.name ? 'active' : 'text-900'}`}>
-                                        <img className='m-auto' src={data.img} />
-                                        <p className='text-sm font-600 m-0 mt-3'>{data.name}</p>
+                                    <Card  style={{ height: '60px' }} className={`cursor-pointer py-3 ${state === data.name ? 'active' : 'text-900'}`}>
+                                        <div className='flex items-center justify-center gap-3'>
+                                            <img height={32} width={32} className='m-auto' src={data.img} />
+                                            <p className='text-sm font-600 m-0 mt-0'>{data.name}</p>
+                                        </div>
                                     </Card>
                                 </div>
                             ))

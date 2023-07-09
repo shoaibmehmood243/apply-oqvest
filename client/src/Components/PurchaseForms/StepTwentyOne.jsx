@@ -60,7 +60,7 @@ const StepTwentyOne = ({ formData, setFormData, step, setStep }) => {
                             <h1 className='text-900 text-lg text-start md:text-xl'>Your Gifts & Grants</h1>
                             {
                                 (formData.gifts.length !== 0 && show === false) &&
-                                <AiOutlinePlusCircle onClick={() => setShow(true)} className='link cursor-pointer' />
+                                <AiOutlinePlusCircle onClick={() => setShow(true)} className='link text-xl cursor-pointer' />
                             }
                         </div>
                         <div className='form-inside pb-6 mt-4'>

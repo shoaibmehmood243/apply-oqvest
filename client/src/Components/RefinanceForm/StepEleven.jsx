@@ -5,6 +5,8 @@ import { useForm } from 'react-hook-form';
 import { Card } from 'primereact/card';
 import { ownership1, ownership2, ownership3 } from '../../assets';
 import { InputNumber } from 'primereact/inputnumber';
+import {LuDollarSign} from 'react-icons/lu'
+import { Checkbox } from 'primereact/checkbox';
 
 const StepEleven = ({ formData, setFormData, step, setStep }) => {
     const { handleSubmit, formState: { errors }, register, control } = useForm({
@@ -79,16 +81,17 @@ const StepEleven = ({ formData, setFormData, step, setStep }) => {
                     {
                         formData.pimaryOwnership == 'Rent' && (
                             <div className='my-3 mb-5 text-start'>
-                                <label className='mb-2 block'>Primary Address Rent Fee</label>
-                                <div className="flex w-full justify-content-start align-items-center m-auto slides-main">
-                                    <div className="slider-labels text-gray-800 font-normal text-xs">Per Month</div>
-                                    <InputNumber min={0} max={100} value={formData.primaryAddressRent} 
-                                        onChange={(e)=> setFormData({...formData, primaryAddressRent: e.value})} />
-                                </div>
+                                <label className='mb-2 font-semibold block'>Primary Address Rent Fee</label>
+                                <span className="p-input-icon-left w-full">
+                                    <LuDollarSign style={{ marginTop: '-10px' }} className=' text-xl' />
+                                    <InputNumber value={formData.primaryAddressRent}
+                                        onChange={(e) => setFormData({ ...formData, primaryAddressRent: e.value })} type="text"
+                                        className='w-full' placeholder="Estimated Purchase Price" />
+                                </span>
                             </div>
                         )
                     }
-                    <h6 className='text-lg text-start font-semibold my-3'>Time living at primary address</h6>
+                    <h6 className=' text-start text-base font-semibold my-3'>Time living at primary address</h6>
                     <div className='flex gap-4'>
                         <div className='mb-2 w-full'>
                             <InputText type='number' name='pimaryLivingYear' {...register("pimaryLivingYear", { required: 'Years is required' })} className='w-full' placeholder='Years' />
@@ -101,7 +104,12 @@ const StepEleven = ({ formData, setFormData, step, setStep }) => {
                             {errors?.pimaryLivingMonths && <span className='text-red-600 text-start block mt-2'>{errors?.pimaryLivingMonths?.message}</span>}
                         </div>
                     </div>
-                    <p className='text-start my-2 text-gray-800'>Enter a whole number of years and a whole number of months that you have lived at your primary address (ex: 5 and 0 for 5 years and less than one month). Minimum 2 years of living history is required.</p>
+                    <p className='text-start my-3 text-gray-700'>Enter a <b>whole number of years</b> and a <b> whole number of months</b> that you have lived at your primary address (ex: 5 and 0 for 5 years and less than one month). <b>Minimum 2 years of living history is required.</b></p>
+                    <div className="flex align-items-center">
+                        <Checkbox inputId="ingredient1" name="pizza" value="Cheese" onChange={(e)=> setFormData({...formData, mailingAddress: e.checked})} checked={formData.mailingAddress} />
+                        <label htmlFor="ingredient1" className="ml-2">Check if mailing address is same as primary address.</label>
+                    </div>
+                    <p className='text-start my-3 text-gray-700'>Your <b>mailing address</b> is the address that you use for important mail, such as bank statements and credit cards.</p>
                     <div className="mt-6 flex align-items-center justify-content-center gap-4">
                         <button className='btn-outline-dark' type='button' onClick={() => setStep(step - 1)}>Back</button>
                         <button className='btn-dark' type='submit'>Next</button>

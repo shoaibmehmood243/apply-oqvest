@@ -8,7 +8,7 @@ const StepSubmit = ({ formData, setFormData, step, setStep }) => {
         setIsClicked(true);
         try {
             setTimeout(() => setIsClicked(false), 500);
-            navigate('/thank-you');
+            navigate('thank-you');
         } catch (error) {
             setIsClicked(false);
         }

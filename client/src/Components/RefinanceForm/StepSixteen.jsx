@@ -16,15 +16,58 @@ const StepSixteen = ({ formData, setFormData, step, setStep }) => {
     const [show, setShow] = useState(false);
 
     const employmentStatuses = [
-        {
-            value: 'employed',
-            name: 'Employed'
-        },
-        {
-            value: 'unemployed',
-            name: 'unemployed'
-        },
+        { value: 'employed', name: 'Employed' },
+        { value: 'sel-employed', name: 'Self-Employed' },
+        { value: 'un-employed', name: 'Un-employed' },
+        { value: 'retired', name: 'Retired' },
+        { value: 'student', name: 'Student' },
+        { value: 'homemaker', name: 'Homemaker' },
+        { value: 'military', name: 'Military' },
+        { value: 'other', name: 'Other' },
     ]
+
+    const industries = [
+        { value: 'Agriculture', name: 'Agriculture' },
+        { value: 'Automotive', name: 'Automotive' },
+        { value: 'Banking/Finance', name: 'Banking/Finance' },
+        { value: 'Construction', name: 'Construction' },
+        { value: 'Education', name: 'Education' },
+        { value: 'Energy/Utilities', name: 'Energy/Utilities' },
+        { value: 'Entertainment', name: 'Entertainment' },
+        { value: 'Food and Beverage', name: 'Food and Beverage' },
+        { value: 'Government/Non-profit', name: 'Government/Non-profit' },
+        { value: 'Healthcare', name: 'Healthcare' },
+        { value: 'Hospitality/Tourism', name: 'Hospitality/Tourism' },
+        { value: 'Information Technology (IT)', name: 'Information Technology (IT)' },
+        { value: 'Manufacturing', name: 'Manufacturing' },
+        { value: 'Media/Advertising', name: 'Media/Advertising' },
+        { value: 'Real Estate', name: 'Real Estate' },
+        { value: 'Retail', name: 'Retail' },
+        { value: 'Telecommunications', name: 'Telecommunications' },
+        { value: 'Transportation/Logistics', name: 'Transportation/Logistics' },
+        { value: 'E-commerce', name: 'E-commerce' },
+        { value: 'Pharmaceutical', name: 'Pharmaceutical' },
+        { value: 'Aerospace/Aviation', name: 'Aerospace/Aviation' },
+        { value: 'Insurance', name: 'Insurance' },
+        { value: 'Consulting', name: 'Consulting' },
+        { value: 'Legal', name: 'Legal' },
+        { value: 'Architecture/Design', name: 'Architecture/Design' }
+    ];
+
+    const months = [
+        { value: 'January', name: 'January' },
+        { value: 'February', name: 'February' },
+        { value: 'March', name: 'March' },
+        { value: 'April', name: 'April' },
+        { value: 'May', name: 'May' },
+        { value: 'June', name: 'June' },
+        { value: 'July', name: 'July' },
+        { value: 'August', name: 'August' },
+        { value: 'September', name: 'September' },
+        { value: 'October', name: 'October' },
+        { value: 'November', name: 'November' },
+        { value: 'December', name: 'December' }
+    ];
 
     const onSubmit = async (data) => {
         const newData = {
@@ -58,7 +101,7 @@ const StepSixteen = ({ formData, setFormData, step, setStep }) => {
     }
     return (
         <div>
-            <div className='w-full md:w-11 lg:w-9 m-auto text-center'>
+            <div className='w-full md:w-11 lg:w-11 m-auto text-center'>
                 <h1 className='text-900 text-2xl md:text-4xl mt-0 mb-2'>Verify Employment</h1>
                 <p className='text-gray-700'>Please review and verify your employment history. At least 2 years of employment history must be provided.</p>
                 <form className='mt-5' onSubmit={handleSubmit(onSubmit)}>
@@ -67,7 +110,7 @@ const StepSixteen = ({ formData, setFormData, step, setStep }) => {
                             <h1 className='text-900 text-lg text-start md:text-xl'>Your Employment History</h1>
                             {
                                 (formData.employements.length !== 0 && show === false) &&
-                                <AiOutlinePlusCircle onClick={() => setShow(true)} className='link cursor-pointer' />
+                                <AiOutlinePlusCircle onClick={() => setShow(true)} className='link text-xl cursor-pointer' />
                             }
                         </div>
                         <div className='form-inside py-6'>
@@ -129,7 +172,7 @@ const StepSixteen = ({ formData, setFormData, step, setStep }) => {
                                                 {errors?.employerPhone && <span className='text-red-600 text-start block mt-2'>{errors?.employerPhone?.message}</span>}
                                             </div>
                                             <div className='mb-2 dropdown w-full'>
-                                                <label className='block mb-2 text-start'>Employment Status</label>
+                                                <label className='block mb-2 text-start'>Industry</label>
                                                 <Controller
                                                     name="employerIndustry"
                                                     {...register('employerIndustry')}
@@ -139,7 +182,7 @@ const StepSixteen = ({ formData, setFormData, step, setStep }) => {
                                                             {...field}
                                                             value={field.value || ''}
                                                             optionLabel="name"
-                                                            options={employmentStatuses}
+                                                            options={industries}
                                                             placeholder="Choose"
                                                             className="p-inputtext-lg text-start w-full"
                                                             onChange={(e) => field.onChange(e.value)}
@@ -156,14 +199,29 @@ const StepSixteen = ({ formData, setFormData, step, setStep }) => {
                                                     className='w-full' placeholder='Position/Title' />
                                                 {errors?.employerPosition && <span className='text-red-600 text-start block mt-2'>{errors?.employerPosition?.message}</span>}
                                             </div>
-                                            <div className='mb-3'>
+                                            <div className='mb-3 dropdown'>
                                                 <label className='block mb-2 text-start'>Start Month</label>
-                                                <InputText type='number' min={1} {...register("employerStartMonth", { required: 'Month is required' })} placeholder='Start Month' className='w-full' />
+                                                <Controller
+                                                    name="employerStartMonth"
+                                                    {...register('employerStartMonth')}
+                                                    control={control}
+                                                    render={({ field }) => (
+                                                        <Dropdown
+                                                            {...field}
+                                                            value={field.value || ''}
+                                                            optionLabel="name"
+                                                            options={months}
+                                                            placeholder="Choose Month"
+                                                            className="p-inputtext-lg text-start w-full"
+                                                            onChange={(e) => field.onChange(e.value)}
+                                                        />
+                                                    )}
+                                                />
                                                 {errors?.employerStartMonth && <span className='text-red-600 text-start block mt-2'>{errors?.employerStartMonth?.message}</span>}
                                             </div>
                                             <div className='mb-3'>
                                                 <label className='block mb-2 text-start'>Start Year</label>
-                                                <InputText type='number' min={1} max={12} {...register("employerStartYear", { required: 'Year is required' })} placeholder='Start Year' className='w-full' />
+                                                <Calendar view='year' dateFormat='yy' {...register("employerStartYear", { required: 'Year is required' })} placeholder='Start Year' className='w-full' />
                                                 {errors?.employerStartYear && <span className='text-red-600 text-start block mt-2'>{errors?.employerStartYear?.message}</span>}
                                             </div>
                                         </div>

@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import authService from './authService';
-const API_URL = 'http://localhost:5000';
-// const API_URL = 'https://apply-oqvest-api.vercel.app';
+// const API_URL = 'http://localhost:5000';
+const API_URL = 'https://apply-oqvest-api.vercel.app';
 
 const initialState = {
     user: null,

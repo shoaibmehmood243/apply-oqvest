@@ -61,7 +61,7 @@ const StepSeventeen = ({ formData, setFormData, step, setStep }) => {
     }
     return (
         <div>
-            <div className='w-full md:w-11 lg:w-8 m-auto text-center'>
+            <div className='w-full md:w-11 lg:w-11 m-auto text-center'>
                 <h1 className='text-900 text-2xl md:text-4xl mt-0 mb-2'>Do You Have Any Other Income to Report?</h1>
                 <p className='text-gray-700'>Please review and verify your other income sources. We will use the information you provide to process your loan application.</p>
                 <form onSubmit={handleSubmit(onSubmit)}>
@@ -70,7 +70,7 @@ const StepSeventeen = ({ formData, setFormData, step, setStep }) => {
                             <h1 className='text-900 text-lg text-start md:text-xl'>Your Other Monthly Income</h1>
                             {
                                 (formData.otherMonthlyIncomeReport.length !== 0 && show === false) &&
-                                <AiOutlinePlusCircle onClick={() => setShow(true)} className='link cursor-pointer' />
+                                <AiOutlinePlusCircle onClick={() => setShow(true)} className='link text-xl cursor-pointer' />
                             }
                         </div>
                         <div className='form-inside pb-6 mt-4'>

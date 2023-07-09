@@ -11,7 +11,7 @@ const StepThree = ({formData, setFormData, step, setStep}) => {
                 <div className='w-11 md:w-8 m-auto'>
                     <div className="flex justify-content-center align-items-center m-auto slides-main">
                         <div className="slider-labels">%</div>
-                        <InputNumber min={0} max={100} value={formData.downPayment} 
+                        <InputNumber className='w-full' min={0} max={100} value={formData.downPayment} 
                             onChange={(e)=> setFormData({...formData, downPayment: e.value})} />
                     </div>
                     <span className='block mt-3 text-start'>Get this from your most recet statement. Otherwise, provide your best estimate</span>

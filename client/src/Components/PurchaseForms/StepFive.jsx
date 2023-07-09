@@ -6,21 +6,25 @@ const StepFive = ({ formData, setFormData, step, setStep }) => {
     const [state, setState] = useState(formData.martialStatus)
     const data = [
         {
+            key: 'Unmarried',
             name: 'Unmarried',
             img: unmarried,
             text: 'I am NOT married'
         },
         {
+            key: 'Married',
             name: 'Married',
             img: married,
             text: 'I am married and will be applying with my spouse'
         },
         {
+            key: 'MarriedNot',
             name: 'Married',
             img: marriedNot,
             text: 'I am married but will not be applying with my spouse'
         },
         {
+            key: 'Separated',
             name: 'Separated',
             img: separatedMarried,
             text: 'I am married, but currently separated'
@@ -35,8 +39,8 @@ const StepFive = ({ formData, setFormData, step, setStep }) => {
                 <div className="flex justify-center w-full lg:w-27rem m-auto max-w-full animate">
                     {
                         data.map((data, index) => (
-                            <div key={index} onClick={() => { setState(data.name); setTimeout(() => { setStep(data.name === 'Unmarried' ? step + 1 : step + 2) }, 0); setFormData({ ...formData, martialStatus: data.name }) }} className={`col-12 md:col-6`}>
-                                <Card className={`cursor-pointer py-3 ${state === data.name ? 'active' : 'text-900'}`}>
+                            <div key={index} onClick={() => { setState(data.key); setTimeout(() => { setStep(data.key === 'Unmarried' ? step + 1 : data.key === 'Married' ? step + 2 : step + 3) }, 0); setFormData({ ...formData, martialStatus: data.key }) }} className={`col-12 md:col-6`}>
+                                <Card className={`cursor-pointer py-3 ${state === data.key ? 'active' : 'text-900'}`}>
                                     <img className='m-auto' src={data.img} />
                                     <p className='text-sm font-600 m-0 mt-3'>{data.name}</p>
                                     <span className='subtext'>{data.text}</span>

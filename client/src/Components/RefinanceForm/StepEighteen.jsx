@@ -76,7 +76,7 @@ const StepEighteen = ({ formData, setFormData, step, setStep }) => {
     }
     return (
         <div>
-            <div className='w-full md:w-11 lg:w-8 m-auto text-center'>
+            <div className='w-full md:w-11 lg:w-11 m-auto text-center'>
                 <h1 className='text-900 text-2xl md:text-4xl mt-0 mb-2'>Verify Your Real Estate Owned</h1>
                 <p className='text-gray-700'>Please review and verify your other income sources. We will use the information you provide to process your loan application.</p>
                 <form className='mt-5' onSubmit={handleSubmit(onSubmit)}>
@@ -85,7 +85,7 @@ const StepEighteen = ({ formData, setFormData, step, setStep }) => {
                             <h1 className='text-900 text-lg text-start p-3 md:text-xl'>Your Real Estate Owned</h1>
                             {
                                 (formData.realEstateInfo.length !== 0 && show === false) &&
-                                <AiOutlinePlusCircle onClick={() => setShow(true)} className='link cursor-pointer' />
+                                <AiOutlinePlusCircle onClick={() => setShow(true)} className='link text-xl cursor-pointer' />
                             }
                         </div>
                         <div className='form-inside py-6'>

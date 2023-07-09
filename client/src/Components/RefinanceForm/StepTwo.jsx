@@ -9,14 +9,14 @@ const StepTwo = ({formData, setFormData, step, setStep}) => {
                 <h1 className='text-900 text-2xl md:text-4xl mt-0 mb-2'>Tell Us About the Loan You Want</h1>
                 <p className='text-gray-700'>Your data is protected using bank level security.</p>
                 <h4 className='text-900 text-xl md:text-2xl font-semibold mt-6 mb-3'>Your Estimated Property Value</h4>
-                <div>
-                    <span className="p-input-icon-left w-full md:w-8 lg:w-10">
+                <div className='w-full md:w-8 lg:w-10 m-auto'>
+                    <span className="p-input-icon-left w-full">
                         <LuDollarSign style={{ marginTop: '-10px' }} className=' text-xl' />
                         <InputNumber value={formData.purchasePrice}
                             onChange={(e) => setFormData({ ...formData, purchasePrice: e.value })} type="text"
                             className='w-full' placeholder="Estimated Purchase Price" />
                     </span>
-                    <span className='block mt-2'>Estimate what you think your home would sell for right now.</span>
+                    <span className='block mt-2 text-start'>Estimate what you think your home would sell for right now.</span>
                 </div>
                 <div className="mt-6 flex align-items-center justify-content-center gap-4">
                     <button className='btn-outline-dark' type='button' onClick={()=> setStep(step-1)}>Back</button>

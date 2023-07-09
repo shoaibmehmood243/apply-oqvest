@@ -36,7 +36,7 @@ const StepSix = ({ formData, setFormData, step, setStep }) => {
                     }
                 </div>
                 <div className="mt-6 flex align-items-center justify-content-center gap-4">
-                    <button className='btn-outline-dark' type='button' onClick={()=> setStep(formData.martialStatus !== 'Unmarried' ? step - 1 : step - 2)}>Back</button>
+                    <button className='btn-outline-dark' type='button' onClick={()=> setStep(formData.martialStatus === 'Unmarried' ? step - 2 : formData.martialStatus === 'Married' ? step - 1 : step - 3)}>Back</button>
                     <button className='btn-dark' type='submit' onClick={()=> {state === 'Yes' ? setStep(step+1) : setStep(step+2)}}>Next</button>
                 </div>
             </div>

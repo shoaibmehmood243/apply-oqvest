@@ -84,7 +84,7 @@ const StepNineteen = ({ formData, setFormData, step, setStep }) => {
                             <h1 className='text-900 text-lg text-start md:text-xl'>Assets</h1>
                             {
                                 (formData.assets.length !== 0 && show === false) &&
-                                <AiOutlinePlusCircle onClick={() => setShow(true)} className='link cursor-pointer' />
+                                <AiOutlinePlusCircle onClick={() => setShow(true)} className='link text-xl cursor-pointer' />
                             }
                         </div>
                         <div className='form-inside pb-6 mt-4'>
