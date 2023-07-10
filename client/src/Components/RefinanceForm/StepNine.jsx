@@ -15,7 +15,7 @@ const StepNine = ({formData, setFormData, step, setStep}) => {
                         <InputMask type={show ? 'text' : 'password'} className='h-full' mask='999' placeholder='999' value={formData.itin1} 
                             onChange={(e)=> setFormData({...formData, itin1: e.value})} />
                         <InputMask type={show ? 'text' : 'password'} className='h-full' mask='99' placeholder='99' value={formData.itin2} 
-                            onChange={(e)=> setFormData({...formData, iti2: e.value})} />
+                            onChange={(e)=> setFormData({...formData, itin2: e.value})} />
                         <InputMask type={show ? 'text' : 'password'} className='h-full' mask='9999' placeholder='9999' value={formData.itin3} 
                             onChange={(e)=> setFormData({...formData, itin3: e.value})} />
                         <div onClick={()=> setShow(!show)}>
@@ -32,7 +32,7 @@ const StepNine = ({formData, setFormData, step, setStep}) => {
                 </div>
                 <div className="mt-6 flex align-items-center justify-content-center gap-4">
                     <button className='btn-outline-dark' type='button' onClick={()=> setStep(step-1)}>Back</button>
-                    <button className='btn-dark' type='submit' disabled={(formData.itin1 && formData.itin2 && formData.itin3) ? false : true} onClick={()=> setStep(step+1)}>Next</button>
+                    <button className='btn-dark' type='submit' onClick={()=> {(formData.itin1 !== '' && formData.itin2 !== '' && formData.itin3 !== '') && setStep(step+1)}}>Next</button>
                 </div>
             </div>
         </div>

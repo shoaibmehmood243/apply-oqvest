@@ -41,6 +41,7 @@ const LoanForm = () => {
         propertyZipCode: '',
         purchasePrice: '',
         downPayment: '',
+        cashoutAmount: '',
         downPaymentSource: '',
         isVeteran: '',
         mortgageLoans: '',
