@@ -19,7 +19,17 @@ const userController = {
         } catch (error) {
             next(error);
         }
-    }
+    },
+    update: async(req, res, next)=> {
+        try {
+            const data = await Clients.update(req.body);
+            if(data){
+                res.status(200).send({status: true, message: 'Client updated.'});
+            }
+        } catch (error) {
+            next(error);
+        }
+    },
 }
 
 module.exports = userController;
