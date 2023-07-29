@@ -8,6 +8,8 @@ router.post('/personal-info', loanController.addPersonalInfo);
 router.post('/property', loanController.addProperty);
 router.post('/martial-status', loanController.addMarialStatus);
 router.post('/borrowers', loanController.addBorrowers);
+router.post('/address', loanController.addAddress);
+router.post('/declaration', loanController.addDeclaration);
 router.post('/real-estate', loanController.addRealEstate);
 router.post('/loan-verification', loanController.addLoanVerification);
 router.post('/employment', loanController.addEmployment);

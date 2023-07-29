@@ -5,13 +5,6 @@ class PersonalInfo {
     date_of_birth;
     security_number;
     citizen_status;
-    street_address;
-    city;
-    state;
-    zip_code;
-    rent_owned;
-    primary_address_duration_year;
-    primary_address_duration_month;
     created_at;
 
     constructor(obj) {
@@ -19,13 +12,6 @@ class PersonalInfo {
         this.date_of_birth = obj.date_of_birth,
         this.security_number = obj.security_number,
         this.citizen_status = obj.citizen_status,
-        this.street_address = obj.street_address,
-        this.city = obj.city,
-        this.state = obj.state,
-        this.zip_code = obj.zip_code,
-        this.rent_owned = obj.rent_owned,
-        this.primary_address_duration_year = obj.primary_address_duration_year,
-        this.primary_address_duration_month = obj.primary_address_duration_month,
         this.created_at = obj.created_at || new Date().toISOString()
     }
 }

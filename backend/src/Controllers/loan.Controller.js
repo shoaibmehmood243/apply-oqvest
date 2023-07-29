@@ -10,6 +10,8 @@ const Assets = require('../Models/assets.model');
 const Liabilities = require('../Models/liabilities.model');
 const GiftsGrants = require('../Models/giftsGrants.model');
 const Spouse = require('../Models/martialStatus.model');
+const Address = require('../Models/address.model');
+const Declarations = require('../Models/declaration.model');
 
 const loanController = {
     getLoanApplication: async(req, res, next)=> {
@@ -104,6 +106,28 @@ const loanController = {
         try {
             const dataObj = new LoanVerification(req.body.data);
             const data = await LoanVerification.Add(dataObj);
+            if(data){
+                res.status(200).send({status: true, message: 'Loan Application submitted.'});
+            }
+        } catch (error) {
+            next(error);
+        }
+    },
+    addAddress: async(req, res, next)=> {
+        try {
+            const dataObj = new Address(req.body.data);
+            const data = await Address.Add(dataObj);
+            if(data){
+                res.status(200).send({status: true, message: 'Loan Application submitted.'});
+            }
+        } catch (error) {
+            next(error);
+        }
+    },
+    addDeclaration: async(req, res, next)=> {
+        try {
+            const dataObj = new Declarations(req.body.data);
+            const data = await Declarations.Add(dataObj);
             if(data){
                 res.status(200).send({status: true, message: 'Loan Application submitted.'});
             }
