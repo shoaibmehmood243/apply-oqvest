@@ -17,6 +17,8 @@ class Declarations {
     pre_foreclosure_sale;
     property_foreclosed;
     bankruptancy_declarancy;
+    ethnicity;
+    gender;
     created_at;
 
     constructor(obj) {
@@ -36,6 +38,8 @@ class Declarations {
         this.pre_foreclosure_sale = obj.pre_foreclosure_sale,
         this.property_foreclosed = obj.property_foreclosed,
         this.bankruptancy_declarancy = obj.bankruptancy_declarancy,
+        this.ethnicity = obj.ethnicity,
+        this.gender = obj.gender,
         this.created_at = obj.created_at || new Date().toISOString()
     }
 }
