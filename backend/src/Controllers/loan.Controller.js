@@ -12,6 +12,11 @@ const GiftsGrants = require('../Models/giftsGrants.model');
 const Spouse = require('../Models/martialStatus.model');
 const Address = require('../Models/address.model');
 const Declarations = require('../Models/declaration.model');
+const path = require("path");
+const ejs = require("ejs");
+const sendEmail = require('../Utilities/sendEmail');
+const { generateStrongPassword } = require('../Utilities/passwordGenerator');
+const InviteEmailTemplate = path.join(__dirname, ".", "..", "Templates/InviteEmail.ejs");
 
 const loanController = {
     getLoanApplication: async(req, res, next)=> {
@@ -85,7 +90,28 @@ const loanController = {
             const dataObj = new Borrowers(req.body.data);
             const data = await Borrowers.Add(dataObj);
             if(data){
-                res.status(200).send({status: true, message: 'Loan Application submitted.'});
+                const passwordLength = 10;
+                const strongPassword = generateStrongPassword(passwordLength);
+                const emailObj = {
+                    username: req.body.data.borrower_first_name, 
+                    type: 'Co-borrower',
+                    senderName: req.body.senderName,
+                    email: req.body.data.borrower_email,
+                    password: strongPassword
+                }
+                await ejs.renderFile(InviteEmailTemplate, emailObj, async(err, emailData)=> {
+                    if(err) {
+                        res.status(400).send({status: false,message: err});
+                    } else {
+                        await sendEmail(req.body.data.borrower_email, "Invitation Email - Oqvest", emailData, (err, success)=> {
+                            if(err){
+                                res.status(400).send({status: false,message: err});
+                            } else {
+                                res.status(200).send({status: true, message: 'Co-Borrower has been added and Credentials to co-borrowers email has been sent.'});
+                            }
+                        })
+                    }
+                })
             }
         } catch (error) {
             next(error);
