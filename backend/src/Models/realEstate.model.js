@@ -3,9 +3,6 @@ const db = require("../Utilities/dbConfig");
 class RealEstate {
     loan_application_id;
     street_address;
-    city;
-    state;
-    zip_code;
     property_status;
     owned_by;
     intended_occupancy;
@@ -19,9 +16,6 @@ class RealEstate {
     constructor(obj) {
         this.loan_application_id = obj.loan_application_id,
         this.street_address = obj.street_address,
-        this.city = obj.city,
-        this.state = obj.state,
-        this.zip_code = obj.zip_code,
         this.property_status = obj.property_status,
         this.owned_by = obj.owned_by,
         this.intended_occupancy = obj.intended_occupancy,

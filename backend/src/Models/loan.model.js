@@ -35,7 +35,7 @@ class LoanApplications {
             this.payment_source = obj.payment_source,
             this.is_veteran = obj.is_veteran,
             this.other_mortgage_loans = obj.other_mortgage_loans,
-            this.status = obj.status || 'in progress',
+            this.status = obj.status || 'pending',
             this.is_active = obj.is_active || 0,
             this.created_at = obj.created_at || new Date().toISOString(),
             this.updated_at = obj.updated_at
@@ -216,6 +216,36 @@ LoanApplications.getLoanApplication = async (client_id) => {
     })
 }
 
+LoanApplications.getLoanData = async (clientid) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const query = `SELECT
+                loan_applications.id,
+                loan_applications.loan_number,
+                loan_applications.loan_type,
+                DATE_FORMAT(loan_applications.created_at, '%d/%m/%Y') as created_at,
+                loan_applications.status,
+                subject_properties.street_address
+                FROM
+                loan_applications
+                LEFT JOIN
+                subject_properties ON subject_properties.loan_application_id = loan_applications.id
+                WHERE
+                loan_applications.client_id = ${clientid};
+            `;
+            db.query(query, (err, sqlresult) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(sqlresult);
+                }
+            })
+        } catch (error) {
+            reject(error);
+        }
+    })
+}
+
 LoanApplications.addLoanApplication = async (data) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -224,7 +254,7 @@ LoanApplications.addLoanApplication = async (data) => {
                 if (err) {
                     reject(err);
                 } else {
-                    resolve(sqlresult.insertId);
+                    resolve({ id: sqlresult.insertId, loan_number: data.loan_number });
                 }
             })
         } catch (error) {

@@ -2,6 +2,7 @@ const router = require("express").Router();
 const loanController = require('../Controllers/loan.Controller')
 
 router.get('/:client_id', loanController.getLoanApplication);
+router.get('/get/:id', loanController.getLoanData);
 router.post('/application', loanController.addLoanApplication);
 router.patch('/', loanController.updateLoanApplication);
 router.post('/personal-info', loanController.addPersonalInfo);

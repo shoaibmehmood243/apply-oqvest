@@ -31,6 +31,18 @@ const loanController = {
             next(error);
         }
     },
+    getLoanData: async(req, res, next)=> {
+        try {
+            const data = await LoanApplications.getLoanData(req.params.id);
+            if(Object.values(data).length > 0){
+                res.status(200).send({status: true, data: data});
+            } else {
+                res.status(200).send({status: false, data: data});
+            }
+        } catch (error) {
+            next(error);
+        }
+    },
     addLoanApplication: async(req, res, next)=> {
         try {
             const dataObj = new LoanApplications(req.body.data);
@@ -77,9 +89,38 @@ const loanController = {
     addMarialStatus: async(req, res, next)=> {
         try {
             const dataObj = new Spouse(req.body.data);
-            const data = await Spouse.Add(dataObj);
-            if(data){
-                res.status(200).send({status: true, message: 'Loan Application submitted.'});
+            let data;
+            if(dataObj.status === 'Unmarried') {
+                data = await Spouse.Add(dataObj);
+                if(data){
+                    res.status(200).send({status: true, message: 'Loan Application submitted.'});
+                }
+            } else {
+                const passwordLength = 10;
+                const strongPassword = generateStrongPassword(passwordLength);
+                data = await Spouse.AddSpouse(dataObj, strongPassword, req.body.loanData);
+                if(data){
+                    const emailObj = {
+                        username: req.body.data.spouse_first_name, 
+                        type: 'Spouse',
+                        senderName: req.body.senderName,
+                        email: req.body.data.spouse_email,
+                        password: strongPassword
+                    }
+                    await ejs.renderFile(InviteEmailTemplate, emailObj, async(err, emailData)=> {
+                        if(err) {
+                            res.status(400).send({status: false,message: err});
+                        } else {
+                            await sendEmail(req.body.data.spouse_email, "Invitation Email - Oqvest", emailData, (err, success)=> {
+                                if(err){
+                                    res.status(400).send({status: false,message: err});
+                                } else {
+                                    res.status(200).send({status: true, message: 'Spouse has been added and Credentials to spouse email has been sent.'});
+                                }
+                            })
+                        }
+                    })
+                }
             }
         } catch (error) {
             next(error);
@@ -87,11 +128,11 @@ const loanController = {
     },
     addBorrowers: async(req, res, next)=> {
         try {
+            const passwordLength = 10;
+            const strongPassword = generateStrongPassword(passwordLength);
             const dataObj = new Borrowers(req.body.data);
-            const data = await Borrowers.Add(dataObj);
+            const data = await Borrowers.Add(dataObj, strongPassword, req.body.loanData);
             if(data){
-                const passwordLength = 10;
-                const strongPassword = generateStrongPassword(passwordLength);
                 const emailObj = {
                     username: req.body.data.borrower_first_name, 
                     type: 'Co-borrower',
