@@ -1,23 +1,29 @@
 const db = require("../Utilities/dbConfig");
 
-class MonthlyIncome {
+class RealtorInfo {
     loan_application_id;
-    income_type;
-    monthly_income_amount;
+    realtor_first_name;
+    realtor_last_name;
+    realtor_company_name;
+    realtor_phone_number;
+    realtor_email;
     created_at;
 
     constructor(obj) {
         this.loan_application_id = obj.loan_application_id,
-        this.income_type = obj.income_type,
-        this.monthly_income_amount = obj.monthly_income_amount,
+        this.realtor_first_name = obj.realtor_first_name,
+        this.realtor_last_name = obj.realtor_last_name,
+        this.realtor_company_name = obj.realtor_company_name,
+        this.realtor_phone_number = obj.realtor_phone_number,
+        this.realtor_email = obj.realtor_email,
         this.created_at = obj.created_at || new Date().toISOString()
     }
 }
 
-MonthlyIncome.Add = async (data) => {
+RealtorInfo.Add = async (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const query = `INSERT INTO other_income SET ?`;
+            const query = `INSERT INTO realtor_info SET ?`;
             db.query(query, data, (err, sqlresult) => {
                 if (err) {
                     reject(err);
@@ -31,4 +37,4 @@ MonthlyIncome.Add = async (data) => {
     })
 }
 
-module.exports = MonthlyIncome;
+module.exports = RealtorInfo;

@@ -3,15 +3,15 @@ const db = require("../Utilities/dbConfig");
 class Assets {
     loan_application_id;
     asset_type;
-    mutual_fund;
-    market_value;
+    account_name;
+    estimate_amount;
     created_at;
 
     constructor(obj) {
         this.loan_application_id = obj.loan_application_id,
         this.asset_type = obj.asset_type,
-        this.mutual_fund = obj.mutual_fund,
-        this.market_value = obj.market_value,
+        this.account_name = obj.account_name,
+        this.estimate_amount = obj.estimate_amount,
         this.created_at = obj.created_at || new Date().toISOString()
     }
 }

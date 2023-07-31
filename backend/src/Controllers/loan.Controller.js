@@ -16,6 +16,7 @@ const path = require("path");
 const ejs = require("ejs");
 const sendEmail = require('../Utilities/sendEmail');
 const { generateStrongPassword } = require('../Utilities/passwordGenerator');
+const RealtorInfo = require('../Models/realtor.model');
 const InviteEmailTemplate = path.join(__dirname, ".", "..", "Templates/InviteEmail.ejs");
 
 const loanController = {
@@ -86,20 +87,20 @@ const loanController = {
             next(error);
         }
     },
-    addMarialStatus: async(req, res, next)=> {
+    updateMarialStatus: async(req, res, next)=> {
         try {
-            const dataObj = new Spouse(req.body.data);
+            const dataObj = req.body.data;
             let data;
-            if(dataObj.status === 'Unmarried') {
-                data = await Spouse.Add(dataObj);
+            if(req.body.status === 'Unmarried') {
+                data = await LoanApplications.UpdateLoanApplication(dataObj);
                 if(data){
                     res.status(200).send({status: true, message: 'Loan Application submitted.'});
                 }
             } else {
                 const passwordLength = 10;
                 const strongPassword = generateStrongPassword(passwordLength);
-                data = await Spouse.AddSpouse(dataObj, strongPassword, req.body.loanData);
-                if(data){
+                data = await LoanApplications.UpdateSpouse(dataObj, strongPassword, req.body.loanData);
+                if(data.status === true){
                     const emailObj = {
                         username: req.body.data.spouse_first_name, 
                         type: 'Spouse',
@@ -120,6 +121,8 @@ const loanController = {
                             })
                         }
                     })
+                } else {
+                    res.status(200).send({status: true, message: 'Spouse has been added.'});
                 }
             }
         } catch (error) {
@@ -132,7 +135,7 @@ const loanController = {
             const strongPassword = generateStrongPassword(passwordLength);
             const dataObj = new Borrowers(req.body.data);
             const data = await Borrowers.Add(dataObj, strongPassword, req.body.loanData);
-            if(data){
+            if(data.status === false){
                 const emailObj = {
                     username: req.body.data.borrower_first_name, 
                     type: 'Co-borrower',
@@ -153,6 +156,8 @@ const loanController = {
                         })
                     }
                 })
+            } else {
+                res.status(200).send({status: true, message: 'Co-Borrower has been added.'});
             }
         } catch (error) {
             next(error);
@@ -184,6 +189,17 @@ const loanController = {
         try {
             const dataObj = new Address(req.body.data);
             const data = await Address.Add(dataObj);
+            if(data){
+                res.status(200).send({status: true, message: 'Loan Application submitted.'});
+            }
+        } catch (error) {
+            next(error);
+        }
+    },
+    addRealtor: async(req, res, next)=> {
+        try {
+            const dataObj = new RealtorInfo(req.body.data);
+            const data = await RealtorInfo.Add(dataObj);
             if(data){
                 res.status(200).send({status: true, message: 'Loan Application submitted.'});
             }

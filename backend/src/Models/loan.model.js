@@ -1,4 +1,6 @@
 const db = require("../Utilities/dbConfig");
+const Clients = require("./clients.model");
+const bcrypt = require('bcryptjs');
 
 function generateUniqueLoanNumber() {
     const date = new Date();
@@ -17,7 +19,7 @@ class LoanApplications {
     loan_type;
     client_id;
     purchase_price;
-    down_payment;
+    down_payment_percentage;
     payment_source;
     is_veteran;
     other_mortgage_loans;
@@ -31,7 +33,7 @@ class LoanApplications {
         this.loan_type = obj.loan_type,
             this.client_id = obj.client_id,
             this.purchase_price = obj.purchase_price,
-            this.down_payment = obj.down_payment,
+            this.down_payment_percentage = obj.down_payment_percentage,
             this.payment_source = obj.payment_source,
             this.is_veteran = obj.is_veteran,
             this.other_mortgage_loans = obj.other_mortgage_loans,
@@ -114,7 +116,7 @@ LoanApplications.getLoanApplication = async (client_id) => {
                                                                                             reject(err);
                                                                                         })
                                                                                     } else {
-                                                                                        query = `SELECT * FROM monthly_income WHERE loan_application_id = ?`;
+                                                                                        query = `SELECT * FROM other_income WHERE loan_application_id = ?`;
                                                                                         conn.query(query, loanApplicationId, async (err, monthlyIncomes) => {
                                                                                             if (err) {
                                                                                                 conn.rollback(() => {
@@ -280,6 +282,132 @@ LoanApplications.UpdateLoanApplication = async (data) => {
                     reject(err);
                 } else {
                     resolve(sqlresult)
+                }
+            })
+        } catch (error) {
+            reject(error);
+        }
+    })
+}
+
+LoanApplications.UpdateSpouse = async (data, strongPassword, loanData) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            db.getConnection((err, conn) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    conn.beginTransaction((err) => {
+                        if (err) {
+                            conn.rollback(() => {
+                                conn.release();
+                                reject(err);
+                            })
+                        } else {
+                            const { id, ...formData } = data;
+                            const query =
+                                `UPDATE loan_applications SET ` +
+                                Object.keys(formData)
+                                    .map((key) => `${key} = ?`)
+                                    .join(", ") +
+                                `,updated_at='${new Date().toISOString().replace("T", " ").split(".")[0]
+                                }' WHERE ?`;
+                            const parameters = [...Object.values(formData), { id }];
+                            conn.query(query, parameters, async (err, sqlresult) => {
+                                if (err) {
+                                    conn.rollback(() => {
+                                        conn.release();
+                                        reject(err);
+                                    })
+                                } else {
+                                    const emailRes = await Clients.getByEmail(data.spouse_email);
+                                    if(emailRes.length === 0) {
+                                        const salt = await bcrypt.genSalt(10);
+                                        const hashedPassword = await bcrypt.hash(strongPassword, salt);
+                                        const clientObj = {
+                                            first_name: data.spouse_first_name,
+                                            last_name: data.spouse_last_name, email: data.spouse_email,
+                                            phone_number: data.spouse_phone, password: hashedPassword
+                                        }
+                                        const userObj = new Clients(clientObj);
+                                        const query = `INSERT INTO clients SET ?`;
+                                        conn.query(query, userObj, async (err, clientResult) => {
+                                            if (err) {
+                                                conn.rollback(() => {
+                                                    conn.release();
+                                                    reject(err);
+                                                })
+                                            } else {
+                                                const loanApplicationObj = {
+                                                    loan_number: loanData.loan_number,
+                                                    loan_type: loanData.loan_type,
+                                                    client_id: clientResult.insertId,
+                                                    status: 'pending',
+                                                    is_active: 0,
+                                                    created_at: new Date().toISOString(),
+                                                }
+                                                const query = `INSERT INTO loan_applications SET ?`;
+                                                conn.query(query, loanApplicationObj, (err, loanApplicationResult) => {
+                                                    if (err) {
+                                                        conn.rollback(() => {
+                                                            conn.release();
+                                                            reject(err);
+                                                        })
+                                                    } else {
+                                                        conn.commit((err) => {
+                                                            if (err) {
+                                                                conn.rollback(() => {
+                                                                    conn.release();
+                                                                    reject(err);
+                                                                })
+                                                            } else {
+                                                                conn.release();
+                                                                resolve({
+                                                                    status: true
+                                                                });
+                                                            }
+                                                        })
+                                                    }
+                                                })
+                                            }
+                                        })
+                                    } else {
+                                        const loanApplicationObj = {
+                                            loan_number: loanData.loan_number,
+                                            loan_type: loanData.loan_type,
+                                            client_id: emailRes[0].user_id,
+                                            status: 'pending',
+                                            is_active: 0,
+                                            created_at: new Date().toISOString(),
+                                        }
+                                        const query = `INSERT INTO loan_applications SET ?`;
+                                        conn.query(query, loanApplicationObj, (err, loanApplicationResult) => {
+                                            if (err) {
+                                                conn.rollback(() => {
+                                                    conn.release();
+                                                    reject(err);
+                                                })
+                                            } else {
+                                                conn.commit((err) => {
+                                                    if (err) {
+                                                        conn.rollback(() => {
+                                                            conn.release();
+                                                            reject(err);
+                                                        })
+                                                    } else {
+                                                        conn.release();
+                                                        resolve({
+                                                            status: false
+                                                        });
+                                                    }
+                                                })
+                                            }
+                                        })
+                                    }
+                                }
+                            })
+                        }
+                    })
                 }
             })
         } catch (error) {

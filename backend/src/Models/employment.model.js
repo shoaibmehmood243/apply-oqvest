@@ -5,9 +5,6 @@ class Employment {
     employment_status;
     employer_name;
     street_address;
-    city;
-    state;
-    zip_code;
     phone_number;
     industry;
     position;
@@ -26,9 +23,6 @@ class Employment {
         this.employment_status = obj.employment_status,
         this.employer_name = obj.employer_name,
         this.street_address = obj.street_address,
-        this.city = obj.city,
-        this.state = obj.state,
-        this.zip_code = obj.zip_code,
         this.phone_number = obj.phone_number,
         this.industry = obj.industry,
         this.position = obj.position,

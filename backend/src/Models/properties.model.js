@@ -6,7 +6,6 @@ class Properties {
     property_occupancy;
     property_aside;
     subject_property_type;
-    agent_info;
     created_at;
     updated_at;
 
@@ -16,7 +15,6 @@ class Properties {
         this.property_occupancy = obj.property_occupancy,
         this.property_aside = obj.property_aside,
         this.subject_property_type = obj.subject_property_type,
-        this.agent_info = obj.agent_info,
         this.created_at = obj.created_at || new Date().toISOString(),
         this.updated_at = obj.updated_at || null
     }

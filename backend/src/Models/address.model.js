@@ -4,7 +4,7 @@ class Address {
     loan_application_id;
     primary_street_address;
     rent_owned;
-    primary_address_rent_fee;
+    primary_housing_expense;
     duration_year;
     duration_month;
     mailing_street_address;
@@ -15,7 +15,7 @@ class Address {
         this.loan_application_id = obj.loan_application_id,
         this.primary_street_address = obj.primary_street_address,
         this.rent_owned = obj.rent_owned,
-        this.primary_address_rent_fee = obj.primary_address_rent_fee,
+        this.primary_housing_expense = obj.primary_housing_expense,
         this.duration_year = obj.duration_year,
         this.duration_month = obj.duration_month,
         this.mailing_street_address = obj.mailing_street_address,
