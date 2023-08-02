@@ -24,6 +24,25 @@ Assets.Add = async (data) => {
                 if (err) {
                     reject(err);
                 } else {
+                    resolve({
+                        id: sqlresult.insertId
+                    })
+                }
+            })
+        } catch (error) {
+            reject(error);
+        }
+    })
+}
+
+Assets.Delete = async (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const query = `DELETE FROM assets WHERE id=?`;
+            db.query(query, id, (err, sqlresult) => {
+                if (err) {
+                    reject(err);
+                } else {
                     resolve(sqlresult)
                 }
             })

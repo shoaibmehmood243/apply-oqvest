@@ -81,7 +81,8 @@ Borrowers.Add = async (data, strongPassword, loanData) => {
                                                     } else {
                                                         conn.release();
                                                         resolve({
-                                                            status: true
+                                                            status: true,
+                                                            id: sqlresult.insertId
                                                         });
                                                     }
                                                 })
@@ -134,7 +135,8 @@ Borrowers.Add = async (data, strongPassword, loanData) => {
                                                             } else {
                                                                 conn.release();
                                                                 resolve({
-                                                                    status: false
+                                                                    status: false,
+                                                                    id: sqlresult.insertId
                                                                 });
                                                             }
                                                         })
@@ -147,6 +149,23 @@ Borrowers.Add = async (data, strongPassword, loanData) => {
                             })
                         }
                     })
+                }
+            })
+        } catch (error) {
+            reject(error);
+        }
+    })
+}
+
+Borrowers.Delete = async (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const query = `DELETE FROM co_borrowers WHERE id=?`;
+            db.query(query, id, (err, sqlresult) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(sqlresult)
                 }
             })
         } catch (error) {

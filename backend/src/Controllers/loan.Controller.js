@@ -151,13 +151,13 @@ const loanController = {
                             if(err){
                                 res.status(400).send({status: false,message: err});
                             } else {
-                                res.status(200).send({status: true, message: 'Co-Borrower has been added and Credentials to co-borrowers email has been sent.'});
+                                res.status(200).send({status: true, message: 'Co-Borrower has been added and Credentials to co-borrowers email has been sent.', data});
                             }
                         })
                     }
                 })
             } else {
-                res.status(200).send({status: true, message: 'Co-Borrower has been added.'});
+                res.status(200).send({status: true, message: 'Co-Borrower has been added.', data});
             }
         } catch (error) {
             next(error);
@@ -168,7 +168,7 @@ const loanController = {
             const dataObj = new RealEstate(req.body.data);
             const data = await RealEstate.Add(dataObj);
             if(data){
-                res.status(200).send({status: true, message: 'Loan Application submitted.'});
+                res.status(200).send({status: true, message: 'Loan Application submitted.', data});
             }
         } catch (error) {
             next(error);
@@ -179,7 +179,7 @@ const loanController = {
             const dataObj = new LoanVerification(req.body.data);
             const data = await LoanVerification.Add(dataObj);
             if(data){
-                res.status(200).send({status: true, message: 'Loan Application submitted.'});
+                res.status(200).send({status: true, message: 'Loan Application submitted.', data});
             }
         } catch (error) {
             next(error);
@@ -190,7 +190,7 @@ const loanController = {
             const dataObj = new Address(req.body.data);
             const data = await Address.Add(dataObj);
             if(data){
-                res.status(200).send({status: true, message: 'Loan Application submitted.'});
+                res.status(200).send({status: true, message: 'Loan Application submitted.', data});
             }
         } catch (error) {
             next(error);
@@ -223,7 +223,7 @@ const loanController = {
             const dataObj = new Employment(req.body.data);
             const data = await Employment.Add(dataObj);
             if(data){
-                res.status(200).send({status: true, message: 'Loan Application submitted.'});
+                res.status(200).send({status: true, message: 'Loan Application submitted.', data});
             }
         } catch (error) {
             next(error);
@@ -234,7 +234,7 @@ const loanController = {
             const dataObj = new MonthlyIncome(req.body.data);
             const data = await MonthlyIncome.Add(dataObj);
             if(data){
-                res.status(200).send({status: true, message: 'Loan Application submitted.'});
+                res.status(200).send({status: true, message: 'Loan Application submitted.', data});
             }
         } catch (error) {
             next(error);
@@ -245,7 +245,7 @@ const loanController = {
             const dataObj = new Assets(req.body.data);
             const data = await Assets.Add(dataObj);
             if(data){
-                res.status(200).send({status: true, message: 'Loan Application submitted.'});
+                res.status(200).send({status: true, message: 'Loan Application submitted.', data});
             }
         } catch (error) {
             next(error);
@@ -256,7 +256,7 @@ const loanController = {
             const dataObj = new Liabilities(req.body.data);
             const data = await Liabilities.Add(dataObj);
             if(data){
-                res.status(200).send({status: true, message: 'Loan Application submitted.'});
+                res.status(200).send({status: true, message: 'Loan Application submitted.', data});
             }
         } catch (error) {
             next(error);
@@ -267,7 +267,87 @@ const loanController = {
             const dataObj = new GiftsGrants(req.body.data);
             const data = await GiftsGrants.Add(dataObj);
             if(data){
-                res.status(200).send({status: true, message: 'Loan Application submitted.'});
+                res.status(200).send({status: true, message: 'Loan Application submitted.', data});
+            }
+        } catch (error) {
+            next(error);
+        }
+    },
+    deleteEmployment: async(req, res, next)=> {
+        try {
+            const data = await Employment.Delete(req.params.id);
+            if(data){
+                res.status(200).send({status: true, message: 'Deleted successfully.'});
+            }
+        } catch (error) {
+            next(error);
+        }
+    },
+    deleteMonthlyIncome: async(req, res, next)=> {
+        try {
+            const data = await MonthlyIncome.Delete(req.params.id);
+            if(data){
+                res.status(200).send({status: true, message: 'Deleted successfully.'});
+            }
+        } catch (error) {
+            next(error);
+        }
+    },
+    deleteAssets: async(req, res, next)=> {
+        try {
+            const data = await Assets.Delete(req.params.id);
+            if(data){
+                res.status(200).send({status: true, message: 'Deleted successfully.'});
+            }
+        } catch (error) {
+            next(error);
+        }
+    },
+    deleteLiabilities: async(req, res, next)=> {
+        try {
+            const data = await Liabilities.Delete(req.params.id);
+            if(data){
+                res.status(200).send({status: true, message: 'Deleted successfully.'});
+            }
+        } catch (error) {
+            next(error);
+        }
+    },
+    deleteGifts: async(req, res, next)=> {
+        try {
+            const data = await GiftsGrants.Delete(req.params.id);
+            if(data){
+                res.status(200).send({status: true, message: 'Deleted successfully.'});
+            }
+        } catch (error) {
+            next(error);
+        }
+    },
+    deleteBorrowers: async(req, res, next)=> {
+        try {
+            const data = await Borrowers.Delete(req.params.id);
+            if(data){
+                res.status(200).send({status: true, message: 'Deleted successfully.'});
+            }
+        } catch (error) {
+            next(error);
+        }
+    },
+    deleteAddress: async(req, res, next)=> {
+        try {
+            const data = await Address.Delete(req.params.id);
+            if(data){
+                res.status(200).send({status: true, message: 'Deleted successfully.'});
+            }
+        } catch (error) {
+            next(error);
+        }
+    },
+    deleteRealEstate: async(req, res, next)=> {
+        try {
+            const data = await RealEstate.Delete(req.params.id);
+            if(data){
+                res.status(200).send({status: true, message: 'Deleted successfully.'});
             }
         } catch (error) {
             next(error);

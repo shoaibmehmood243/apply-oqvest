@@ -30,6 +30,25 @@ Liabilities.Add = async (data) => {
                 if (err) {
                     reject(err);
                 } else {
+                    resolve({
+                        id: sqlresult.insertId
+                    })
+                }
+            })
+        } catch (error) {
+            reject(error);
+        }
+    })
+}
+
+Liabilities.Delete = async (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const query = `DELETE FROM liabilities WHERE id=?`;
+            db.query(query, id, (err, sqlresult) => {
+                if (err) {
+                    reject(err);
+                } else {
                     resolve(sqlresult)
                 }
             })

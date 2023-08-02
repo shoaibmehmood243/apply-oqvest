@@ -20,4 +20,14 @@ router.post('/assets', loanController.addAssets);
 router.post('/liabilities', loanController.addLiabilities);
 router.post('/gifts-grants', loanController.addGifts);
 
+// Delete
+router.delete('/employment/:id', loanController.deleteEmployment);
+router.delete('/monthly-income/:id', loanController.deleteMonthlyIncome);
+router.delete('/assets/:id', loanController.deleteAssets);
+router.delete('/liabilities/:id', loanController.deleteLiabilities);
+router.delete('/gifts-grants/:id', loanController.deleteGifts);
+router.delete('/borrowers/:id', loanController.deleteBorrowers);
+router.delete('/address/:id', loanController.deleteAddress);
+router.delete('/real-estate/:id', loanController.deleteRealEstate);
+
 module.exports = router;
