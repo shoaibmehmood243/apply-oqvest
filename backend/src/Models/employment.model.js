@@ -16,6 +16,11 @@ class Employment {
     comission;
     other;
     total;
+    automatically_verify_income;
+    employed_transaction;
+    ownership_share;
+    monthly_income;
+    other_description;
     created_at;
 
     constructor(obj) {
@@ -34,6 +39,11 @@ class Employment {
         this.comission = obj.comission,
         this.other = obj.other,
         this.total = obj.total,
+        this.automatically_verify_income = obj.automatically_verify_income || 0,
+        this.employed_transaction = obj.employed_transaction || 0,
+        this.ownership_share = obj.ownership_share,
+        this.monthly_income = obj.monthly_income,
+        this.other_description = obj.other_description,
         this.created_at = obj.created_at || new Date().toISOString()
     }
 }

@@ -7,6 +7,7 @@ class RealtorInfo {
     realtor_company_name;
     realtor_phone_number;
     realtor_email;
+    loan_share_authorization;
     created_at;
 
     constructor(obj) {
@@ -16,6 +17,7 @@ class RealtorInfo {
         this.realtor_company_name = obj.realtor_company_name,
         this.realtor_phone_number = obj.realtor_phone_number,
         this.realtor_email = obj.realtor_email,
+        this.loan_share_authorization = obj.loan_share_authorization,
         this.created_at = obj.created_at || new Date().toISOString()
     }
 }

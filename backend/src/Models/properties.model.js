@@ -6,6 +6,8 @@ class Properties {
     property_occupancy;
     property_aside;
     subject_property_type;
+    is_authorized;
+    credit_report_access;
     created_at;
     updated_at;
 
@@ -15,6 +17,8 @@ class Properties {
         this.property_occupancy = obj.property_occupancy,
         this.property_aside = obj.property_aside,
         this.subject_property_type = obj.subject_property_type,
+        this.is_authorized = obj.is_authorized,
+        this.credit_report_access = obj.credit_report_access,
         this.created_at = obj.created_at || new Date().toISOString(),
         this.updated_at = obj.updated_at || null
     }

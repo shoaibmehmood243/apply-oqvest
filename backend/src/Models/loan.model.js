@@ -23,7 +23,7 @@ class LoanApplications {
     payment_source;
     is_veteran;
     other_mortgage_loans;
-    status;
+    application_status;
     is_active;
     created_at;
     updated_at;
@@ -37,7 +37,7 @@ class LoanApplications {
             this.payment_source = obj.payment_source,
             this.is_veteran = obj.is_veteran,
             this.other_mortgage_loans = obj.other_mortgage_loans,
-            this.status = obj.status || 'pending',
+            this.application_status = obj.application_status || 'pending',
             this.is_active = obj.is_active || 0,
             this.created_at = obj.created_at || new Date().toISOString(),
             this.updated_at = obj.updated_at
@@ -226,7 +226,7 @@ LoanApplications.getLoanData = async (clientid) => {
                 loan_applications.loan_number,
                 loan_applications.loan_type,
                 DATE_FORMAT(loan_applications.created_at, '%d/%m/%Y') as created_at,
-                loan_applications.status,
+                loan_applications.application_status,
                 subject_properties.street_address
                 FROM
                 loan_applications
@@ -376,7 +376,7 @@ LoanApplications.UpdateSpouse = async (data, strongPassword, loanData) => {
                                             loan_number: loanData.loan_number,
                                             loan_type: loanData.loan_type,
                                             client_id: emailRes[0].user_id,
-                                            status: 'pending',
+                                            application_status: 'pending',
                                             is_active: 0,
                                             created_at: new Date().toISOString(),
                                         }
