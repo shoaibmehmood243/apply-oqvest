@@ -22,7 +22,7 @@ class Borrowers {
         this.borrower_email = obj.borrower_email,
         this.borrower_martial_status = obj.borrower_martial_status,
         this.relationship_to_primary_borrower = obj.relationship_to_primary_borrower,
-        this.created_at = obj.created_at || new Date().toISOString()
+        this.created_at = obj.created_at || new Date().toISOString().replace("T", " ").split(".")[0]
     }
 }
 

@@ -20,7 +20,7 @@ class Address {
         this.duration_month = obj.duration_month,
         this.mailing_street_address = obj.mailing_street_address,
         this.type = obj.type,
-        this.created_at = obj.created_at || new Date().toISOString()
+        this.created_at = obj.created_at || new Date().toISOString().replace("T", " ").split(".")[0]
     }
 }
 

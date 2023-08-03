@@ -12,7 +12,7 @@ class Assets {
         this.asset_type = obj.asset_type,
         this.account_name = obj.account_name,
         this.estimate_amount = obj.estimate_amount,
-        this.created_at = obj.created_at || new Date().toISOString()
+        this.created_at = obj.created_at || new Date().toISOString().replace("T", " ").split(".")[0]
     }
 }
 

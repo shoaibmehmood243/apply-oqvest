@@ -12,7 +12,7 @@ class GiftsGrants {
         this.type = obj.type,
         this.source = obj.source,
         this.amount = obj.amount,
-        this.created_at = obj.created_at || new Date().toISOString()
+        this.created_at = obj.created_at || new Date().toISOString().replace("T", " ").split(".")[0]
     }
 }
 

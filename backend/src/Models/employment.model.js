@@ -44,7 +44,7 @@ class Employment {
         this.ownership_share = obj.ownership_share,
         this.monthly_income = obj.monthly_income,
         this.other_description = obj.other_description,
-        this.created_at = obj.created_at || new Date().toISOString()
+        this.created_at = obj.created_at || new Date().toISOString().replace("T", " ").split(".")[0]
     }
 }
 

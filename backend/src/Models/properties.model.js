@@ -19,7 +19,7 @@ class Properties {
         this.subject_property_type = obj.subject_property_type,
         this.is_authorized = obj.is_authorized,
         this.credit_report_access = obj.credit_report_access,
-        this.created_at = obj.created_at || new Date().toISOString(),
+        this.created_at = obj.created_at || new Date().toISOString().replace("T", " ").split(".")[0],
         this.updated_at = obj.updated_at || null
     }
 }

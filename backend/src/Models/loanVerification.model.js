@@ -10,7 +10,7 @@ class LoanVerification {
         this.loan_application_id = obj.loan_application_id,
         this.monthly_amount = obj.monthly_amount,
         this.total_expenses = obj.total_expenses,
-        this.created_at = obj.created_at || new Date().toISOString()
+        this.created_at = obj.created_at || new Date().toISOString().replace("T", " ").split(".")[0]
     }
 }
 

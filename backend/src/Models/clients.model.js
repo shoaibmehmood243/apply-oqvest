@@ -22,7 +22,7 @@ class Clients {
             this.phone_number = obj.phone_number,
             this.company_id = obj.company_id || 1,
             this.is_active = obj.is_active || 1,
-            this.created_at = obj.created_at || new Date().toISOString(),
+            this.created_at = obj.created_at || new Date().toISOString().replace("T", " ").split(".")[0],
             this.updated_at = obj.updated_at || null
     }
 }

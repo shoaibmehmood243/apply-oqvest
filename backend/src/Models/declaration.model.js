@@ -40,7 +40,7 @@ class Declarations {
         this.bankruptancy_declarancy = obj.bankruptancy_declarancy,
         this.ethnicity = obj.ethnicity,
         this.gender = obj.gender,
-        this.created_at = obj.created_at || new Date().toISOString()
+        this.created_at = obj.created_at || new Date().toISOString().replace("T", " ").split(".")[0]
     }
 }
 

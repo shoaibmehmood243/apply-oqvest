@@ -24,7 +24,7 @@ class RealEstate {
         this.market_value = obj.market_value,
         this.monthly_rental_income = obj.monthly_rental_income,
         this.monthly_expense = obj.monthly_expense,
-        this.created_at = obj.created_at || new Date().toISOString()
+        this.created_at = obj.created_at || new Date().toISOString().replace("T", " ").split(".")[0]
     }
 }
 

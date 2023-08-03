@@ -18,7 +18,7 @@ class Liabilities {
         this.balance = obj.balance,
         this.payment = obj.payment,
         this.term_months = obj.term_months,
-        this.created_at = obj.created_at || new Date().toISOString()
+        this.created_at = obj.created_at || new Date().toISOString().replace("T", " ").split(".")[0]
     }
 }
 

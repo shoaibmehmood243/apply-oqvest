@@ -39,7 +39,7 @@ class LoanApplications {
             this.other_mortgage_loans = obj.other_mortgage_loans,
             this.application_status = obj.application_status || 'pending',
             this.is_active = obj.is_active || 0,
-            this.created_at = obj.created_at || new Date().toISOString(),
+            this.created_at = obj.created_at || new Date().toISOString().replace("T", " ").split(".")[0],
             this.updated_at = obj.updated_at
     }
 }

@@ -26,7 +26,7 @@ class Spouse {
         this.other_martial_status = obj.other_martial_status,
         this.relationship_status = obj.relationship_status,
         this.relationship_type = obj.relationship_type,
-        this.created_at = obj.created_at || new Date().toISOString()
+        this.created_at = obj.created_at || new Date().toISOString().replace("T", " ").split(".")[0]
     }
 }
 

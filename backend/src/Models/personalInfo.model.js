@@ -12,7 +12,7 @@ class PersonalInfo {
         this.date_of_birth = obj.date_of_birth,
         this.security_number = obj.security_number,
         this.citizen_status = obj.citizen_status,
-        this.created_at = obj.created_at || new Date().toISOString()
+        this.created_at = obj.created_at || new Date().toISOString().replace("T", " ").split(".")[0]
     }
 }
 

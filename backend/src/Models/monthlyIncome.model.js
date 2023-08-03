@@ -10,7 +10,7 @@ class MonthlyIncome {
         this.loan_application_id = obj.loan_application_id,
         this.income_type = obj.income_type,
         this.monthly_income_amount = obj.monthly_income_amount,
-        this.created_at = obj.created_at || new Date().toISOString()
+        this.created_at = obj.created_at || new Date().toISOString().replace("T", " ").split(".")[0]
     }
 }
 
