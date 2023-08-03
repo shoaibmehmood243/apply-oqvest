@@ -70,7 +70,7 @@ const loanController = {
             const dataObj = new PersonalInfo(req.body.data);
             const data = await PersonalInfo.Add(dataObj);
             if(data){
-                res.status(200).send({status: true, message: 'Loan Application submitted.'});
+                res.status(200).send({status: true, message: 'Loan Application submitted.', data});
             }
         } catch (error) {
             next(error);
@@ -81,7 +81,7 @@ const loanController = {
             const dataObj = new Properties(req.body.data);
             const data = await Properties.Add(dataObj);
             if(data){
-                res.status(200).send({status: true, message: 'Loan Application submitted.'});
+                res.status(200).send({status: true, message: 'Loan Application submitted.', data});
             }
         } catch (error) {
             next(error);
@@ -348,6 +348,106 @@ const loanController = {
             const data = await RealEstate.Delete(req.params.id);
             if(data){
                 res.status(200).send({status: true, message: 'Deleted successfully.'});
+            }
+        } catch (error) {
+            next(error);
+        }
+    },
+    updateEmployment: async(req, res, next)=> {
+        try {
+            const data = await Employment.Update(req.body);
+            if(data){
+                res.status(200).send({status: true, message: 'Updated successfully.'});
+            }
+        } catch (error) {
+            next(error);
+        }
+    },
+    updateMonthlyIncome: async(req, res, next)=> {
+        try {
+            const data = await MonthlyIncome.Update(req.body);
+            if(data){
+                res.status(200).send({status: true, message: 'Updated successfully.'});
+            }
+        } catch (error) {
+            next(error);
+        }
+    },
+    updateAssets: async(req, res, next)=> {
+        try {
+            const data = await Assets.Update(req.body);
+            if(data){
+                res.status(200).send({status: true, message: 'Updated successfully.'});
+            }
+        } catch (error) {
+            next(error);
+        }
+    },
+    updateLiabilities: async(req, res, next)=> {
+        try {
+            const data = await Liabilities.Update(req.body);
+            if(data){
+                res.status(200).send({status: true, message: 'Updated successfully.'});
+            }
+        } catch (error) {
+            next(error);
+        }
+    },
+    updateGifts: async(req, res, next)=> {
+        try {
+            const data = await GiftsGrants.Update(req.body);
+            if(data){
+                res.status(200).send({status: true, message: 'Updated successfully.'});
+            }
+        } catch (error) {
+            next(error);
+        }
+    },
+    updateBorrowers: async(req, res, next)=> {
+        try {
+            const data = await Borrowers.Update(req.body);
+            if(data){
+                res.status(200).send({status: true, message: 'Updated successfully.'});
+            }
+        } catch (error) {
+            next(error);
+        }
+    },
+    updateAddress: async(req, res, next)=> {
+        try {
+            const data = await Address.Update(req.body);
+            if(data){
+                res.status(200).send({status: true, message: 'Updated successfully.'});
+            }
+        } catch (error) {
+            next(error);
+        }
+    },
+    updateRealEstate: async(req, res, next)=> {
+        try {
+            const data = await RealEstate.Update(req.body);
+            if(data){
+                res.status(200).send({status: true, message: 'Updated successfully.'});
+            }
+        } catch (error) {
+            next(error);
+        }
+    },
+    updatePersonalInfo: async(req, res, next)=> {
+        try {
+            const data = await PersonalInfo.Update(req.body);
+            if(data){
+                res.status(200).send({status: true, message: 'Updated successfully.'});
+            }
+        } catch (error) {
+            next(error);
+        }
+    },
+    updateProperty: async(req, res, next)=> {
+        try {
+            const data = await Properties.Update(req.body);
+            if(data){
+                res.status(200).send({status: true, message: 'Updated successfully.'});
             }
         } catch (error) {
             next(error);

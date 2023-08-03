@@ -52,4 +52,28 @@ Assets.Delete = async (id) => {
     })
 }
 
+Assets.Update = async (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const { id, ...formData } = data;
+            const query =
+                `UPDATE assets SET ` +
+                Object.keys(formData)
+                    .map((key) => `${key} = ?`)
+                    .join(", ") +
+                ` WHERE ?`;
+            const parameters = [...Object.values(formData), { id }];
+            db.query(query, parameters, (err, sqlresult) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(sqlresult);
+                }
+            })
+        } catch (error) {
+            reject(error);
+        }
+    })
+}
+
 module.exports = Assets;

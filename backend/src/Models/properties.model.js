@@ -32,7 +32,31 @@ Properties.Add = async (data) => {
                 if (err) {
                     reject(err);
                 } else {
-                    resolve(sqlresult)
+                    resolve({id: sqlresult.insertId})
+                }
+            })
+        } catch (error) {
+            reject(error);
+        }
+    })
+}
+
+Properties.Update = async (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const { id, ...formData } = data;
+            const query =
+                `UPDATE subject_properties SET ` +
+                Object.keys(formData)
+                    .map((key) => `${key} = ?`)
+                    .join(", ") +
+                ` WHERE ?`;
+            const parameters = [...Object.values(formData), { id }];
+            db.query(query, parameters, (err, sqlresult) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(sqlresult);
                 }
             })
         } catch (error) {

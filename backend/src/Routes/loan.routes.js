@@ -30,4 +30,16 @@ router.delete('/borrowers/:id', loanController.deleteBorrowers);
 router.delete('/address/:id', loanController.deleteAddress);
 router.delete('/real-estate/:id', loanController.deleteRealEstate);
 
+// Delete
+router.patch('/employment', loanController.updateEmployment);
+router.patch('/monthly-income', loanController.updateMonthlyIncome);
+router.patch('/assets', loanController.updateAssets);
+router.patch('/liabilities', loanController.updateLiabilities);
+router.patch('/gifts-grants', loanController.updateGifts);
+router.patch('/borrowers', loanController.updateBorrowers);
+router.patch('/address', loanController.updateAddress);
+router.patch('/real-estate', loanController.updateRealEstate);
+router.patch('/personal-info', loanController.updatePersonalInfo);
+router.patch('/property', loanController.updateProperty);
+
 module.exports = router;
