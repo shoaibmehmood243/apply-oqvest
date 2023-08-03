@@ -19,7 +19,7 @@ class GiftsGrants {
 GiftsGrants.Add = async (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const query = `INSERT INTO gifts_grants SET ?`;
+            const query = `INSERT INTO loan_app_gifts_grants SET ?`;
             db.query(query, data, (err, sqlresult) => {
                 if (err) {
                     reject(err);
@@ -38,7 +38,7 @@ GiftsGrants.Add = async (data) => {
 GiftsGrants.Delete = async (id) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const query = `DELETE FROM gifts_grants WHERE id=?`;
+            const query = `DELETE FROM loan_app_gifts_grants WHERE id=?`;
             db.query(query, id, (err, sqlresult) => {
                 if (err) {
                     reject(err);
@@ -57,7 +57,7 @@ GiftsGrants.Update = async (data) => {
         try {
             const { id, ...formData } = data;
             const query =
-                `UPDATE gifts_grants SET ` +
+                `UPDATE loan_app_gifts_grants SET ` +
                 Object.keys(formData)
                     .map((key) => `${key} = ?`)
                     .join(", ") +

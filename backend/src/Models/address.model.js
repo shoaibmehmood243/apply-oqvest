@@ -27,7 +27,7 @@ class Address {
 Address.Add = async (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const query = `INSERT INTO addresses SET ?`;
+            const query = `INSERT INTO loan_app_addresses SET ?`;
             db.query(query, data, (err, sqlresult) => {
                 if (err) {
                     reject(err);
@@ -46,7 +46,7 @@ Address.Add = async (data) => {
 Address.Delete = async (id) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const query = `DELETE FROM addresses WHERE address_id=?`;
+            const query = `DELETE FROM loan_app_addresses WHERE address_id=?`;
             db.query(query, id, (err, sqlresult) => {
                 if (err) {
                     reject(err);
@@ -65,7 +65,7 @@ Address.Update = async (data) => {
         try {
             const { id, ...formData } = data;
             const query =
-                `UPDATE addresses SET ` +
+                `UPDATE loan_app_addresses SET ` +
                 Object.keys(formData)
                     .map((key) => `${key} = ?`)
                     .join(", ") +

@@ -47,7 +47,7 @@ class Declarations {
 Declarations.Add = async (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const query = `INSERT INTO declarations SET ?`;
+            const query = `INSERT INTO loan_app_declarations SET ?`;
             db.query(query, data, (err, sqlresult) => {
                 if (err) {
                     reject(err);

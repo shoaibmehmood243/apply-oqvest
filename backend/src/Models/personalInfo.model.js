@@ -19,7 +19,7 @@ class PersonalInfo {
 PersonalInfo.Add = async (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const query = `INSERT INTO personal_info SET ?`;
+            const query = `INSERT INTO loan_app_personal_info SET ?`;
             db.query(query, data, (err, sqlresult) => {
                 if (err) {
                     reject(err);
@@ -38,7 +38,7 @@ PersonalInfo.Update = async (data) => {
         try {
             const { id, ...formData } = data;
             const query =
-                `UPDATE personal_info SET ` +
+                `UPDATE loan_app_personal_info SET ` +
                 Object.keys(formData)
                     .map((key) => `${key} = ?`)
                     .join(", ") +

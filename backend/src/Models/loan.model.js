@@ -227,11 +227,11 @@ LoanApplications.getLoanData = async (clientid) => {
                 loan_applications.loan_type,
                 DATE_FORMAT(loan_applications.created_at, '%d/%m/%Y') as created_at,
                 loan_applications.application_status as status,
-                subject_properties.street_address
+                loan_app_subject_properties.street_address
                 FROM
                 loan_applications
                 LEFT JOIN
-                subject_properties ON subject_properties.loan_application_id = loan_applications.id
+                loan_app_subject_properties ON loan_app_subject_properties.loan_application_id = loan_applications.id
                 WHERE
                 loan_applications.client_id = ${clientid};
             `;

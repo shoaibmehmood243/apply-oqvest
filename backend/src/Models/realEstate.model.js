@@ -31,7 +31,7 @@ class RealEstate {
 RealEstate.Add = async (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const query = `INSERT INTO real_estate SET ?`;
+            const query = `INSERT INTO loan_app_real_estate SET ?`;
             db.query(query, data, (err, sqlresult) => {
                 if (err) {
                     reject(err);
@@ -50,7 +50,7 @@ RealEstate.Add = async (data) => {
 RealEstate.Delete = async (id) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const query = `DELETE FROM real_estate WHERE real_estate_id=?`;
+            const query = `DELETE FROM loan_app_real_estate WHERE real_estate_id=?`;
             db.query(query, id, (err, sqlresult) => {
                 if (err) {
                     reject(err);
@@ -69,7 +69,7 @@ RealEstate.Update = async (data) => {
         try {
             const { id, ...formData } = data;
             const query =
-                `UPDATE real_estate SET ` +
+                `UPDATE loan_app_real_estate SET ` +
                 Object.keys(formData)
                     .map((key) => `${key} = ?`)
                     .join(", ") +

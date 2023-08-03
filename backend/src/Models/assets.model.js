@@ -19,7 +19,7 @@ class Assets {
 Assets.Add = async (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const query = `INSERT INTO assets SET ?`;
+            const query = `INSERT INTO loan_app_assets SET ?`;
             db.query(query, data, (err, sqlresult) => {
                 if (err) {
                     reject(err);
@@ -38,7 +38,7 @@ Assets.Add = async (data) => {
 Assets.Delete = async (id) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const query = `DELETE FROM assets WHERE id=?`;
+            const query = `DELETE FROM loan_app_assets WHERE id=?`;
             db.query(query, id, (err, sqlresult) => {
                 if (err) {
                     reject(err);
@@ -57,7 +57,7 @@ Assets.Update = async (data) => {
         try {
             const { id, ...formData } = data;
             const query =
-                `UPDATE assets SET ` +
+                `UPDATE loan_app_assets SET ` +
                 Object.keys(formData)
                     .map((key) => `${key} = ?`)
                     .join(", ") +

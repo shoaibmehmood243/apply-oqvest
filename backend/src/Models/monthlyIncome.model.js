@@ -17,7 +17,7 @@ class MonthlyIncome {
 MonthlyIncome.Add = async (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const query = `INSERT INTO other_income SET ?`;
+            const query = `INSERT INTO loan_app_other_income SET ?`;
             db.query(query, data, (err, sqlresult) => {
                 if (err) {
                     reject(err);
@@ -36,7 +36,7 @@ MonthlyIncome.Add = async (data) => {
 MonthlyIncome.Delete = async (id) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const query = `DELETE FROM other_income WHERE monthly_income_id=?`;
+            const query = `DELETE FROM loan_app_other_income WHERE monthly_income_id=?`;
             db.query(query, id, (err, sqlresult) => {
                 if (err) {
                     reject(err);
@@ -55,7 +55,7 @@ MonthlyIncome.Update = async (data) => {
         try {
             const { id, ...formData } = data;
             const query =
-                `UPDATE other_income SET ` +
+                `UPDATE loan_app_other_income SET ` +
                 Object.keys(formData)
                     .map((key) => `${key} = ?`)
                     .join(", ") +

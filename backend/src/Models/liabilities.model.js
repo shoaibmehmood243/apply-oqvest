@@ -25,7 +25,7 @@ class Liabilities {
 Liabilities.Add = async (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const query = `INSERT INTO liabilities SET ?`;
+            const query = `INSERT INTO loan_app_liabilities SET ?`;
             db.query(query, data, (err, sqlresult) => {
                 if (err) {
                     reject(err);
@@ -44,7 +44,7 @@ Liabilities.Add = async (data) => {
 Liabilities.Delete = async (id) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const query = `DELETE FROM liabilities WHERE id=?`;
+            const query = `DELETE FROM loan_app_liabilities WHERE id=?`;
             db.query(query, id, (err, sqlresult) => {
                 if (err) {
                     reject(err);
@@ -63,7 +63,7 @@ Liabilities.Update = async (data) => {
         try {
             const { id, ...formData } = data;
             const query =
-                `UPDATE liabilities SET ` +
+                `UPDATE loan_app_liabilities SET ` +
                 Object.keys(formData)
                     .map((key) => `${key} = ?`)
                     .join(", ") +

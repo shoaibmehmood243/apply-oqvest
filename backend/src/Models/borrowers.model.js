@@ -40,7 +40,7 @@ Borrowers.Add = async (data, strongPassword, loanData) => {
                                 reject(err);
                             })
                         } else {
-                            const query = `INSERT INTO co_borrowers SET ?`;
+                            const query = `INSERT INTO loan_app_co_borrowers SET ?`;
                             conn.query(query, data, async(err, sqlresult) => {
                                 if (err) {
                                     conn.rollback(() => {
@@ -160,7 +160,7 @@ Borrowers.Add = async (data, strongPassword, loanData) => {
 Borrowers.Delete = async (id) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const query = `DELETE FROM co_borrowers WHERE id=?`;
+            const query = `DELETE FROM loan_app_co_borrowers WHERE id=?`;
             db.query(query, id, (err, sqlresult) => {
                 if (err) {
                     reject(err);

@@ -25,7 +25,7 @@ class RealtorInfo {
 RealtorInfo.Add = async (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const query = `INSERT INTO realtor_info SET ?`;
+            const query = `INSERT INTO loan_app_realtor_info SET ?`;
             db.query(query, data, (err, sqlresult) => {
                 if (err) {
                     reject(err);

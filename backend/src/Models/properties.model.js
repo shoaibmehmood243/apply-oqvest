@@ -27,7 +27,7 @@ class Properties {
 Properties.Add = async (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const query = `INSERT INTO subject_properties SET ?`;
+            const query = `INSERT INTO loan_app_subject_properties SET ?`;
             db.query(query, data, (err, sqlresult) => {
                 if (err) {
                     reject(err);
@@ -46,7 +46,7 @@ Properties.Update = async (data) => {
         try {
             const { id, ...formData } = data;
             const query =
-                `UPDATE subject_properties SET ` +
+                `UPDATE loan_app_subject_properties SET ` +
                 Object.keys(formData)
                     .map((key) => `${key} = ?`)
                     .join(", ") +

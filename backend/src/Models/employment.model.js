@@ -51,7 +51,7 @@ class Employment {
 Employment.Add = async (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const query = `INSERT INTO employments SET ?`;
+            const query = `INSERT INTO loan_app_employments SET ?`;
             db.query(query, data, (err, sqlresult) => {
                 if (err) {
                     reject(err);
@@ -70,7 +70,7 @@ Employment.Add = async (data) => {
 Employment.Delete = async (id) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const query = `DELETE FROM employments WHERE id=?`;
+            const query = `DELETE FROM loan_app_employments WHERE id=?`;
             db.query(query, id, (err, sqlresult) => {
                 if (err) {
                     reject(err);
@@ -89,7 +89,7 @@ Employment.Update = async (data) => {
         try {
             const { id, ...formData } = data;
             const query =
-                `UPDATE employments SET ` +
+                `UPDATE loan_app_employments SET ` +
                 Object.keys(formData)
                     .map((key) => `${key} = ?`)
                     .join(", ") +
