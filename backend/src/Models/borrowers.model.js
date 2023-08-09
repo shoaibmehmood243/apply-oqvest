@@ -174,4 +174,21 @@ Borrowers.Delete = async (id) => {
     })
 }
 
+Borrowers.GetBorrowers = async (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const query = `SELECT * FROM loan_app_co_borrowers WHERE loan_application_id=?`;
+            db.query(query, id, (err, sqlresult) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(sqlresult)
+                }
+            })
+        } catch (error) {
+            reject(error);
+        }
+    })
+}
+
 module.exports = Borrowers;

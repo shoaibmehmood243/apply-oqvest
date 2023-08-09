@@ -353,6 +353,86 @@ const loanController = {
             next(error);
         }
     },
+    getEmployment: async(req, res, next)=> {
+        try {
+            const data = await Employment.GetEmployment(req.params.id);
+            if(data){
+                res.status(200).send({status: true, message: 'Deleted successfully.'});
+            }
+        } catch (error) {
+            next(error);
+        }
+    },
+    getMonthlyIncome: async(req, res, next)=> {
+        try {
+            const data = await MonthlyIncome.Delete(req.params.id);
+            if(data){
+                res.status(200).send({status: true, message: 'Deleted successfully.'});
+            }
+        } catch (error) {
+            next(error);
+        }
+    },
+    getAssets: async(req, res, next)=> {
+        try {
+            const data = await Assets.Delete(req.params.id);
+            if(data){
+                res.status(200).send({status: true, message: 'Deleted successfully.'});
+            }
+        } catch (error) {
+            next(error);
+        }
+    },
+    getLiabilities: async(req, res, next)=> {
+        try {
+            const data = await Liabilities.Delete(req.params.id);
+            if(data){
+                res.status(200).send({status: true, message: 'Deleted successfully.'});
+            }
+        } catch (error) {
+            next(error);
+        }
+    },
+    getGifts: async(req, res, next)=> {
+        try {
+            const data = await GiftsGrants.Delete(req.params.id);
+            if(data){
+                res.status(200).send({status: true, message: 'Deleted successfully.'});
+            }
+        } catch (error) {
+            next(error);
+        }
+    },
+    getBorrowers: async(req, res, next)=> {
+        try {
+            const data = await Borrowers.GetBorrowers(req.params.id);
+            if(data){
+                res.status(200).send({status: true, data});
+            }
+        } catch (error) {
+            next(error);
+        }
+    },
+    getAddress: async(req, res, next)=> {
+        try {
+            const data = await Address.Delete(req.params.id);
+            if(data){
+                res.status(200).send({status: true, message: 'Deleted successfully.'});
+            }
+        } catch (error) {
+            next(error);
+        }
+    },
+    getRealEstate: async(req, res, next)=> {
+        try {
+            const data = await RealEstate.Delete(req.params.id);
+            if(data){
+                res.status(200).send({status: true, message: 'Deleted successfully.'});
+            }
+        } catch (error) {
+            next(error);
+        }
+    },
     updateEmployment: async(req, res, next)=> {
         try {
             const data = await Employment.Update(req.body);

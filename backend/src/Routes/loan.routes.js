@@ -30,6 +30,16 @@ router.delete('/borrowers/:id', loanController.deleteBorrowers);
 router.delete('/address/:id', loanController.deleteAddress);
 router.delete('/real-estate/:id', loanController.deleteRealEstate);
 
+// GET
+router.get('/employment/:id', loanController.getEmployment);
+router.get('/monthly-income/:id', loanController.getMonthlyIncome);
+router.get('/assets/:id', loanController.getAssets);
+router.get('/liabilities/:id', loanController.getLiabilities);
+router.get('/gifts-grants/:id', loanController.getGifts);
+router.get('/borrowers/:id', loanController.getBorrowers);
+router.get('/address/:id', loanController.getAddress);
+router.get('/real-estate/:id', loanController.getRealEstate);
+
 // Delete
 router.patch('/employment', loanController.updateEmployment);
 router.patch('/monthly-income', loanController.updateMonthlyIncome);
