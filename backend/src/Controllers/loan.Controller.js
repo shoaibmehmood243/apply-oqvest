@@ -325,7 +325,7 @@ const loanController = {
     },
     deleteBorrowers: async(req, res, next)=> {
         try {
-            const data = await Borrowers.Delete(req.params.id);
+            const data = await Borrowers.Delete(req.params.id, req.params.loan_id);
             if(data){
                 res.status(200).send({status: true, message: 'Deleted successfully.'});
             }

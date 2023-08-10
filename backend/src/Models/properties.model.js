@@ -3,7 +3,7 @@ const db = require("../Utilities/dbConfig");
 class Properties {
     loan_application_id;
     street_address;
-    property_occupancy;
+    realtor_info;
     property_aside;
     subject_property_type;
     is_authorized;
@@ -14,7 +14,7 @@ class Properties {
     constructor(obj) {
         this.loan_application_id = obj.loan_application_id,
         this.street_address = obj.street_address,
-        this.property_occupancy = obj.property_occupancy,
+        this.realtor_info = obj.realtor_info,
         this.property_aside = obj.property_aside,
         this.subject_property_type = obj.subject_property_type,
         this.is_authorized = obj.is_authorized,

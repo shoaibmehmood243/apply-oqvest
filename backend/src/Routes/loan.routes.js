@@ -26,7 +26,7 @@ router.delete('/monthly-income/:id', loanController.deleteMonthlyIncome);
 router.delete('/assets/:id', loanController.deleteAssets);
 router.delete('/liabilities/:id', loanController.deleteLiabilities);
 router.delete('/gifts-grants/:id', loanController.deleteGifts);
-router.delete('/borrowers/:id', loanController.deleteBorrowers);
+router.delete('/borrowers/:id/:loan_id', loanController.deleteBorrowers);
 router.delete('/address/:id', loanController.deleteAddress);
 router.delete('/real-estate/:id', loanController.deleteRealEstate);
 
