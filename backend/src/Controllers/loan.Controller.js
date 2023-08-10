@@ -357,7 +357,7 @@ const loanController = {
         try {
             const data = await Employment.GetEmployment(req.params.id);
             if(data){
-                res.status(200).send({status: true, message: 'Deleted successfully.'});
+                res.status(200).send({status: true, data});
             }
         } catch (error) {
             next(error);
@@ -365,9 +365,9 @@ const loanController = {
     },
     getMonthlyIncome: async(req, res, next)=> {
         try {
-            const data = await MonthlyIncome.Delete(req.params.id);
+            const data = await MonthlyIncome.GetMonthlyIncome(req.params.id);
             if(data){
-                res.status(200).send({status: true, message: 'Deleted successfully.'});
+                res.status(200).send({status: true, data});
             }
         } catch (error) {
             next(error);
@@ -375,9 +375,9 @@ const loanController = {
     },
     getAssets: async(req, res, next)=> {
         try {
-            const data = await Assets.Delete(req.params.id);
+            const data = await Assets.GetAssets(req.params.id);
             if(data){
-                res.status(200).send({status: true, message: 'Deleted successfully.'});
+                res.status(200).send({status: true, data});
             }
         } catch (error) {
             next(error);
@@ -385,9 +385,9 @@ const loanController = {
     },
     getLiabilities: async(req, res, next)=> {
         try {
-            const data = await Liabilities.Delete(req.params.id);
+            const data = await Liabilities.GetLiabilities(req.params.id);
             if(data){
-                res.status(200).send({status: true, message: 'Deleted successfully.'});
+                res.status(200).send({status: true, data});
             }
         } catch (error) {
             next(error);
@@ -395,9 +395,9 @@ const loanController = {
     },
     getGifts: async(req, res, next)=> {
         try {
-            const data = await GiftsGrants.Delete(req.params.id);
+            const data = await GiftsGrants.GetGifts(req.params.id);
             if(data){
-                res.status(200).send({status: true, message: 'Deleted successfully.'});
+                res.status(200).send({status: true, data});
             }
         } catch (error) {
             next(error);
@@ -415,9 +415,9 @@ const loanController = {
     },
     getAddress: async(req, res, next)=> {
         try {
-            const data = await Address.Delete(req.params.id);
+            const data = await Address.GetAddress(req.params.id);
             if(data){
-                res.status(200).send({status: true, message: 'Deleted successfully.'});
+                res.status(200).send({status: true, data});
             }
         } catch (error) {
             next(error);
@@ -425,9 +425,9 @@ const loanController = {
     },
     getRealEstate: async(req, res, next)=> {
         try {
-            const data = await RealEstate.Delete(req.params.id);
+            const data = await RealEstate.GetRealEstate(req.params.id);
             if(data){
-                res.status(200).send({status: true, message: 'Deleted successfully.'});
+                res.status(200).send({status: true, data});
             }
         } catch (error) {
             next(error);

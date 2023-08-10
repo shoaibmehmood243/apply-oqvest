@@ -62,7 +62,7 @@ Borrowers.Add = async (data, strongPassword, loanData) => {
                                             other_mortgage_loans: loanData.other_mortgage_loans,
                                             application_status: 'pending',
                                             is_active: 0,
-                                            created_at: new Date().toISOString(),
+                                            created_at: new Date().toISOString().replace("T", " ").split(".")[0],
                                         }
                                         const query = `INSERT INTO loan_applications SET ?`;
                                         conn.query(query, loanApplicationObj, (err, loanApplicationResult)=> {
@@ -116,7 +116,7 @@ Borrowers.Add = async (data, strongPassword, loanData) => {
                                                     other_mortgage_loans: loanData.other_mortgage_loans,
                                                     application_status: 'pending',
                                                     is_active: 0,
-                                                    created_at: new Date().toISOString(),
+                                                    created_at: new Date().toISOString().replace("T", " ").split(".")[0],
                                                 }
                                                 const query = `INSERT INTO loan_applications SET ?`;
                                                 conn.query(query, loanApplicationObj, (err, loanApplicationResult)=> {
@@ -179,6 +179,30 @@ Borrowers.GetBorrowers = async (id) => {
         try {
             const query = `SELECT * FROM loan_app_co_borrowers WHERE loan_application_id=?`;
             db.query(query, id, (err, sqlresult) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(sqlresult)
+                }
+            })
+        } catch (error) {
+            reject(error);
+        }
+    })
+}
+
+Borrowers.Update = async (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const { id, ...formData } = data;
+            const query =
+                `UPDATE loan_app_co_borrowers SET ` +
+                Object.keys(formData)
+                    .map((key) => `${key} = ?`)
+                    .join(", ") +
+                ` WHERE ?`;
+            const parameters = [...Object.values(formData), { id }];
+            db.query(query, parameters, (err, sqlresult) => {
                 if (err) {
                     reject(err);
                 } else {

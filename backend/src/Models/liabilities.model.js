@@ -22,6 +22,23 @@ class Liabilities {
     }
 }
 
+Liabilities.GetLiabilities = async (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const query = `SELECT * FROM loan_app_liabilities WHERE loan_application_id=?`;
+            db.query(query, id, (err, sqlresult) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(sqlresult)
+                }
+            })
+        } catch (error) {
+            reject(error);
+        }
+    })
+}
+
 Liabilities.Add = async (data) => {
     return new Promise(async (resolve, reject) => {
         try {

@@ -24,6 +24,23 @@ class Address {
     }
 }
 
+Address.GetAddress = async (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const query = `SELECT * FROM loan_app_addresses WHERE loan_application_id=? && type = 'former'`;
+            db.query(query, id, (err, sqlresult) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(sqlresult)
+                }
+            })
+        } catch (error) {
+            reject(error);
+        }
+    })
+}
+
 Address.Add = async (data) => {
     return new Promise(async (resolve, reject) => {
         try {
