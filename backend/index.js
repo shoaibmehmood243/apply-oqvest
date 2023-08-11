@@ -23,7 +23,7 @@ app.use(cors({
 app.use(cookieParser())
 
 app.get('/', (req, res) => {
-    res.send('Apply oqvest`s api is working.')
+    res.send('Apply oqvest`s api working.')
 })
 
 app.use('/auth', authRoutes);
