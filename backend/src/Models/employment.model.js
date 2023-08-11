@@ -7,9 +7,12 @@ class Employment {
     street_address;
     phone_number;
     industry;
+    is_current_position;
     position;
     start_month;
     start_year;
+    end_month;
+    end_year;
     base;
     overtime;
     bonus;
@@ -30,9 +33,12 @@ class Employment {
         this.street_address = obj.street_address,
         this.phone_number = obj.phone_number,
         this.industry = obj.industry,
+        this.is_current_position = obj.is_current_position,
         this.position = obj.position,
         this.start_month = obj.start_month,
         this.start_year = obj.start_year,
+        this.end_month = obj.end_month,
+        this.end_year = obj.end_year,
         this.base = obj.base,
         this.overtime = obj.overtime,
         this.bonus = obj.bonus,
