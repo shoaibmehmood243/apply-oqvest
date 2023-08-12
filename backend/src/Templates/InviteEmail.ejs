@@ -69,6 +69,7 @@
                     </table>
                 </td>
             </tr>
+            <% if(password !== null) { %>
             <tr style="padding: 10px;">
                 <td>
                     <table width="100%">
@@ -80,6 +81,19 @@
                     </table>
                 </td>
             </tr>
+            <% } else { %>
+                <tr style="padding: 10px;">
+                    <td>
+                        <table width="100%">
+                            <tr>
+                                <td style="padding-bottom: 10px;">
+                                    <p style="font-size: 20px;">You have been added as a <strong style="color: rgb(64, 79, 102)"><%= type %> </strong> by <strong style="color: rgb(64, 79, 102)"><%= senderName %> </strong>. Please login to your account and complete your information.</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            <% } %>
             <tr style="padding: 10px;">
                 <td>
                     <table width="100%">
@@ -91,17 +105,19 @@
                     </table>
                 </td>
             </tr>
-            <tr style="padding: 10px;">
-                <td>
-                    <table width="100%">
-                        <tr>
-                            <td>
-                                <p style="font-size: 20px;margin: 0; margin-bottom: 20px;">Password: <strong style="color: rgb(64, 79, 102)"><%= password %> </strong></p>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
+            <% if(password !== null) { %>
+                <tr style="padding: 10px;">
+                    <td>
+                        <table width="100%">
+                            <tr>
+                                <td>
+                                    <p style="font-size: 20px;margin: 0; margin-bottom: 20px;">Password: <strong style="color: rgb(64, 79, 102)"><%= password %> </strong></p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            <% } %>
             <tr style="padding: 10px;">
                 <td>
                     <table width="100%">

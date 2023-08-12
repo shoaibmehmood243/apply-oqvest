@@ -157,7 +157,26 @@ const loanController = {
                     }
                 })
             } else {
-                res.status(200).send({status: true, message: 'Co-Borrower has been added.', data});
+                const emailObj = {
+                    username: req.body.data.borrower_first_name, 
+                    type: 'Co-borrower',
+                    senderName: req.body.senderName,
+                    email: req.body.data.borrower_email,
+                    password: null
+                }
+                await ejs.renderFile(InviteEmailTemplate, emailObj, async(err, emailData)=> {
+                    if(err) {
+                        res.status(400).send({status: false,message: err});
+                    } else {
+                        await sendEmail(req.body.data.borrower_email, "Invitation Email - Oqvest", emailData, (err, success)=> {
+                            if(err){
+                                res.status(400).send({status: false,message: err});
+                            } else {
+                                res.status(200).send({status: true, message: 'Co-Borrower has been added and Credentials to co-borrowers email has been sent.', data});
+                            }
+                        })
+                    }
+                })
             }
         } catch (error) {
             next(error);

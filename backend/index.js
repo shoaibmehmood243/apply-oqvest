@@ -11,6 +11,7 @@ const authRoutes = require('./src/Routes/auth.routes');
 const userRoutes = require('./src/Routes/user.routes');
 const testRoutes = require('./src/Routes/test.routes');
 const loanRoutes = require('./src/Routes/loan.routes');
+const addressSuggesitionRoutes = require('./src/Routes/addressSuggesition.routes');
 
 app.use(bodyParser.json());
 app.use(express.json());
@@ -30,6 +31,7 @@ app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
 app.use('/test', testRoutes);
 app.use('/loan', loanRoutes);
+app.use('/address', addressSuggesitionRoutes);
 
 app.use((req, res, next) => {
     const err = new Error("Not found");
