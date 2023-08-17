@@ -22,7 +22,7 @@ const InviteEmailTemplate = path.join(__dirname, ".", "..", "Templates/InviteEma
 const loanController = {
     getLoanApplication: async(req, res, next)=> {
         try {
-            const data = await LoanApplications.getLoanApplication(req.params.client_id);
+            const data = await LoanApplications.getLoanApplication(req.params.id);
             if(Object.values(data).length > 0){
                 res.status(200).send({status: true, data: data});
             } else {

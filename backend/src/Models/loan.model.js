@@ -24,6 +24,7 @@ class LoanApplications {
     is_veteran;
     other_mortgage_loans;
     application_status;
+    loan_application_stage;
     is_active;
     created_at;
     updated_at;
@@ -39,12 +40,13 @@ class LoanApplications {
             this.other_mortgage_loans = obj.other_mortgage_loans,
             this.application_status = obj.application_status || 'pending',
             this.is_active = obj.is_active || 0,
+            this.loan_application_stage = obj.loan_application_stage || 1,
             this.created_at = obj.created_at || new Date().toISOString().replace("T", " ").split(".")[0],
             this.updated_at = obj.updated_at
     }
 }
 
-LoanApplications.getLoanApplication = async (client_id) => {
+LoanApplications.getLoanApplication = async (id) => {
     return new Promise((resolve, reject) => {
         try {
             db.getConnection((err, conn) => {
@@ -58,17 +60,17 @@ LoanApplications.getLoanApplication = async (client_id) => {
                                 reject(err);
                             })
                         } else {
-                            let query = `SELECT * FROM loan_applications WHERE client_id = ?`;
-                            conn.query(query, client_id, async (err, loanApplicationResult) => {
+                            let query = `SELECT * FROM loan_applications WHERE id = ?`;
+                            conn.query(query, id, async (err, loanApplicationResult) => {
                                 if (err) {
                                     conn.rollback(() => {
                                         conn.release();
                                         reject(err);
                                     })
                                 } else {
-                                    if (loanApplicationResult.length > 0 && loanApplicationResult[0].is_active === 1) {
+                                    if (loanApplicationResult.length > 0) {
                                         const loanApplicationId = loanApplicationResult[loanApplicationResult.length - 1].id;
-                                        query = `SELECT * FROM personal_info WHERE loan_application_id = ?`;
+                                        query = `SELECT * FROM loan_app_personal_info WHERE loan_application_id = ?`;
                                         conn.query(query, loanApplicationId, async (err, personalInfo) => {
                                             if (err) {
                                                 conn.rollback(() => {
@@ -76,7 +78,7 @@ LoanApplications.getLoanApplication = async (client_id) => {
                                                     reject(err);
                                                 })
                                             } else {
-                                                query = `SELECT * FROM subject_properties WHERE loan_application_id = ?`;
+                                                query = `SELECT * FROM loan_app_subject_properties WHERE loan_application_id = ?`;
                                                 conn.query(query, loanApplicationId, async (err, properties) => {
                                                     if (err) {
                                                         conn.rollback(() => {
@@ -84,15 +86,15 @@ LoanApplications.getLoanApplication = async (client_id) => {
                                                             reject(err);
                                                         })
                                                     } else {
-                                                        query = `SELECT * FROM spouse WHERE loan_application_id = ?`;
-                                                        conn.query(query, loanApplicationId, async (err, martialStatus) => {
+                                                        query = `SELECT * FROM loan_app_addresses WHERE loan_application_id = ?`;
+                                                        conn.query(query, loanApplicationId, async (err, addresses) => {
                                                             if (err) {
                                                                 conn.rollback(() => {
                                                                     conn.release();
                                                                     reject(err);
                                                                 })
                                                             } else {
-                                                                query = `SELECT * FROM co_borrowers WHERE loan_application_id = ?`;
+                                                                query = `SELECT * FROM loan_app_co_borrowers WHERE loan_application_id = ?`;
                                                                 conn.query(query, loanApplicationId, async (err, borrowers) => {
                                                                     if (err) {
                                                                         conn.rollback(() => {
@@ -100,7 +102,7 @@ LoanApplications.getLoanApplication = async (client_id) => {
                                                                             reject(err);
                                                                         })
                                                                     } else {
-                                                                        query = `SELECT * FROM real_estate WHERE loan_application_id = ?`;
+                                                                        query = `SELECT * FROM loan_app_real_estate WHERE loan_application_id = ?`;
                                                                         conn.query(query, loanApplicationId, async (err, realEstate) => {
                                                                             if (err) {
                                                                                 conn.rollback(() => {
@@ -108,7 +110,7 @@ LoanApplications.getLoanApplication = async (client_id) => {
                                                                                     reject(err);
                                                                                 })
                                                                             } else {
-                                                                                query = `SELECT * FROM employments WHERE loan_application_id = ?`;
+                                                                                query = `SELECT * FROM loan_app_employments WHERE loan_application_id = ?`;
                                                                                 conn.query(query, loanApplicationId, async (err, employments) => {
                                                                                     if (err) {
                                                                                         conn.rollback(() => {
@@ -116,7 +118,7 @@ LoanApplications.getLoanApplication = async (client_id) => {
                                                                                             reject(err);
                                                                                         })
                                                                                     } else {
-                                                                                        query = `SELECT * FROM other_income WHERE loan_application_id = ?`;
+                                                                                        query = `SELECT * FROM loan_app_other_income WHERE loan_application_id = ?`;
                                                                                         conn.query(query, loanApplicationId, async (err, monthlyIncomes) => {
                                                                                             if (err) {
                                                                                                 conn.rollback(() => {
@@ -124,7 +126,7 @@ LoanApplications.getLoanApplication = async (client_id) => {
                                                                                                     reject(err);
                                                                                                 })
                                                                                             } else {
-                                                                                                query = `SELECT * FROM assets WHERE loan_application_id = ?`;
+                                                                                                query = `SELECT * FROM loan_app_assets WHERE loan_application_id = ?`;
                                                                                                 conn.query(query, loanApplicationId, async (err, assets) => {
                                                                                                     if (err) {
                                                                                                         conn.rollback(() => {
@@ -132,7 +134,7 @@ LoanApplications.getLoanApplication = async (client_id) => {
                                                                                                             reject(err);
                                                                                                         })
                                                                                                     } else {
-                                                                                                        query = `SELECT * FROM liabilities WHERE loan_application_id = ?`;
+                                                                                                        query = `SELECT * FROM loan_app_liabilities WHERE loan_application_id = ?`;
                                                                                                         conn.query(query, loanApplicationId, async (err, liabilities) => {
                                                                                                             if (err) {
                                                                                                                 conn.rollback(() => {
@@ -140,7 +142,7 @@ LoanApplications.getLoanApplication = async (client_id) => {
                                                                                                                     reject(err);
                                                                                                                 })
                                                                                                             } else {
-                                                                                                                query = `SELECT * FROM gifts_grants WHERE loan_application_id = ?`;
+                                                                                                                query = `SELECT * FROM loan_app_gifts_grants WHERE loan_application_id = ?`;
                                                                                                                 conn.query(query, loanApplicationId, async (err, giftsGrants) => {
                                                                                                                     if (err) {
                                                                                                                         conn.rollback(() => {
@@ -160,7 +162,7 @@ LoanApplications.getLoanApplication = async (client_id) => {
                                                                                                                                     loanApplications: loanApplicationResult[loanApplicationResult.length - 1],
                                                                                                                                     personalInfo,
                                                                                                                                     properties,
-                                                                                                                                    martialStatus,
+                                                                                                                                    addresses,
                                                                                                                                     borrowers,
                                                                                                                                     realEstate,
                                                                                                                                     employments,
