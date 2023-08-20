@@ -372,6 +372,38 @@ const loanController = {
             next(error);
         }
     },
+    getApplication: async(req, res, next)=> {
+        try {
+            const data = await LoanApplications.GetApplication(req.params.id);
+            if(data[0].loan_type){
+                res.status(200).send({status: true, data});
+            } else {
+                res.status(200).send({status: true, data: []});
+            }
+        } catch (error) {
+            next(error);
+        }
+    },
+    getPersonalInfo: async(req, res, next)=> {
+        try {
+            const data = await PersonalInfo.GetPersonalInfo(req.params.id);
+            if(data){
+                res.status(200).send({status: true, data});
+            }
+        } catch (error) {
+            next(error);
+        }
+    },
+    getProperty: async(req, res, next)=> {
+        try {
+            const data = await Properties.GetProperty(req.params.id);
+            if(data){
+                res.status(200).send({status: true, data});
+            }
+        } catch (error) {
+            next(error);
+        }
+    },
     getEmployment: async(req, res, next)=> {
         try {
             const data = await Employment.GetEmployment(req.params.id);
@@ -434,7 +466,7 @@ const loanController = {
     },
     getAddress: async(req, res, next)=> {
         try {
-            const data = await Address.GetAddress(req.params.id);
+            const data = await Address.GetAddress(req.params.id, req.query.type);
             if(data){
                 res.status(200).send({status: true, data});
             }

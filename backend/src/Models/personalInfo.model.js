@@ -16,6 +16,23 @@ class PersonalInfo {
     }
 }
 
+PersonalInfo.GetPersonalInfo = async (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const query = `SELECT * FROM loan_app_personal_info WHERE loan_application_id=?`;
+            db.query(query, id, (err, sqlresult) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(sqlresult)
+                }
+            })
+        } catch (error) {
+            reject(error);
+        }
+    })
+}
+
 PersonalInfo.Add = async (data) => {
     return new Promise(async (resolve, reject) => {
         try {

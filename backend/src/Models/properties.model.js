@@ -24,6 +24,23 @@ class Properties {
     }
 }
 
+Properties.GetProperty = async (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const query = `SELECT * FROM loan_app_subject_properties WHERE loan_application_id=?`;
+            db.query(query, id, (err, sqlresult) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(sqlresult)
+                }
+            })
+        } catch (error) {
+            reject(error);
+        }
+    })
+}
+
 Properties.Add = async (data) => {
     return new Promise(async (resolve, reject) => {
         try {

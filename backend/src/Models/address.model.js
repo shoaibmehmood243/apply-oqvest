@@ -24,10 +24,10 @@ class Address {
     }
 }
 
-Address.GetAddress = async (id) => {
+Address.GetAddress = async (id, type) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const query = `SELECT * FROM loan_app_addresses WHERE loan_application_id=? && type = 'former'`;
+            const query = `SELECT * FROM loan_app_addresses WHERE loan_application_id=? && type = '${type}'`;
             db.query(query, id, (err, sqlresult) => {
                 if (err) {
                     reject(err);

@@ -31,6 +31,9 @@ router.delete('/address/:id', loanController.deleteAddress);
 router.delete('/real-estate/:id', loanController.deleteRealEstate);
 
 // GET
+router.get('/application/:id', loanController.getApplication);
+router.get('/personal-info/:id', loanController.getPersonalInfo);
+router.get('/property/:id', loanController.getProperty);
 router.get('/employment/:id', loanController.getEmployment);
 router.get('/monthly-income/:id', loanController.getMonthlyIncome);
 router.get('/assets/:id', loanController.getAssets);

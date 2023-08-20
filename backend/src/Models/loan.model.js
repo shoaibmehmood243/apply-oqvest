@@ -46,6 +46,23 @@ class LoanApplications {
     }
 }
 
+LoanApplications.GetApplication = async (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const query = `SELECT * FROM loan_applications WHERE id=?`;
+            db.query(query, id, (err, sqlresult) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(sqlresult)
+                }
+            })
+        } catch (error) {
+            reject(error);
+        }
+    })
+}
+
 LoanApplications.getLoanApplication = async (id) => {
     return new Promise((resolve, reject) => {
         try {
